@@ -5,7 +5,6 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import lombok.Getter;
-import lombok.SneakyThrows;
 
 @Getter
 public class IntCodeInterpreter {
@@ -34,7 +33,6 @@ public class IntCodeInterpreter {
 		return this;
 	}
 
-	@SneakyThrows
 	public void performComputation() {
 		var offset = 0L;
 
@@ -59,11 +57,19 @@ public class IntCodeInterpreter {
 				if (input.isEmpty()) {
 					status.add(true);
 				}
-				set(get(i + 1), modeFirstParameter, offset, input.take());
+				try {
+					set(get(i + 1), modeFirstParameter, offset, input.take());
+				} catch (InterruptedException e) {
+					return;
+				}
 				i = i + 2;
 				break;
 			case 4:
-				output.put(getValue(i + 1, modeFirstParameter, offset));
+				try {
+					output.put(getValue(i + 1, modeFirstParameter, offset));
+				} catch (InterruptedException e) {
+					return;
+				}
 				i = i + 2;
 				break;
 			case 5:

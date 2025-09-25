@@ -37,28 +37,57 @@ public class GridElement<T> {
 		nextValue = null;
 	}
 
-	public void setLeftNeighbour(GridElement<T> neighbour) {
+	public GridElement<T> setLeftNeighbour(GridElement<T> neighbour) {
 		leftNeighbour = neighbour;
 		allNeighbours.add(neighbour);
 		borderingNeighbours.add(neighbour);
+		return neighbour;
 	}
 
-	public void setRightNeighbour(GridElement<T> neighbour) {
+	public GridElement<T> setRightNeighbour(GridElement<T> neighbour) {
 		rightNeighbour = neighbour;
 		allNeighbours.add(neighbour);
 		borderingNeighbours.add(neighbour);
+		return neighbour;
 	}
 
-	public void setUpperNeighbour(GridElement<T> neighbour) {
+	public GridElement<T> setUpperNeighbour(GridElement<T> neighbour) {
 		upperNeighbour = neighbour;
 		allNeighbours.add(neighbour);
 		borderingNeighbours.add(neighbour);
+		return neighbour;
 	}
 
-	public void setLowerNeighbour(GridElement<T> neighbour) {
+	public GridElement<T> setLowerNeighbour(GridElement<T> neighbour) {
 		lowerNeighbour = neighbour;
 		allNeighbours.add(neighbour);
 		borderingNeighbours.add(neighbour);
+		return neighbour;
+	}
+
+	public GridElement<T> setNeighbour(Direction direction, T value) {
+		return switch (direction) {
+			case UP -> {
+				var neighbour = setUpperNeighbour(new GridElement<>(value, coordinates.getX(), coordinates.getY() - 1));
+				neighbour.setLowerNeighbour(this);
+				yield neighbour;
+			}
+			case DOWN -> {
+				var neighbour = setLowerNeighbour(new GridElement<>(value, coordinates.getX(), coordinates.getY() + 1));
+				neighbour.setUpperNeighbour(this);
+				yield neighbour;
+			}
+			case LEFT -> {
+				var neighbour = setLeftNeighbour(new GridElement<>(value, coordinates.getX() - 1, coordinates.getY()));
+				neighbour.setRightNeighbour(this);
+				yield neighbour;
+			}
+			case RIGHT -> {
+				var neighbour = setRightNeighbour(new GridElement<>(value, coordinates.getX() + 1, coordinates.getY()));
+				neighbour.setLeftNeighbour(this);
+				yield neighbour;
+			}
+		};
 	}
 
 	public GridElement<T> getNeighbour(Direction direction) {
