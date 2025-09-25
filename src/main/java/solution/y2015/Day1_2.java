@@ -1,43 +1,53 @@
 package solution.y2015;
 
-import utils.InstructionQueue;
-import utils.Solution;
+import org.apache.commons.lang3.tuple.MutablePair;
+import utils.InstructionSolution;
+import utils.StringTransformer;
 
 import java.util.List;
 
-public class Day1_2 extends Solution {
-	private int floor = 0;
-	private int index = 0;
-
+public class Day1_2 extends InstructionSolution<String, MutablePair<Long, Long>> {
 	public static void main(String[] args) {
 		new Day1_2().solve();
 	}
 
 	@Override
-	protected String solve(List<String> input) {
-		var instructionQueue = new InstructionQueue(input.getFirst());
-		while (instructionQueue.peek() != null) {
-			performInstruction(instructionQueue.poll());
-			index++;
-
-			if (floor < 0) {
-				return index + "";
-			}
-		}
-
-		return "ERROR";
+	protected List<String> getInstructions(List<String> instructions) {
+		return StringTransformer.fromString(instructions.getFirst());
 	}
 
-	protected void performInstruction(Character instruction) {
+	@Override
+	protected MutablePair<Long, Long> initializeValue() {
+		return MutablePair.of(0L, 0L);
+	}
+
+	@Override
+	protected String transformInstruction(String instruction) {
+		return instruction;
+	}
+
+	@Override
+	protected void performInstruction(String instruction, MutablePair<Long, Long> value) {
+		if (value.getLeft() < 0) {
+			return;
+		}
+
 		switch (instruction) {
-		case '(':
-			floor++;
+		case "(":
+			value.setLeft(value.getLeft() + 1);
 			break;
-		case ')':
-			floor--;
+		case ")":
+			value.setLeft(value.getLeft() - 1);
 			break;
 		default:
 			throw new IllegalArgumentException("Invalid instruction: " + instruction);
 		}
+
+		value.setRight(value.getRight() + 1);
+	}
+
+	@Override
+	protected String getSolution(MutablePair<Long, Long> value) {
+		return value.getRight() + "";
 	}
 }

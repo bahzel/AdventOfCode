@@ -1,33 +1,47 @@
 package solution.y2015;
 
 import utils.InstructionSolution;
+import utils.StringTransformer;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
-public class Day1_1 extends InstructionSolution {
-	private int floor = 0;
-
+public class Day1_1 extends InstructionSolution<String, AtomicLong> {
 	public static void main(String[] args) {
 		new Day1_1().solve();
 	}
 
 	@Override
-	protected String solve(List<String> input) {
-		iterate(input.getFirst());
-		return floor + "";
+	protected List<String> getInstructions(List<String> instructions) {
+		return StringTransformer.fromString(instructions.getFirst());
 	}
 
 	@Override
-	protected void performInstruction(Character instruction) {
+	protected AtomicLong initializeValue() {
+		return new AtomicLong();
+	}
+
+	@Override
+	protected String transformInstruction(String instruction) {
+		return instruction;
+	}
+
+	@Override
+	protected void performInstruction(String instruction, AtomicLong value) {
 		switch (instruction) {
-		case '(':
-			floor++;
+		case "(":
+			value.incrementAndGet();
 			break;
-		case ')':
-			floor--;
+		case ")":
+			value.decrementAndGet();
 			break;
 		default:
 			throw new IllegalArgumentException("Invalid instruction: " + instruction);
 		}
+	}
+
+	@Override
+	protected String getSolution(AtomicLong value) {
+		return value.toString();
 	}
 }

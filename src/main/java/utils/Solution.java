@@ -5,7 +5,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public abstract class Solution {
-	private List<String> input;
+	protected List<String> input;
 
 	public Solution(String fileName) {
 		setInput(fileName);
@@ -23,8 +23,8 @@ public abstract class Solution {
 	}
 
 	public void solve() {
-		System.out.println(solve(input));
+		System.out.println(doSolve());
 	}
 
-	protected abstract String solve(List<String> input);
+	protected abstract String doSolve();
 }

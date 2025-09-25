@@ -1,12 +1,26 @@
 package utils;
 
-public abstract class InstructionSolution extends Solution {
-	public void iterate(String instructions) {
-		var instructionQueue = new InstructionQueue(instructions);
-		while (instructionQueue.peek() != null) {
-			performInstruction(instructionQueue.poll());
-		}
+import java.util.List;
+
+public abstract class InstructionSolution<Instruction, Value> extends Solution {
+	@Override
+	public String doSolve() {
+		var value = initializeValue();
+		getInstructions(input).stream()
+							  .map(this::transformInstruction)
+							  .forEach(instruction -> performInstruction(instruction, value));
+		return getSolution(value);
 	}
 
-	protected abstract void performInstruction(Character instruction);
+	protected List<String> getInstructions(List<String> instructions) {
+		return instructions;
+	}
+
+	protected abstract Value initializeValue();
+
+	protected abstract Instruction transformInstruction(String instruction);
+
+	protected abstract void performInstruction(Instruction instruction, Value value);
+
+	protected abstract String getSolution(Value value);
 }
