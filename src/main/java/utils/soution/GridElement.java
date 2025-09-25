@@ -72,6 +72,6 @@ public class GridElement<T> {
 
 	@Override
 	public String toString() {
-		return coordinates.toString();
+		return coordinates.toString() + " value=" + value;
 	}
 }
