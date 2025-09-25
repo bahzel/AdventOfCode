@@ -55,8 +55,6 @@ public class Day24_2 extends MapSolution<List<Long>> {
 	}
 
 	private long computeQuantumEntanglement(Set<Long> group) {
-		var solution = group.stream().mapToLong(Long::longValue).reduce(1, Math::multiplyExact);
-		System.out.println(group + " - " + solution);
-		return solution;
+		return group.stream().mapToLong(Long::longValue).reduce(1, Math::multiplyExact);
 	}
 }
