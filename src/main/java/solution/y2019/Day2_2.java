@@ -19,7 +19,8 @@ public class Day2_2 extends Solution {
 				register[1] = noun;
 				register[2] = verb;
 
-				if (IntCodeInterpreter.performComputation(register) == 19690720) {
+				IntCodeInterpreter.performComputation(register);
+				if (register[0] == 19690720) {
 					return noun * 100 + verb + "";
 				}
 			}
