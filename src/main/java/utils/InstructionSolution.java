@@ -3,45 +3,56 @@ package utils;
 import java.util.List;
 
 public abstract class InstructionSolution<Instruction, Value> extends Solution {
-	private Value value;
-	private List<Instruction> instructions;
+    private final boolean reverse;
+    private Value value;
+    private List<Instruction> instructions;
 
-	public InstructionSolution() {
-		super();
-	}
+    public InstructionSolution() {
+        super();
+        reverse = false;
+    }
 
-	public InstructionSolution(List<String> input) {
-		super(input);
-	}
+    public InstructionSolution(List<String> input) {
+        super(input);
+        reverse = false;
+    }
 
-	@Override
-	protected void initialize() {
-		value = initializeValue();
-		instructions = getInstructions(input).stream().map(this::transformInstruction).toList();
-	}
+    public InstructionSolution(boolean reverse) {
+        super();
+        this.reverse = reverse;
+    }
 
-	@Override
-	public String doSolve() {
-		for (Instruction instruction : instructions) {
-			if (performInstruction(instruction, value)) {
-				break;
-			}
-		}
-		return getSolution(value);
-	}
+    @Override
+    protected void initialize() {
+        value = initializeValue();
+        instructions = getInstructions(input).stream().map(this::transformInstruction).toList();
+        if (reverse) {
+            instructions = instructions.reversed();
+        }
+    }
 
-	protected List<String> getInstructions(List<String> instructions) {
-		return instructions;
-	}
+    @Override
+    public String doSolve() {
+        for (Instruction instruction : instructions) {
+            if (performInstruction(instruction, value)) {
+                break;
+            }
+        }
+        return getSolution(value);
+    }
 
-	protected abstract Value initializeValue();
+    protected List<String> getInstructions(List<String> instructions) {
+        return instructions;
+    }
 
-	protected abstract Instruction transformInstruction(String instruction);
+    protected abstract Value initializeValue();
 
-	/**
-	 * @return true if the algorithm shall finish after this instruction
-	 */
-	protected abstract boolean performInstruction(Instruction instruction, Value value);
+    protected abstract Instruction transformInstruction(String instruction);
 
-	protected abstract String getSolution(Value value);
+    /**
+     * @return true if the algorithm shall finish after this instruction
+     */
+    protected abstract boolean performInstruction(Instruction instruction, Value value);
+
+    protected abstract String getSolution(Value value);
 }
