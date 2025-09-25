@@ -19,7 +19,7 @@ public class Day19_2 extends Solution {
 			queue.add(i);
 		}
 
-		var iterator = new CyclingListIterator<>(queue);
+		var iterator = new CyclingListIterator<>(queue, queue.size() / 2);
 		while (queue.size() > 1) {
 			iterator.next();
 			iterator.remove();
