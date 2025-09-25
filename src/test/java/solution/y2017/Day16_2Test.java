@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day15_2Test {
+public class Day16_2Test {
 	@Test
 	public void test() {
-		assertThat(new Day15_2().solve()).isEqualTo("328");
+		assertThat(new Day16_2().solve()).isEqualTo("agndefjhibklmocp");
 	}
 }
