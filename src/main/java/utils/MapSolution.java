@@ -3,10 +3,16 @@ package utils;
 import java.util.List;
 
 public abstract class MapSolution<Mapping> extends Solution {
+	private Mapping mapping;
+
+	@Override
+	protected void initialize() {
+		mapping = initializeMapping();
+		getInstructions(input).forEach(instruction -> transformInstruction(instruction, mapping));
+	}
+
 	@Override
 	public String doSolve() {
-		var mapping = initializeMapping();
-		getInstructions(input).forEach(instruction -> transformInstruction(instruction, mapping));
 		return computeSolution(mapping);
 	}
 

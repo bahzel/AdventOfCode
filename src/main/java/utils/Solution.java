@@ -26,8 +26,14 @@ public abstract class Solution {
 		input = Files.readAllLines(Paths.get(getClass().getClassLoader().getResource(fileName).toURI()));
 	}
 
-	public void solve() {
-		System.out.println(doSolve());
+	public String solve() {
+		initialize();
+		var solution = doSolve();
+		System.out.println(solution);
+		return solution;
+	}
+
+	protected void initialize() {
 	}
 
 	protected abstract String doSolve();

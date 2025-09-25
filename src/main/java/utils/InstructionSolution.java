@@ -3,6 +3,9 @@ package utils;
 import java.util.List;
 
 public abstract class InstructionSolution<Instruction, Value> extends Solution {
+	private Value value;
+	private List<Instruction> instructions;
+
 	public InstructionSolution() {
 		super();
 	}
@@ -12,11 +15,14 @@ public abstract class InstructionSolution<Instruction, Value> extends Solution {
 	}
 
 	@Override
+	protected void initialize() {
+		value = initializeValue();
+		instructions = getInstructions(input).stream().map(this::transformInstruction).toList();
+	}
+
+	@Override
 	public String doSolve() {
-		var value = initializeValue();
-		getInstructions(input).stream()
-							  .map(this::transformInstruction)
-							  .forEach(instruction -> performInstruction(instruction, value));
+		instructions.forEach(instruction -> performInstruction(instruction, value));
 		return getSolution(value);
 	}
 

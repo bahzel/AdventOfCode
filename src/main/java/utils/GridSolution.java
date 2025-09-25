@@ -13,8 +13,12 @@ public abstract class GridSolution<T> extends Solution {
 	}
 
 	@Override
-	public String doSolve() {
+	protected void initialize() {
 		initializeGrid();
+	}
+
+	@Override
+	public String doSolve() {
 		return computeSolution();
 	}
 
