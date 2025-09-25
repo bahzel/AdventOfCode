@@ -1,10 +1,10 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.tuple.MutablePair;
-import utils.soution.InstructionSolution;
-import utils.StringTransformer;
-
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.MutablePair;
+import utils.StringTransformer;
+import utils.soution.InstructionSolution;
 
 public class Day1_2 extends InstructionSolution<String, MutablePair<Long, Long>> {
 	public static void main(String[] args) {
@@ -13,7 +13,7 @@ public class Day1_2 extends InstructionSolution<String, MutablePair<Long, Long>>
 
 	@Override
 	protected List<String> getInstructions(List<String> instructions) {
-		return StringTransformer.fromString(instructions.getFirst());
+		return StringTransformer.splitString(instructions.getFirst());
 	}
 
 	@Override

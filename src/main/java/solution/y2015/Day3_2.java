@@ -1,15 +1,15 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.tuple.Pair;
-import org.apache.commons.lang3.tuple.Triple;
-import utils.Direction;
-import utils.soution.InstructionSolution;
-import utils.Point;
-import utils.StringTransformer;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
+import utils.Direction;
+import utils.Point;
+import utils.StringTransformer;
+import utils.soution.InstructionSolution;
 
 public class Day3_2 extends InstructionSolution<Pair<Direction, Direction>, Triple<Point, Point, Set<Point>>> {
 	public static void main(String[] args) {
@@ -18,7 +18,7 @@ public class Day3_2 extends InstructionSolution<Pair<Direction, Direction>, Trip
 
 	@Override
 	protected List<String> getInstructions(List<String> instructions) {
-		return StringTransformer.fromString(instructions.getFirst(), 2);
+		return StringTransformer.splitString(instructions.getFirst(), 2);
 	}
 
 	@Override

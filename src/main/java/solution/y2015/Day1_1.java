@@ -1,10 +1,10 @@
 package solution.y2015;
 
-import utils.soution.InstructionSolution;
-import utils.StringTransformer;
-
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
+import utils.StringTransformer;
+import utils.soution.InstructionSolution;
 
 public class Day1_1 extends InstructionSolution<String, AtomicLong> {
 	public static void main(String[] args) {
@@ -13,7 +13,7 @@ public class Day1_1 extends InstructionSolution<String, AtomicLong> {
 
 	@Override
 	protected List<String> getInstructions(List<String> instructions) {
-		return StringTransformer.fromString(instructions.getFirst());
+		return StringTransformer.splitString(instructions.getFirst());
 	}
 
 	@Override

@@ -13,7 +13,7 @@ public class StringTransformer {
      * @param input input
      * @return A list of all characters of the given String
      */
-    public static List<String> fromString(String input) {
+    public static List<String> splitString(String input) {
         return Arrays.asList(input.split(""));
     }
 
@@ -24,7 +24,7 @@ public class StringTransformer {
      * @param size  size of the substrings
      * @return A list of substrings with the given length of the given String
      */
-    public static List<String> fromString(String input, int size) {
+    public static List<String> splitString(String input, int size) {
         return Arrays.asList(input.split("(?<=\\G.{" + size + "})"));
     }
 

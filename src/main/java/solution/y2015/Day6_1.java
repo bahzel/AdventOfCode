@@ -1,11 +1,11 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.tuple.Triple;
-import utils.soution.InstructionSolution;
-import utils.Point;
-
 import java.util.Arrays;
-import java.util.stream.IntStream;
+
+import org.apache.commons.lang3.tuple.Triple;
+import utils.Booleans;
+import utils.Point;
+import utils.soution.InstructionSolution;
 
 public class Day6_1 extends InstructionSolution<Triple<Action, Point, Point>, boolean[][]> {
 	public static void main(String[] args) {
@@ -72,10 +72,7 @@ public class Day6_1 extends InstructionSolution<Triple<Action, Point, Point>, bo
 
 	@Override
 	protected String getSolution(boolean[][] value) {
-		return Arrays.stream(value)
-					 .flatMap(lights -> IntStream.range(0, lights.length).mapToObj(light -> lights[light]))
-					 .filter(light -> light)
-					 .count() + "";
+		return Arrays.stream(value).flatMap(Booleans::stream).filter(light -> light).count() + "";
 	}
 }
 
