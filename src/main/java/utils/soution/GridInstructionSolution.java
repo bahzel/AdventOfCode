@@ -7,6 +7,7 @@ public abstract class GridInstructionSolution<Element, Instruction> extends Grid
 
 	@Override
 	protected void initialize() {
+		input = getInstructions(input);
 		initializeGrid();
 		instructions = getInstructionStrings(input.subList(input.indexOf("") + 1, input.size())).stream()
 																								.map(this::transformInstruction)

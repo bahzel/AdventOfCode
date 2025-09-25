@@ -9,7 +9,6 @@ public abstract class GridSolution<T> extends Solution {
 
 	protected GridSolution() {
 		super();
-		input = getInstructions(input);
 	}
 
 	protected List<String> getInstructions(List<String> instructions) {
@@ -18,6 +17,7 @@ public abstract class GridSolution<T> extends Solution {
 
 	@Override
 	protected void initialize() {
+		input = getInstructions(input);
 		initializeGrid();
 	}
 
