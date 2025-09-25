@@ -20,7 +20,7 @@ public class Point {
         this.y = other.y;
     }
 
-    public int computeDistance(Point other) {
+    public int computeManhattanDistance(Point other) {
         return Math.abs(x - other.x) + Math.abs(y - other.y);
     }
 
