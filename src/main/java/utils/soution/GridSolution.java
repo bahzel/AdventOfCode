@@ -5,12 +5,11 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public abstract class GridSolution<T> extends Solution {
-	protected final GridElement<T>[][] grid;
+	protected GridElement<T>[][] grid;
 
 	protected GridSolution() {
 		super();
 		input = getInstructions(input);
-		grid = new GridElement[input.getFirst().length()][input.size()];
 	}
 
 	protected List<String> getInstructions(List<String> instructions) {
@@ -28,6 +27,8 @@ public abstract class GridSolution<T> extends Solution {
 	}
 
 	private void initializeGrid() {
+		grid = new GridElement[input.getFirst().length()][input.size()];
+
 		for (int i = 0; i < input.size(); i++) {
 			var row = input.get(i);
 			for (int j = 0; j < row.length(); j++) {
@@ -52,6 +53,9 @@ public abstract class GridSolution<T> extends Solution {
 				}
 				if (i < grid.length - 1) {
 					if (j > 0) {
+						if (grid[i][j] == null) {
+							System.out.println("Hä?");
+						}
 						grid[i][j].getAllNeighbours().add(grid[i + 1][j - 1]);
 					}
 					grid[i][j].setRightNeighbour(grid[i + 1][j]);
