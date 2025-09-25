@@ -1,7 +1,7 @@
 package solution.y2016;
 
 import lombok.Getter;
-import utils.InstructionSolution;
+import utils.soution.InstructionSolution;
 
 import java.util.ArrayList;
 import java.util.List;

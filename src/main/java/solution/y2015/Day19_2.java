@@ -1,7 +1,7 @@
 package solution.y2015;
 
 import org.apache.commons.lang3.tuple.Pair;
-import utils.Solution;
+import utils.soution.Solution;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -10,7 +10,7 @@ import java.util.function.BiConsumer;
 
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.tuple.Triple;
-import utils.MapSolution;
+import utils.soution.MapSolution;
 
 public class Day23_1 extends MapSolution<List<Triple<BiConsumer<Map<String, Integer>, AtomicInteger>, BiConsumer<Map<String, Integer>, AtomicInteger>, AtomicBoolean>>> {
     public static void main(String[] args) {

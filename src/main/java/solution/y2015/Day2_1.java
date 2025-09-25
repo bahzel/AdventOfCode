@@ -1,6 +1,6 @@
 package solution.y2015;
 
-import utils.InstructionSolution;
+import utils.soution.InstructionSolution;
 
 import java.util.concurrent.atomic.AtomicLong;
 

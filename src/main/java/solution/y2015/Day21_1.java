@@ -2,7 +2,7 @@ package solution.y2015;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import utils.Solution;
+import utils.soution.Solution;
 
 import java.util.Arrays;
 import java.util.List;

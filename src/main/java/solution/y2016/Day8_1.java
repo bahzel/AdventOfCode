@@ -1,8 +1,8 @@
 package solution.y2016;
 
 import lombok.AllArgsConstructor;
-import utils.GridElement;
-import utils.GridInstruction;
+import utils.soution.GridElement;
+import utils.soution.GridInstruction;
 
 import java.util.function.Consumer;
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Triple;
-import utils.MapSolution;
+import utils.soution.MapSolution;
 import utils.StringTransformer;
 
 public class Day22_1 extends MapSolution<List<Triple<String, Integer, Integer>>> {

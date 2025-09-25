@@ -1,6 +1,6 @@
 package solution.y2015;
 
-import utils.Solution;
+import utils.soution.Solution;
 
 import java.util.HashSet;
 import java.util.List;

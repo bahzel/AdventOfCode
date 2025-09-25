@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.Queue;
 
 import org.apache.commons.lang3.tuple.Pair;
-import utils.GridElement;
-import utils.GridSolution;
+import utils.soution.GridElement;
+import utils.soution.GridSolution;
 import utils.Point;
 
 public class Day24_1 extends GridSolution<Boolean> {

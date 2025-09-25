@@ -1,7 +1,7 @@
 package solution.y2016;
 
-import utils.GridElement;
-import utils.GridInstruction;
+import utils.soution.GridElement;
+import utils.soution.GridInstruction;
 
 public class Day8_2 extends GridInstruction<Boolean, PixelRotation> {
 	public static void main(String[] args) {

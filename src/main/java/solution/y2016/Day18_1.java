@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import utils.MapSolution;
+import utils.soution.MapSolution;
 
 public class Day18_1 extends MapSolution<List<boolean[]>> {
     private final int ROW_COUNT = 40;

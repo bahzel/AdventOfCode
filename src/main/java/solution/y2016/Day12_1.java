@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 
 import org.apache.commons.lang3.StringUtils;
-import utils.MapSolution;
+import utils.soution.MapSolution;
 
 public class Day12_1 extends MapSolution<List<BiConsumer<Map<String, Integer>, AtomicInteger>>> {
     public static void main(String[] args) {

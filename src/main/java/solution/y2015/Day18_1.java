@@ -1,7 +1,7 @@
 package solution.y2015;
 
-import utils.GridElement;
-import utils.GridSolution;
+import utils.soution.GridElement;
+import utils.soution.GridSolution;
 
 public class Day18_1 extends GridSolution<Boolean> {
     public static void main(String[] args) {

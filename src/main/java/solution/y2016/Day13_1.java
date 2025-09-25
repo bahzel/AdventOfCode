@@ -8,7 +8,7 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import utils.Point;
-import utils.Solution;
+import utils.soution.Solution;
 
 public class Day13_1 extends Solution {
     private final Set<Point> CACHE = new HashSet<>();

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
-import utils.MapSolution;
+import utils.soution.MapSolution;
 
 public class Day20_2 extends MapSolution<List<Pair<Long, Long>>> {
     public static void main(String[] args) {

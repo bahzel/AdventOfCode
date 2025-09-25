@@ -1,7 +1,7 @@
 package solution.y2015;
 
-import utils.InstructionSolution;
-import utils.Solution;
+import utils.soution.InstructionSolution;
+import utils.soution.Solution;
 
 import java.util.Arrays;
 import java.util.List;

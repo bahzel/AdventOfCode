@@ -1,7 +1,7 @@
 package solution.y2015;
 
 import org.apache.commons.lang3.tuple.Triple;
-import utils.InstructionSolution;
+import utils.soution.InstructionSolution;
 import utils.Point;
 
 import java.util.Arrays;

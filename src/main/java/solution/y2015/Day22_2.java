@@ -2,7 +2,7 @@ package solution.y2015;
 
 import org.apache.commons.lang3.function.TriConsumer;
 import org.apache.commons.lang3.tuple.Triple;
-import utils.Solution;
+import utils.soution.Solution;
 
 import java.util.HashMap;
 import java.util.List;

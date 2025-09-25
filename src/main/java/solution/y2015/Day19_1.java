@@ -1,7 +1,7 @@
 package solution.y2015;
 
 import org.apache.commons.lang3.tuple.Pair;
-import utils.InstructionWithInputSolution;
+import utils.soution.InstructionWithInputSolution;
 
 import java.util.HashSet;
 import java.util.Set;

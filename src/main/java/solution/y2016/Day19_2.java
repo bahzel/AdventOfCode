@@ -3,7 +3,7 @@ package solution.y2016;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
-import utils.Solution;
+import utils.soution.Solution;
 
 public class Day19_2 extends Solution {
     public static void main(String[] args) {

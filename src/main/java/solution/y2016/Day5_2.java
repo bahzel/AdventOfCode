@@ -1,7 +1,7 @@
 package solution.y2016;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import utils.Solution;
+import utils.soution.Solution;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

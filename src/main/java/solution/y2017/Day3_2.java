@@ -3,9 +3,9 @@ package solution.y2017;
 import java.util.HashMap;
 import java.util.Map;
 
-import utils.GridElement;
+import utils.soution.GridElement;
 import utils.Point;
-import utils.Solution;
+import utils.soution.Solution;
 
 public class Day3_2 extends Solution {
     public static void main(String[] args) {

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
-import utils.Solution;
+import utils.soution.Solution;
 
 public class Day11_1 extends Solution {
     private Set<String> CACHE = new HashSet<>();

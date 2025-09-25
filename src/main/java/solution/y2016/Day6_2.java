@@ -1,6 +1,6 @@
 package solution.y2016;
 
-import utils.Solution;
+import utils.soution.Solution;
 
 import java.util.Comparator;
 import java.util.HashMap;

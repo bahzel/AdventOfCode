@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import utils.InstructionSolution;
+import utils.soution.InstructionSolution;
 
 public class Day4_1 extends InstructionSolution<List<String>, AtomicInteger> {
     public static void main(String[] args) {

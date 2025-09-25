@@ -1,7 +1,7 @@
 package solution.y2017;
 
 import utils.Point;
-import utils.Solution;
+import utils.soution.Solution;
 
 public class Day3_1 extends Solution {
     public static void main(String[] args) {

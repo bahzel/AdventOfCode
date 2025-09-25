@@ -2,7 +2,7 @@ package solution.y2016;
 
 import lombok.Getter;
 import lombok.Setter;
-import utils.MapSolution;
+import utils.soution.MapSolution;
 
 import java.util.ArrayList;
 import java.util.HashMap;

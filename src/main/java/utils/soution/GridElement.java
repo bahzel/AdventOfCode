@@ -1,10 +1,11 @@
-package utils;
+package utils.soution;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+import utils.Point;
 
 @Getter
 public class GridElement<T> {

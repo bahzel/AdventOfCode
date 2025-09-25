@@ -1,6 +1,6 @@
 package solution.y2016;
 
-import utils.MapSolution;
+import utils.soution.MapSolution;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -6,7 +6,7 @@ import java.util.Queue;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import utils.Point;
-import utils.Solution;
+import utils.soution.Solution;
 
 public class Day17_1 extends Solution {
     private String passcode;

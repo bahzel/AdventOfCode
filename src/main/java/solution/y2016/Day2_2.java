@@ -2,7 +2,7 @@ package solution.y2016;
 
 import org.apache.commons.lang3.tuple.Pair;
 import utils.Direction;
-import utils.InstructionSolution;
+import utils.soution.InstructionSolution;
 import utils.Point;
 
 import java.util.List;

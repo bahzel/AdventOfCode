@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
-import utils.InstructionSolution;
+import utils.soution.InstructionSolution;
 import utils.StringTransformer;
 
 public class Day2_1 extends InstructionSolution<List<Long>, AtomicLong> {

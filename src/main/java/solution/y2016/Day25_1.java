@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.function.TriConsumer;
-import utils.MapSolution;
+import utils.soution.MapSolution;
 
 public class Day25_1 extends MapSolution<List<TriConsumer<Map<String, Integer>, AtomicInteger, StringBuilder>>> {
     public static void main(String[] args) {

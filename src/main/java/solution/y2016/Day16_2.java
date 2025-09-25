@@ -1,7 +1,7 @@
 package solution.y2016;
 
 import org.apache.commons.lang3.StringUtils;
-import utils.Solution;
+import utils.soution.Solution;
 
 public class Day16_2 extends Solution {
     public static void main(String[] args) {

@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
-import utils.Solution;
+import utils.soution.Solution;
 
 public class Day14_1 extends Solution {
     private final Map<Long, String> CACHE = new HashMap<>();

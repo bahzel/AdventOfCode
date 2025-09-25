@@ -1,7 +1,7 @@
 package solution.y2015;
 
 import lombok.AllArgsConstructor;
-import utils.MapSolution;
+import utils.soution.MapSolution;
 
 import java.util.ArrayList;
 import java.util.List;

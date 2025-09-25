@@ -2,7 +2,7 @@ package solution.y2015;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import utils.MapSolution;
+import utils.soution.MapSolution;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.commons.lang3.tuple.Pair;
 import utils.Direction;
-import utils.InstructionSolution;
+import utils.soution.InstructionSolution;
 import utils.Point;
 
 public class Day1_2 extends InstructionSolution<Pair<Direction, Integer>, Pair<AtomicReference<Direction>, Point>> {

@@ -1,6 +1,6 @@
 package solution.y2015;
 
-import utils.Solution;
+import utils.soution.Solution;
 
 public class Day20_2 extends Solution {
 	public static void main(String[] args) {

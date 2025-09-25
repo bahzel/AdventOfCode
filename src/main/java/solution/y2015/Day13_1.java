@@ -1,7 +1,7 @@
 package solution.y2015;
 
 import org.apache.commons.lang3.tuple.Pair;
-import utils.MapSolution;
+import utils.soution.MapSolution;
 
 import java.util.ArrayList;
 import java.util.HashMap;

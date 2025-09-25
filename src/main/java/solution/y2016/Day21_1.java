@@ -2,7 +2,7 @@ package solution.y2016;
 
 import java.util.function.Consumer;
 
-import utils.InstructionSolution;
+import utils.soution.InstructionSolution;
 
 public class Day21_1 extends InstructionSolution<Consumer<StringBuilder>, StringBuilder> {
     public static void main(String[] args) {
