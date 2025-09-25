@@ -5,6 +5,14 @@ import java.util.List;
 public abstract class MapSolution<Mapping> extends Solution {
 	private Mapping mapping;
 
+	public MapSolution() {
+		super();
+	}
+
+	public MapSolution(List<String> input) {
+		super(input);
+	}
+
 	@Override
 	protected void initialize() {
 		mapping = initializeMapping();
