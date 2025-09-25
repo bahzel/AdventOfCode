@@ -10,4 +10,8 @@ public class StringTransformer {
 	public static List<String> fromString(String input) {
 		return Arrays.asList(input.split(""));
 	}
+
+	public static List<String> fromString(String input, int size) {
+		return Arrays.asList(input.split("(?<=\\G.{" + size + "})"));
+	}
 }
