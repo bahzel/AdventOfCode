@@ -49,6 +49,14 @@ public class Point {
 		};
 	}
 
+	public double getDegreeTo(Point other) {
+		var degrees = Math.toDegrees(Math.atan2(other.y - y, other.x - x)) + 90;
+		if (degrees < 0) {
+			return degrees + 360;
+		}
+		return degrees;
+	}
+
 	public String format() {
 		return x + "," + y;
 	}
