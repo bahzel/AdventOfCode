@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public abstract class Solution {
+	private boolean log = true;
 	protected List<String> input;
 
 	public Solution(String fileName) {
@@ -29,7 +30,7 @@ public abstract class Solution {
 	public String solve() {
 		initialize();
 		var solution = doSolve();
-		System.out.println(solution);
+		println(solution);
 		return solution;
 	}
 
@@ -37,4 +38,33 @@ public abstract class Solution {
 	}
 
 	protected abstract String doSolve();
+
+	public Solution disableLog() {
+		log = false;
+		return this;
+	}
+
+	public void print(String value) {
+		if (log) {
+			print(value);
+		}
+	}
+
+	public void println() {
+		if (log) {
+			System.out.println();
+		}
+	}
+
+	public void println(Object value) {
+		if (log) {
+			System.out.println(value);
+		}
+	}
+
+	public void println(long value) {
+		if (log) {
+			System.out.println(value);
+		}
+	}
 }

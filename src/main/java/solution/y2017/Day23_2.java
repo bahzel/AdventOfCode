@@ -54,7 +54,7 @@ public class Day23_2 extends Solution {
 			if (g != 0) {
 				b -= -17;
 			}
-			System.out.println(h + " - " + g);
+			println(h + " - " + g);
 		} while (g != 0);
 
 		return h + "";

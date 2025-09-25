@@ -38,7 +38,7 @@ public class Day24_1 extends Solution {
 		for (int i = 1; armies.stream().anyMatch(brigade -> brigade instanceof ImmuneSystem) && armies.stream()
 																									  .anyMatch(
 																											  brigade -> brigade instanceof Infection); i++) {
-			System.out.println("----- Round:" + i + " -----");
+			println("----- Round:" + i + " -----");
 			var unitCountBefore = getUnitCount();
 			performRound();
 			if (unitCountBefore == getUnitCount()) {
@@ -55,9 +55,8 @@ public class Day24_1 extends Solution {
 	}
 
 	private void performRound() {
-		armies.forEach(
-				brigade -> System.out.println(brigade + "(effective power: " + brigade.getEffectivePower() + ")"));
-		System.out.println();
+		armies.forEach(brigade -> println(brigade + "(effective power: " + brigade.getEffectivePower() + ")"));
+		println();
 
 		var targetSelection = performTargetSelection();
 		performAttacks(targetSelection);
@@ -77,9 +76,9 @@ public class Day24_1 extends Solution {
 									   .max(targetComparator);
 			if (possibleTarget.isPresent()) {
 				targetSelection.add(Pair.of(brigade, possibleTarget.get()));
-				System.out.println(brigade + " will attack " + possibleTarget.get());
+				println(brigade + " will attack " + possibleTarget.get());
 			} else {
-				System.out.println(brigade + " did not find any target");
+				println(brigade + " did not find any target");
 			}
 		});
 

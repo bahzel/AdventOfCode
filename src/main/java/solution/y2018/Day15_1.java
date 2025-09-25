@@ -63,7 +63,7 @@ public class Day15_1 extends GridSolution<Unit> {
 		while (!goblins.isEmpty() && !elves.isEmpty()) {
 			rounds++;
 
-			System.out.println("Round: -- " + rounds + " --");
+			println("Round: -- " + rounds + " --");
 
 			combatUnits.sort(CombatUnit::compareTo);
 			for (var combatUnit : combatUnits) {
@@ -88,25 +88,25 @@ public class Day15_1 extends GridSolution<Unit> {
 	}
 
 	public void print(List<CombatUnit> units) {
-		System.out.println();
+		println();
 		for (int y = 0; y < grid[0].length; y++) {
 			for (GridElement<Unit>[] gridElements : grid) {
 				if (gridElements[y].getValue() instanceof Wall) {
-					System.out.print("#");
+					print("#");
 				} else if (gridElements[y].getValue() instanceof Cavern) {
-					System.out.print(".");
+					print(".");
 				} else if (gridElements[y].getValue() instanceof Goblin) {
-					System.out.print("G");
+					print("G");
 				} else if (gridElements[y].getValue() instanceof Elf) {
-					System.out.print("E");
+					print("E");
 				}
 			}
-			System.out.println();
+			println();
 		}
 		for (var unit : units) {
-			System.out.println(unit);
+			println(unit);
 		}
-		System.out.println();
+		println();
 	}
 }
 

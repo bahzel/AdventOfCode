@@ -73,17 +73,17 @@ public class Day17_1 extends InstructionSolution<String, Map<Point, Material>> {
 				var material = points.get(point);
 				if (material == null) {
 					if (reachedPoints.contains(point)) {
-						System.out.print("|");
+						print("|");
 					} else {
-						System.out.print(".");
+						print(".");
 					}
 				} else if (material == Material.Clay) {
-					System.out.print("#");
+					print("#");
 				} else if (material == Material.Water) {
-					System.out.print("~");
+					print("~");
 				}
 			}
-			System.out.println();
+			println();
 		}
 	}
 

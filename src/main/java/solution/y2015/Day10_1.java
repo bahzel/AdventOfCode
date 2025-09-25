@@ -1,10 +1,10 @@
 package solution.y2015;
 
-import utils.soution.InstructionSolution;
-import utils.soution.Solution;
-
 import java.util.Arrays;
 import java.util.List;
+
+import utils.soution.InstructionSolution;
+import utils.soution.Solution;
 
 public class Day10_1 extends Solution {
 	public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class Day10_1 extends Solution {
 		String value = input.getFirst();
 
 		for (int i = 0; i < 40; i++) {
-			value = new LookAndSay(value).solve();
+			value = new LookAndSay(value).disableLog().solve();
 		}
 
 		return value.length() + "";

@@ -12,10 +12,11 @@ public class Day5_2 extends Solution {
 	@Override
 	protected String doSolve() {
 		var shortestPolymer = Integer.MAX_VALUE;
-		
+
 		for (char i = 'a'; i <= 'z'; i++) {
 			var polymerSize = new Day5_1(
-					List.of(input.getFirst().replace(i + "", "").replace((i + "").toUpperCase(), ""))).solve();
+					List.of(input.getFirst().replace(i + "", "").replace((i + "").toUpperCase(), ""))).disableLog()
+																									  .solve();
 			shortestPolymer = Math.min(shortestPolymer, Integer.parseInt(polymerSize));
 		}
 

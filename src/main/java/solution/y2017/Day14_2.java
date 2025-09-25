@@ -10,65 +10,65 @@ import utils.soution.GridElement;
 import utils.soution.GridSolution;
 
 public class Day14_2 extends GridSolution<Boolean> {
-    public static void main(String[] args) {
-        new Day14_2().solve();
-    }
+	public static void main(String[] args) {
+		new Day14_2().solve();
+	}
 
-    @Override
-    protected List<String> getInstructions(List<String> instructions) {
-        var key = instructions.getFirst();
-        var rows = new ArrayList<String>();
+	@Override
+	protected List<String> getInstructions(List<String> instructions) {
+		var key = instructions.getFirst();
+		var rows = new ArrayList<String>();
 
-        for (int i = 0; i < 128; i++) {
-            rows.add(StringTransformer.hexToBin(new Day10_2(key + "-" + i).solve()));
-        }
+		for (int i = 0; i < 128; i++) {
+			rows.add(StringTransformer.hexToBin(new Day10_2(key + "-" + i).disableLog().solve()));
+		}
 
-        return rows;
-    }
+		return rows;
+	}
 
-    @Override
-    protected GridElement<Boolean> transformCell(char ch, int x, int y) {
-        return switch (ch) {
-            case '0' -> new GridElement<>(false, x, y);
-            case '1' -> new GridElement<>(true, x, y);
-            default -> throw new IllegalArgumentException("Invalid character: " + ch);
-        };
-    }
+	@Override
+	protected GridElement<Boolean> transformCell(char ch, int x, int y) {
+		return switch (ch) {
+			case '0' -> new GridElement<>(false, x, y);
+			case '1' -> new GridElement<>(true, x, y);
+			default -> throw new IllegalArgumentException("Invalid character: " + ch);
+		};
+	}
 
-    @Override
-    protected String computeSolution() {
-        var count = 0;
-        while (removeGroup()) {
-            count++;
-        }
-        return count + "";
-    }
+	@Override
+	protected String computeSolution() {
+		var count = 0;
+		while (removeGroup()) {
+			count++;
+		}
+		return count + "";
+	}
 
-    private boolean removeGroup() {
-        var usedCell = stream().filter(GridElement::getValue).findFirst();
-        if (usedCell.isPresent()) {
-            removePoint(usedCell.get());
-            return true;
-        } else {
-            return false;
-        }
-    }
+	private boolean removeGroup() {
+		var usedCell = stream().filter(GridElement::getValue).findFirst();
+		if (usedCell.isPresent()) {
+			removePoint(usedCell.get());
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    private void removePoint(GridElement<Boolean> element) {
-        Queue<GridElement<Boolean>> queue = new LinkedList<>();
-        queue.add(element);
+	private void removePoint(GridElement<Boolean> element) {
+		Queue<GridElement<Boolean>> queue = new LinkedList<>();
+		queue.add(element);
 
-        while (!queue.isEmpty()) {
-            var current = queue.remove();
-            if (current == null || !current.getValue()) {
-                continue;
-            }
+		while (!queue.isEmpty()) {
+			var current = queue.remove();
+			if (current == null || !current.getValue()) {
+				continue;
+			}
 
-            current.setValue(false);
-            queue.add(current.getLeftNeighbour());
-            queue.add(current.getRightNeighbour());
-            queue.add(current.getUpperNeighbour());
-            queue.add(current.getLowerNeighbour());
-        }
-    }
+			current.setValue(false);
+			queue.add(current.getLeftNeighbour());
+			queue.add(current.getRightNeighbour());
+			queue.add(current.getUpperNeighbour());
+			queue.add(current.getLowerNeighbour());
+		}
+	}
 }

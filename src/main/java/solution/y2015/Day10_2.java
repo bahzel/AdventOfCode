@@ -12,7 +12,7 @@ public class Day10_2 extends Solution {
 		String value = input.getFirst();
 
 		for (int i = 0; i < 50; i++) {
-			value = new LookAndSay(value).solve();
+			value = new LookAndSay(value).disableLog().solve();
 		}
 
 		return value.length() + "";

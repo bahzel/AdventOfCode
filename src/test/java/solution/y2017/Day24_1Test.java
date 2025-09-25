@@ -7,6 +7,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Day24_1Test {
 	@Test
 	public void test() {
-		assertThat(new Day24_1().solve()).isEqualTo("2006");
+		assertThat(new Day24_1().disableLog().solve()).isEqualTo("2006");
 	}
 }
