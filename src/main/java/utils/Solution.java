@@ -17,6 +17,10 @@ public abstract class Solution {
 		setInput(year + "/" + day + "/input.txt");
 	}
 
+	public Solution(List<String> input) {
+		this.input = input;
+	}
+
 	@lombok.SneakyThrows
 	private void setInput(String fileName) {
 		input = Files.readAllLines(Paths.get(getClass().getClassLoader().getResource(fileName).toURI()));

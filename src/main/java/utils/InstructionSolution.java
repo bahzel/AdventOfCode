@@ -3,6 +3,14 @@ package utils;
 import java.util.List;
 
 public abstract class InstructionSolution<Instruction, Value> extends Solution {
+	public InstructionSolution() {
+		super();
+	}
+
+	public InstructionSolution(List<String> input) {
+		super(input);
+	}
+
 	@Override
 	public String doSolve() {
 		var value = initializeValue();
