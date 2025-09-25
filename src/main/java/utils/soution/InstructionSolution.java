@@ -2,9 +2,13 @@ package utils.soution;
 
 import java.util.List;
 
+import lombok.Getter;
+
 public abstract class InstructionSolution<Instruction, Value> extends Solution {
     private final boolean reverse;
+    @Getter
     private Value value;
+    @Getter
     private List<Instruction> instructions;
 
     public InstructionSolution() {
