@@ -20,6 +20,10 @@ public class Tree<T> {
 		this.value = value;
 	}
 
+	public List<? extends Tree<T>> getChildren() {
+		return children;
+	}
+
 	public void addChild(Tree<T> child) {
 		children.add(child);
 		child.parent = this;
