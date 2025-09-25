@@ -48,4 +48,8 @@ public class Point {
 			case RIGHT -> getRightNeighbour();
 		};
 	}
+
+	public String format() {
+		return x + "," + y;
+	}
 }

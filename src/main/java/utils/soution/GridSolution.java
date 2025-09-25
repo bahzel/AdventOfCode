@@ -35,6 +35,10 @@ public abstract class GridSolution<T> extends Solution {
 			}
 		}
 
+		initializeNeighbours();
+	}
+
+	protected void initializeNeighbours() {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[0].length; j++) {
 				if (i > 0) {
