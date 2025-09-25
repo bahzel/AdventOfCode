@@ -1,19 +1,24 @@
 package solution.y2019;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import static org.awaitility.Awaitility.await;
 
 public class IntCodeInterpreter {
 	private IntCodeInterpreter() {
 	}
 
-	public static List<Integer> performComputation(int[] register) {
-		return performComputation(register, 0);
+	public static void performComputation(int[] register) {
+		performComputation(register, new ConcurrentLinkedQueue<>(), new ConcurrentLinkedQueue<>());
 	}
 
-	public static List<Integer> performComputation(int[] register, int input) {
-		var output = new ArrayList<Integer>();
+	public static void performComputation(int[] register, int input, ConcurrentLinkedQueue<Integer> output) {
+		performComputation(register, new ConcurrentLinkedQueue<>(List.of(input)), output);
+	}
 
+	public static void performComputation(int[] register, ConcurrentLinkedQueue<Integer> input,
+			ConcurrentLinkedQueue<Integer> output) {
 		for (int i = 0; i < register.length; ) {
 			var opCode = register[i] % 100;
 			var modeFirstParameter = (register[i] / 100) % 10;
@@ -32,10 +37,18 @@ public class IntCodeInterpreter {
 				i = i + 4;
 				break;
 			case 3:
-				register[register[i + 1]] = input;
+				if (input.isEmpty()) {
+					//System.out.println("Wait for input");
+					await().until(() -> !input.isEmpty());
+					//System.out.println("Got input");
+				}
+
+				//System.out.println("Poll input");
+				register[register[i + 1]] = input.poll();
 				i = i + 2;
 				break;
 			case 4:
+				//System.out.println("Write output");
 				output.add(getValue(register, i + 1, modeFirstParameter));
 				i = i + 2;
 				break;
@@ -68,13 +81,11 @@ public class IntCodeInterpreter {
 				i = i + 4;
 				break;
 			case 99:
-				return output;
+				return;
 			default:
 				throw new IllegalStateException("Unexpected value: " + register[i]);
 			}
 		}
-
-		return output;
 	}
 
 	private static int getValue(int[] register, int index, int mode) {

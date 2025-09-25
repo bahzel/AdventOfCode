@@ -2,6 +2,7 @@ package solution.y2019;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import utils.soution.Solution;
 
@@ -26,7 +27,8 @@ public class Day5_2 extends Solution {
 	protected String doSolve() {
 		var register = Arrays.stream(input.getFirst().split(",")).mapToInt(Integer::parseInt).toArray();
 
-		var output = IntCodeInterpreter.performComputation(register, inputValue);
-		return output.getLast() + "";
+		var output = new ConcurrentLinkedQueue<Integer>();
+		IntCodeInterpreter.performComputation(register, inputValue, output);
+		return output.poll() + "";
 	}
 }
