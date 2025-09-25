@@ -27,7 +27,6 @@ public class Day22_2 extends InstructionSolution<Cube, List<Cube>> {
 
 	@Override
 	protected boolean performInstruction(Cube cube, List<Cube> cubes) {
-		System.out.println(cubes.size());
 		Queue<Cube> queue = new LinkedList<>();
 		queue.add(cube);
 		while (!queue.isEmpty()) {
