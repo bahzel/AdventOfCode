@@ -30,7 +30,7 @@ public class Day5_2 extends Solution {
 				Arrays.stream(input.getFirst().split(",")).mapToLong(Long::parseLong).boxed().toList());
 
 		var output = new LinkedBlockingQueue<Long>();
-		IntCodeInterpreter.performComputation(register, inputValue, output);
+		new IntCodeInterpreter().withRegister(register).withInput(inputValue).withOutput(output).performComputation();
 		return output.poll() + "";
 	}
 }

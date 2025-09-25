@@ -24,7 +24,7 @@ public class Day9_1Test {
 					  .toList());
 
 		var output = new LinkedBlockingQueue<Long>();
-		IntCodeInterpreter.performComputation(register, new LinkedBlockingQueue<>(), output);
+		new IntCodeInterpreter().withRegister(register).withOutput(output).performComputation();
 		assertThat(output.stream().map(value -> value + "").collect(Collectors.joining(","))).isEqualTo(
 				"109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99");
 	}
@@ -37,7 +37,7 @@ public class Day9_1Test {
 											 .toList());
 
 		var output = new LinkedBlockingQueue<Long>();
-		IntCodeInterpreter.performComputation(register, new LinkedBlockingQueue<>(), output);
+		new IntCodeInterpreter().withRegister(register).withOutput(output).performComputation();
 		assertThat(output.poll()).isEqualTo(1219070632396864L);
 	}
 
@@ -47,7 +47,7 @@ public class Day9_1Test {
 				Arrays.stream("104,1125899906842624,99".split(",")).mapToLong(Long::parseLong).boxed().toList());
 
 		var output = new LinkedBlockingQueue<Long>();
-		IntCodeInterpreter.performComputation(register, new LinkedBlockingQueue<>(), output);
+		new IntCodeInterpreter().withRegister(register).withOutput(output).performComputation();
 		assertThat(output.poll()).isEqualTo(1125899906842624L);
 	}
 }

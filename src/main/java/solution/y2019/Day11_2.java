@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import lombok.SneakyThrows;
 import utils.Point;
@@ -23,10 +22,8 @@ public class Day11_2 extends Solution {
 
 		var hull = new HashMap<Point, Long>();
 		hull.put(new Point(0, 0), 1L);
-		var input = new LinkedBlockingQueue<Long>();
-		var output = new LinkedBlockingQueue<Long>();
-		var intCodeInterpreter = new IntCodeInterpreterThread(register, input, output);
-		var intCodeInterpreterThread = new Thread(intCodeInterpreter);
+		var intCodeInterpreter = new IntCodeInterpreter().withRegister(register);
+		var intCodeInterpreterThread = new Thread(intCodeInterpreter::performComputation);
 		var paintingRobot = new PaintingRobot(intCodeInterpreter, hull);
 		var paintingRobotThread = new Thread(paintingRobot);
 

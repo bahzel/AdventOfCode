@@ -21,7 +21,7 @@ public class Day2_2 extends Solution {
 				register.set(1, noun);
 				register.set(2, verb);
 
-				IntCodeInterpreter.performComputation(register);
+				new IntCodeInterpreter().withRegister(register).performComputation();
 				if (register.getFirst() == 19690720) {
 					return noun * 100 + verb + "";
 				}

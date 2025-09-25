@@ -29,11 +29,26 @@ public class Day7_2 extends Solution {
 			var inputC = new LinkedBlockingQueue<>(List.of(phaseSetting.get(2)));
 			var inputD = new LinkedBlockingQueue<>(List.of(phaseSetting.get(3)));
 			var inputE = new LinkedBlockingQueue<>(List.of(phaseSetting.get(4)));
-			var amplifierA = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputA, inputB));
-			var amplifierB = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputB, inputC));
-			var amplifierC = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputC, inputD));
-			var amplifierD = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputD, inputE));
-			var amplifierE = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputE, inputA));
+			var amplifierA = new Thread(() -> new IntCodeInterpreter().withRegister(new ArrayList<>(register))
+																	  .withInput(inputA)
+																	  .withOutput(inputB)
+																	  .performComputation());
+			var amplifierB = new Thread(() -> new IntCodeInterpreter().withRegister(new ArrayList<>(register))
+																	  .withInput(inputB)
+																	  .withOutput(inputC)
+																	  .performComputation());
+			var amplifierC = new Thread(() -> new IntCodeInterpreter().withRegister(new ArrayList<>(register))
+																	  .withInput(inputC)
+																	  .withOutput(inputD)
+																	  .performComputation());
+			var amplifierD = new Thread(() -> new IntCodeInterpreter().withRegister(new ArrayList<>(register))
+																	  .withInput(inputD)
+																	  .withOutput(inputE)
+																	  .performComputation());
+			var amplifierE = new Thread(() -> new IntCodeInterpreter().withRegister(new ArrayList<>(register))
+																	  .withInput(inputE)
+																	  .withOutput(inputA)
+																	  .performComputation());
 
 			amplifierA.start();
 			amplifierB.start();

@@ -17,7 +17,7 @@ public class Day5_1 extends Solution {
 				Arrays.stream(input.getFirst().split(",")).mapToLong(Long::parseLong).boxed().toList());
 
 		var output = new LinkedBlockingQueue<Long>();
-		IntCodeInterpreter.performComputation(register, 1L, output);
+		new IntCodeInterpreter().withRegister(register).withInput(1L).withOutput(output).performComputation();
 		return new ArrayList<>(output).getLast() + "";
 	}
 }

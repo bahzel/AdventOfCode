@@ -2,7 +2,6 @@ package solution.y2019;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import utils.soution.Solution;
@@ -18,7 +17,7 @@ public class Day9_2 extends Solution {
 				Arrays.stream(input.getFirst().split(",")).mapToLong(Long::parseLong).boxed().toList());
 
 		var output = new LinkedBlockingQueue<Long>();
-		IntCodeInterpreter.performComputation(register, new LinkedBlockingQueue<>(List.of(2L)), output);
+		new IntCodeInterpreter().withRegister(register).withInput(2L).withOutput(output).performComputation();
 
 		return output.poll() + "";
 	}

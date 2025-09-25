@@ -17,7 +17,7 @@ public class Day2_1 extends Solution {
 		register.set(1, 12L);
 		register.set(2, 2L);
 
-		IntCodeInterpreter.performComputation(register);
+		new IntCodeInterpreter().withRegister(register).performComputation();
 		return register.getFirst() + "";
 	}
 }

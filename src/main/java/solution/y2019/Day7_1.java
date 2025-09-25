@@ -35,9 +35,11 @@ public class Day7_1 extends Solution {
 					newInputList.remove(i);
 
 					var output = new LinkedBlockingQueue<Long>();
-					IntCodeInterpreter.performComputation(new ArrayList<>(register),
-							new LinkedBlockingQueue<>(List.of(currentStep.getRight().get(i), currentStep.getLeft())),
-							output);
+					new IntCodeInterpreter().withRegister(new ArrayList<>(register))
+											.withInput(new LinkedBlockingQueue<>(
+													List.of(currentStep.getRight().get(i), currentStep.getLeft())))
+											.withOutput(output)
+											.performComputation();
 					queue.add(Pair.of(output.poll(), newInputList));
 				}
 			}
