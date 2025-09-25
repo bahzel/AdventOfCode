@@ -48,7 +48,7 @@ public class Day4_2 extends Solution {
 		}
 
 		var eyr = Integer.parseInt(passport.get("eyr"));
-		System.out.println(eyr);
+		println(eyr);
 		if (eyr < 2020 || eyr > 2030) {
 			return false;
 		}

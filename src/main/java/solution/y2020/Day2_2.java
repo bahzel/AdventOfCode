@@ -23,8 +23,8 @@ public class Day2_2 extends InstructionSolution<Password, AtomicInteger> {
 
 	@Override
 	protected boolean performInstruction(Password password, AtomicInteger atomicInteger) {
-		if (password.getPassword().charAt(password.getFrom()) == password.getCharacter()
-				^ password.getPassword().charAt(password.getTo()) == password.getCharacter()) {
+		if (password.getPassword().charAt(password.getFrom() - 1) == password.getCharacter()
+				^ password.getPassword().charAt(password.getTo() - 1) == password.getCharacter()) {
 			atomicInteger.incrementAndGet();
 		}
 		return false;
