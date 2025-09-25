@@ -53,9 +53,6 @@ public abstract class GridSolution<T> extends Solution {
 				}
 				if (i < grid.length - 1) {
 					if (j > 0) {
-						if (grid[i][j] == null) {
-							System.out.println("Hä?");
-						}
 						grid[i][j].getAllNeighbours().add(grid[i + 1][j - 1]);
 					}
 					grid[i][j].setRightNeighbour(grid[i + 1][j]);
