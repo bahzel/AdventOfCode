@@ -34,29 +34,29 @@ public class Day17_2 extends GridSolution<Boolean> {
 	@Override
 	protected GridElement<Boolean> transformCell(char ch, int x, int y) {
 		return switch (ch) {
-			case '#' -> new GridElement<>(true, x, y);
-			case '^' -> {
-				startingPosition = new GridElement<>(true, x, y);
-				startingDirection = Direction.UP;
-				yield startingPosition;
-			}
-			case 'v' -> {
-				startingPosition = new GridElement<>(true, x, y);
-				startingDirection = Direction.DOWN;
-				yield startingPosition;
-			}
-			case '<' -> {
-				startingPosition = new GridElement<>(true, x, y);
-				startingDirection = Direction.LEFT;
-				yield startingPosition;
-			}
-			case '>' -> {
-				startingPosition = new GridElement<>(true, x, y);
-				startingDirection = Direction.RIGHT;
-				yield startingPosition;
-			}
-			case '.' -> new GridElement<>(false, x, y);
-			default -> throw new IllegalArgumentException("Invalid character: " + ch);
+		case '#' -> new GridElement<>(true, x, y);
+		case '^' -> {
+			startingPosition = new GridElement<>(true, x, y);
+			startingDirection = Direction.UP;
+			yield startingPosition;
+		}
+		case 'v' -> {
+			startingPosition = new GridElement<>(true, x, y);
+			startingDirection = Direction.DOWN;
+			yield startingPosition;
+		}
+		case '<' -> {
+			startingPosition = new GridElement<>(true, x, y);
+			startingDirection = Direction.LEFT;
+			yield startingPosition;
+		}
+		case '>' -> {
+			startingPosition = new GridElement<>(true, x, y);
+			startingDirection = Direction.RIGHT;
+			yield startingPosition;
+		}
+		case '.' -> new GridElement<>(false, x, y);
+		default -> throw new IllegalArgumentException("Invalid character: " + ch);
 		};
 	}
 
@@ -81,9 +81,9 @@ public class Day17_2 extends GridSolution<Boolean> {
 		var aFunctions = new HashSet<String>();
 		for (int i = 2; i <= 20; i++) {
 			for (int j = 0; j < directions.length() - i; j++) {
-				if ((j == 0 || directions.charAt(j - 1) == ',') && !Character.isDigit(directions.charAt(j)) && (
-						j == directions.length() - i - 1 || directions.charAt(j + i) == ',') && Character.isDigit(
-						directions.charAt(j + i - 1))) {
+				if ((j == 0 || directions.charAt(j - 1) == ',') && !Character.isDigit(directions.charAt(j))
+						&& (j == directions.length() - i - 1 || directions.charAt(j + i) == ',')
+						&& Character.isDigit(directions.charAt(j + i - 1))) {
 					aFunctions.add(directions.substring(j, j + i));
 				}
 			}
@@ -94,9 +94,9 @@ public class Day17_2 extends GridSolution<Boolean> {
 			var bFunctions = new HashSet<String>();
 			for (int i = 2; i <= 20; i++) {
 				for (int j = 0; j < restA.length() - i; j++) {
-					if ((j == 0 || restA.charAt(j - 1) == ',') && !Character.isDigit(restA.charAt(j)) && (
-							j == restA.length() - i - 1 || restA.charAt(j + i) == ',') && Character.isDigit(
-							restA.charAt(j + i - 1))) {
+					if ((j == 0 || restA.charAt(j - 1) == ',') && !Character.isDigit(restA.charAt(j))
+							&& (j == restA.length() - i - 1 || restA.charAt(j + i) == ',')
+							&& Character.isDigit(restA.charAt(j + i - 1))) {
 						bFunctions.add(restA.substring(j, j + i));
 					}
 				}
@@ -106,9 +106,9 @@ public class Day17_2 extends GridSolution<Boolean> {
 				var restB = restA.replaceAll(bFunction, "B");
 				for (int i = 2; i <= 20; i++) {
 					for (int j = 0; j < restB.length() - i; j++) {
-						if ((j == 0 || restB.charAt(j - 1) == ',') && !Character.isDigit(restB.charAt(j)) && (
-								j == restB.length() - i - 1 || restB.charAt(j + i) == ',') && Character.isDigit(
-								restB.charAt(j + i - 1))) {
+						if ((j == 0 || restB.charAt(j - 1) == ',') && !Character.isDigit(restB.charAt(j))
+								&& (j == restB.length() - i - 1 || restB.charAt(j + i) == ',')
+								&& Character.isDigit(restB.charAt(j + i - 1))) {
 							var cFunction = restB.substring(j, j + i);
 							if (restB.replaceAll(cFunction, "C").length() <= 20) {
 								return List.of(restB.replaceAll(cFunction, "C"), aFunction, bFunction, cFunction);
@@ -138,8 +138,8 @@ public class Day17_2 extends GridSolution<Boolean> {
 			}
 
 			var amountOfSteps = 0;
-			while (currentPosition.getNeighbour(currentDirection) != null && currentPosition.getNeighbour(
-					currentDirection).getValue()) {
+			while (currentPosition.getNeighbour(currentDirection) != null
+					&& currentPosition.getNeighbour(currentDirection).getValue()) {
 				currentPosition = currentPosition.getNeighbour(currentDirection);
 				amountOfSteps++;
 			}

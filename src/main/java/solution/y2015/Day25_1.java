@@ -1,8 +1,8 @@
 package solution.y2015;
 
-import utils.soution.Solution;
-
 import java.util.HashMap;
+
+import utils.soution.Solution;
 
 public class Day25_1 extends Solution {
 	public static void main(String[] args) {

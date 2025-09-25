@@ -15,8 +15,8 @@ public class Day5_2 extends Solution {
 
 		for (char i = 'a'; i <= 'z'; i++) {
 			var polymerSize = new Day5_1(
-					List.of(input.getFirst().replace(i + "", "").replace((i + "").toUpperCase(), ""))).disableLog()
-																									  .solve();
+					List.of(input.getFirst().replace(i + "", "").replace((i + "").toUpperCase(), "")))	.disableLog()
+																										.solve();
 			shortestPolymer = Math.min(shortestPolymer, Integer.parseInt(polymerSize));
 		}
 

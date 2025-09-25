@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.soution.InstructionSolution;
 
 public class Day7_1 extends InstructionSolution<Pair<List<Long>, Long>, AtomicLong> {

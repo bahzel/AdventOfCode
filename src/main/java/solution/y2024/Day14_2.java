@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.Point;
 import utils.soution.MapSolution;
 
@@ -30,12 +31,12 @@ public class Day14_2 extends MapSolution<List<Pair<Point, Point>>> {
 
 	@Override
 	protected String computeSolution(List<Pair<Point, Point>> pairs) {
-		for (var i = 0; ; i++) {
+		for (var i = 0;; i++) {
 			var seconds = i;
 			var positions = pairs.stream().map(robot -> computePositionAfter(robot, seconds)).toList();
-			var quadrant1 = positions.stream()
-									 .filter(position -> position.getX() < WIDTH / 2 && position.getY() < HEIGHT / 2)
-									 .toList();
+			var quadrant1 = positions	.stream()
+										.filter(position -> position.getX() < WIDTH / 2 && position.getY() < HEIGHT / 2)
+										.toList();
 
 			if (computeAverageDistance(quadrant1) < SIMILARITY_SCORE) {
 				print(positions, i);

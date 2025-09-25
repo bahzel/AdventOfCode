@@ -9,9 +9,8 @@ public abstract class GridInstructionSolution<Element, Instruction> extends Grid
 	protected void initialize() {
 		input = getInstructions(input);
 		initializeGrid();
-		instructions = getInstructionStrings(input.subList(input.indexOf("") + 1, input.size())).stream()
-																								.map(this::transformInstruction)
-																								.toList();
+		instructions = getInstructionStrings(
+				input.subList(input.indexOf("") + 1, input.size())).stream().map(this::transformInstruction).toList();
 	}
 
 	protected List<String> getInstructionStrings(List<String> instructions) {

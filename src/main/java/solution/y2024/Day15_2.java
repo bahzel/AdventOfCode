@@ -20,12 +20,12 @@ public class Day15_2 extends GridInstructionSolution<BigWarehouseTile, Direction
 
 	@Override
 	protected List<String> getInstructions(List<String> instructions) {
-		return instructions.stream()
-						   .map(instruction -> instruction.replace("#", "##")
-														  .replace(".", "..")
-														  .replace("O", "[]")
-														  .replace("@", "@."))
-						   .toList();
+		return instructions	.stream()
+							.map(instruction -> instruction	.replace("#", "##")
+															.replace(".", "..")
+															.replace("O", "[]")
+															.replace("@", "@."))
+							.toList();
 	}
 
 	@Override
@@ -36,11 +36,11 @@ public class Day15_2 extends GridInstructionSolution<BigWarehouseTile, Direction
 	@Override
 	protected Direction transformInstruction(String instruction) {
 		return switch (instruction) {
-			case "^" -> Direction.UP;
-			case "<" -> Direction.LEFT;
-			case ">" -> Direction.RIGHT;
-			case "v" -> Direction.DOWN;
-			default -> throw new IllegalArgumentException("Invalid instruction: " + instruction);
+		case "^" -> Direction.UP;
+		case "<" -> Direction.LEFT;
+		case ">" -> Direction.RIGHT;
+		case "v" -> Direction.DOWN;
+		default -> throw new IllegalArgumentException("Invalid instruction: " + instruction);
 		};
 	}
 
@@ -93,12 +93,9 @@ public class Day15_2 extends GridInstructionSolution<BigWarehouseTile, Direction
 	}
 
 	private boolean canMove(List<GridElement<BigWarehouseTile>> affectedTiles, Direction direction) {
-		return robotLocation.getNeighbour(direction).getValue() != BigWarehouseTile.Wall && affectedTiles.stream()
-																										 .noneMatch(
-																												 tile -> tile.getNeighbour(
-																																	 direction)
-																															 .getValue()
-																														 == BigWarehouseTile.Wall);
+		return robotLocation.getNeighbour(direction).getValue() != BigWarehouseTile.Wall
+				&& affectedTiles.stream()
+								.noneMatch(tile -> tile.getNeighbour(direction).getValue() == BigWarehouseTile.Wall);
 	}
 
 	private void move(List<GridElement<BigWarehouseTile>> affectedTiles, Direction direction) {
@@ -139,24 +136,25 @@ public class Day15_2 extends GridInstructionSolution<BigWarehouseTile, Direction
 	@Override
 	protected GridElement<BigWarehouseTile> transformCell(char ch, int x, int y) {
 		return switch (ch) {
-			case '#' -> new GridElement<>(BigWarehouseTile.Wall, x, y);
-			case '.' -> new GridElement<>(BigWarehouseTile.Empty, x, y);
-			case '[' -> new GridElement<>(BigWarehouseTile.Left_Box, x, y);
-			case ']' -> new GridElement<>(BigWarehouseTile.Right_Box, x, y);
-			case '@' -> {
-				robotLocation = new GridElement<>(BigWarehouseTile.Empty, x, y);
-				yield robotLocation;
-			}
-			default -> throw new IllegalArgumentException("Invalid character: " + ch);
+		case '#' -> new GridElement<>(BigWarehouseTile.Wall, x, y);
+		case '.' -> new GridElement<>(BigWarehouseTile.Empty, x, y);
+		case '[' -> new GridElement<>(BigWarehouseTile.Left_Box, x, y);
+		case ']' -> new GridElement<>(BigWarehouseTile.Right_Box, x, y);
+		case '@' -> {
+			robotLocation = new GridElement<>(BigWarehouseTile.Empty, x, y);
+			yield robotLocation;
+		}
+		default -> throw new IllegalArgumentException("Invalid character: " + ch);
 		};
 	}
 
 	@Override
 	protected String computeSolution() {
 		print();
-		return stream().filter(tile -> tile.getValue() == BigWarehouseTile.Left_Box)
-					   .mapToLong(tile -> 100L * tile.getCoordinates().getY() + tile.getCoordinates().getX())
-					   .sum() + "";
+		return stream()	.filter(tile -> tile.getValue() == BigWarehouseTile.Left_Box)
+						.mapToLong(tile -> 100L * tile.getCoordinates().getY() + tile.getCoordinates().getX())
+						.sum()
+				+ "";
 	}
 }
 

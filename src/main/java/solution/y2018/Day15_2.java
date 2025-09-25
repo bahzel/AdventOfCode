@@ -1,6 +1,7 @@
 package solution.y2018;
 
 import org.apache.commons.lang3.StringUtils;
+
 import utils.soution.Solution;
 
 public class Day15_2 extends Solution {

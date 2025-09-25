@@ -1,10 +1,11 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.tuple.Triple;
-import utils.soution.InstructionSolution;
-import utils.Point;
-
 import java.util.Arrays;
+
+import org.apache.commons.lang3.tuple.Triple;
+
+import utils.Point;
+import utils.soution.InstructionSolution;
 
 public class Day6_2 extends InstructionSolution<Triple<Action, Point, Point>, int[][]> {
 	public static void main(String[] args) {
@@ -20,10 +21,10 @@ public class Day6_2 extends InstructionSolution<Triple<Action, Point, Point>, in
 	protected Triple<Action, Point, Point> transformInstruction(String instruction) {
 		var instructions = instruction.replace("turn ", "").split(" ");
 		Action action = switch (instructions[0]) {
-			case "on" -> Action.ON;
-			case "off" -> Action.OFF;
-			case "toggle" -> Action.TOGGLE;
-			default -> throw new IllegalArgumentException("Invalid instruction: " + instruction);
+		case "on" -> Action.ON;
+		case "off" -> Action.OFF;
+		case "toggle" -> Action.TOGGLE;
+		default -> throw new IllegalArgumentException("Invalid instruction: " + instruction);
 		};
 
 		var point1 = instructions[1].split(",");

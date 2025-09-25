@@ -1,10 +1,10 @@
 package solution.y2015;
 
-import utils.soution.Solution;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import utils.soution.Solution;
 
 public class Day11_1 extends Solution {
 	private final List<Character> BLACKLIST = List.of('i', 'o', 'l');

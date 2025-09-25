@@ -1,10 +1,10 @@
 package solution.y2015;
 
-import lombok.AllArgsConstructor;
-import utils.soution.MapSolution;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.AllArgsConstructor;
+import utils.soution.MapSolution;
 
 public class Day14_1 extends MapSolution<List<Reindeer>> {
 	public static void main(String[] args) {

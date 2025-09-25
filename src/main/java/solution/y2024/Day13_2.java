@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
+
 import utils.Point;
 import utils.soution.Solution;
 
@@ -23,8 +24,8 @@ public class Day13_2 extends Solution {
 
 	private long getCostForWinning(Triple<Point, Point, Pair<Long, Long>> clawMachine) {
 		var b = ((double) clawMachine.getRight().getRight() * clawMachine.getLeft().getX()
-				- clawMachine.getRight().getLeft() * clawMachine.getLeft().getY()) / (
-				clawMachine.getMiddle().getY() * clawMachine.getLeft().getX()
+				- clawMachine.getRight().getLeft() * clawMachine.getLeft().getY())
+				/ (clawMachine.getMiddle().getY() * clawMachine.getLeft().getX()
 						- clawMachine.getMiddle().getX() * clawMachine.getLeft().getY());
 
 		var a = (clawMachine.getRight().getLeft() - b * clawMachine.getMiddle().getX()) / clawMachine.getLeft().getX();
@@ -33,10 +34,10 @@ public class Day13_2 extends Solution {
 		var bInt = Math.round(b);
 
 		if (aInt >= 0 && bInt >= 0
-				&& clawMachine.getLeft().getX() * aInt + clawMachine.getMiddle().getX() * bInt == clawMachine.getRight()
-																											 .getLeft()
-				&& clawMachine.getLeft().getY() * aInt + clawMachine.getMiddle().getY() * bInt == clawMachine.getRight()
-																											 .getRight()) {
+				&& clawMachine.getLeft().getX() * aInt
+						+ clawMachine.getMiddle().getX() * bInt == clawMachine.getRight().getLeft()
+				&& clawMachine.getLeft().getY() * aInt
+						+ clawMachine.getMiddle().getY() * bInt == clawMachine.getRight().getRight()) {
 			return aInt * COST_A + bInt * COST_B;
 		} else {
 			return 0L;

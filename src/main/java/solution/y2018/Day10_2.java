@@ -18,10 +18,10 @@ public class Day10_2 extends MapSolution<List<Star>> {
 
 	@Override
 	protected void transformInstruction(String instruction, List<Star> stars) {
-		var instructions = instruction.replace("position=<", "")
-									  .replace("> velocity=<", ", ")
-									  .replace(">", "")
-									  .split(", ");
+		var instructions = instruction	.replace("position=<", "")
+										.replace("> velocity=<", ", ")
+										.replace(">", "")
+										.split(", ");
 		stars.add(
 				new Star(new Point(Integer.parseInt(instructions[0].trim()), Integer.parseInt(instructions[1].trim())),
 						new Point(Integer.parseInt(instructions[2].trim()), Integer.parseInt(instructions[3].trim()))));

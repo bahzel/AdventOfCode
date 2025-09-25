@@ -1,8 +1,8 @@
 package solution.y2016;
 
-import utils.soution.InstructionSolution;
-
 import java.util.concurrent.atomic.AtomicInteger;
+
+import utils.soution.InstructionSolution;
 
 public class Day7_2 extends InstructionSolution<SSLAddess, AtomicInteger> {
 	public static void main(String[] args) {
@@ -44,7 +44,7 @@ class SSLAddess extends IPAddress {
 			for (int i = 0; i < address.length() - 2; i++) {
 				if (address.charAt(i) != address.charAt(i + 1) && address.charAt(i) == address.charAt(i + 2)
 						&& hypernetSequencesContains(
-						"" + address.charAt(i + 1) + address.charAt(i) + address.charAt(i + 1))) {
+								"" + address.charAt(i + 1) + address.charAt(i) + address.charAt(i + 1))) {
 					return true;
 				}
 			}

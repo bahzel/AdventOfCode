@@ -1,13 +1,13 @@
 package solution.y2016;
 
-import lombok.Getter;
-import utils.soution.InstructionSolution;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
+
+import lombok.Getter;
+import utils.soution.InstructionSolution;
 
 public class Day4_1 extends InstructionSolution<EncryptedRoom, AtomicLong> {
 	public static void main(String[] args) {

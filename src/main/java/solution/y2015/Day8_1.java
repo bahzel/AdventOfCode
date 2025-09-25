@@ -1,11 +1,12 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.tuple.Pair;
-import utils.soution.InstructionSolution;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import utils.soution.InstructionSolution;
 
 public class Day8_1 extends InstructionSolution<Pair<String, String>, AtomicLong> {
 	private static final List<Character> HEX_CHARACTERS = Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8',
@@ -39,7 +40,7 @@ public class Day8_1 extends InstructionSolution<Pair<String, String>, AtomicLong
 				} else if ('x' == nextChar) {
 					if (i + 3 < instruction.length() && HEX_CHARACTERS.contains(instruction.charAt(i + 2))
 							&& HEX_CHARACTERS.contains(instruction.charAt(i + 3))) {
-						transformedString.append(nextChar); //placeholder
+						transformedString.append(nextChar); // placeholder
 						i = i + 3;
 						continue;
 					}

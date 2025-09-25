@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.BiConsumer;
 
 import org.apache.commons.lang3.math.NumberUtils;
+
 import utils.soution.MapSolution;
 
 public class Day23_1 extends MapSolution<List<BiConsumer<Instruction, AtomicLong>>> {
@@ -27,42 +28,40 @@ public class Day23_1 extends MapSolution<List<BiConsumer<Instruction, AtomicLong
 				consumers.add(
 						(instr, counter) -> instr.getRegister().put(instructions[1], Long.parseLong(instructions[2])));
 			} else {
-				consumers.add((instr, counter) -> instr.getRegister()
-													   .put(instructions[1], instr.getRegister()
-																				  .computeIfAbsent(instructions[2],
-																						  name -> 0L)));
+				consumers.add((instr,
+						counter) -> instr	.getRegister()
+											.put(instructions[1],
+													instr.getRegister().computeIfAbsent(instructions[2], name -> 0L)));
 			}
 			break;
 		case "sub":
 			if (NumberUtils.isParsable(instructions[2])) {
-				consumers.add((instr, counter) -> instr.getRegister()
-													   .put(instructions[1], instr.getRegister()
-																				  .computeIfAbsent(instructions[1],
-																						  name -> 0L)
-															   - Integer.parseInt(instructions[2])));
+				consumers.add((instr, counter) -> instr	.getRegister()
+														.put(instructions[1],
+																instr	.getRegister()
+																		.computeIfAbsent(instructions[1], name -> 0L)
+																		- Integer.parseInt(instructions[2])));
 			} else {
-				consumers.add((instr, counter) -> instr.getRegister()
-													   .put(instructions[1], instr.getRegister()
-																				  .computeIfAbsent(instructions[1],
-																						  name -> 0L)
-															   - instr.getRegister().get(instructions[2])));
+				consumers.add((instr, counter) -> instr	.getRegister()
+														.put(instructions[1],
+																instr	.getRegister()
+																		.computeIfAbsent(instructions[1], name -> 0L)
+																		- instr.getRegister().get(instructions[2])));
 			}
 			break;
 		case "mul":
 			if (NumberUtils.isParsable(instructions[2])) {
 				consumers.add((instr, counter) -> {
-					instr.getRegister()
-						 .put(instructions[1],
-								 instr.getRegister().computeIfAbsent(instructions[1], name -> 0L) * Integer.parseInt(
-										 instructions[2]));
+					instr	.getRegister()
+							.put(instructions[1], instr.getRegister().computeIfAbsent(instructions[1], name -> 0L)
+									* Integer.parseInt(instructions[2]));
 					counter.incrementAndGet();
 				});
 			} else {
 				consumers.add((instr, counter) -> {
-					instr.getRegister()
-						 .put(instructions[1],
-								 instr.getRegister().computeIfAbsent(instructions[1], name -> 0L) * instr.getRegister()
-																										 .get(instructions[2]));
+					instr	.getRegister()
+							.put(instructions[1], instr.getRegister().computeIfAbsent(instructions[1], name -> 0L)
+									* instr.getRegister().get(instructions[2]));
 					counter.incrementAndGet();
 				});
 			}

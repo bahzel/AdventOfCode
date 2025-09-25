@@ -16,7 +16,7 @@ public class Day17_2 extends Solution {
 
 		var currentA = 0L;
 		for (var i = goal.size() - 1; i >= 0; i--) {
-			for (var j = currentA * 8; ; j++) {
+			for (var j = currentA * 8;; j++) {
 				if (solve(j, goal.subList(i, goal.size()))) {
 					currentA = j;
 					break;

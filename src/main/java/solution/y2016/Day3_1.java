@@ -1,9 +1,10 @@
 package solution.y2016;
 
-import org.apache.commons.lang3.tuple.Triple;
-import utils.soution.InstructionSolution;
-
 import java.util.concurrent.atomic.AtomicInteger;
+
+import org.apache.commons.lang3.tuple.Triple;
+
+import utils.soution.InstructionSolution;
 
 public class Day3_1 extends InstructionSolution<Triple<Integer, Integer, Integer>, AtomicInteger> {
 	public static void main(String[] args) {

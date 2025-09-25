@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.Set;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.soution.GridElement;
 import utils.soution.GridSolution;
 
@@ -42,13 +43,12 @@ public class Day18_2 extends GridSolution<Character> {
 		queue.add(new CaveState(starts, 3, new HashSet<>(), 0));
 		while (!queue.isEmpty()) {
 			var currentState = queue.poll();
-			if (currentState.getActivePosition().getValue() == '#' || !cache.add(
-					Pair.of(currentState.getActivePosition(), currentState.keys()))
-					|| Character.isUpperCase(currentState.getActivePosition().getValue()) && !currentState.keys()
-																										  .contains(
-																												  Character.toLowerCase(
-																														  currentState.getActivePosition()
-																																	  .getValue()))) {
+			if (currentState.getActivePosition().getValue() == '#'
+					|| !cache.add(Pair.of(currentState.getActivePosition(), currentState.keys()))
+					|| Character.isUpperCase(currentState.getActivePosition().getValue())
+							&& !currentState.keys()
+											.contains(Character.toLowerCase(
+													currentState.getActivePosition().getValue()))) {
 				continue;
 			}
 

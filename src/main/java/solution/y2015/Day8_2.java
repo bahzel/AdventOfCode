@@ -1,9 +1,10 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.tuple.Pair;
-import utils.soution.InstructionSolution;
-
 import java.util.concurrent.atomic.AtomicLong;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import utils.soution.InstructionSolution;
 
 public class Day8_2 extends InstructionSolution<Pair<String, String>, AtomicLong> {
 	public static void main(String[] args) {

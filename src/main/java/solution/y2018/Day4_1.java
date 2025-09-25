@@ -6,8 +6,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-import lombok.Getter;
 import org.apache.commons.lang3.tuple.Pair;
+
+import lombok.Getter;
 import utils.soution.Solution;
 
 public class Day4_1 extends Solution {

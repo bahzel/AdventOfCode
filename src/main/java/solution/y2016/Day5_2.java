@@ -1,10 +1,11 @@
 package solution.y2016;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import utils.soution.Solution;
-
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import org.apache.commons.codec.digest.DigestUtils;
+
+import utils.soution.Solution;
 
 public class Day5_2 extends Solution {
 	public static void main(String[] args) {

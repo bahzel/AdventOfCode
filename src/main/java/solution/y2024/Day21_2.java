@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.StringTransformer;
 import utils.soution.InstructionSolution;
 
@@ -34,11 +35,11 @@ public class Day21_2 extends InstructionSolution<List<String>, AtomicLong> {
 	protected boolean performInstruction(List<String> characters, AtomicLong atomicLong) {
 		var sum = 0L;
 		for (var character : characters) {
-			sum += numericalKeypadRobot.moveTo(character)
-									   .stream()
-									   .mapToLong(direction -> getMinimumFromRobotMiddle(direction, 24))
-									   .min()
-									   .orElseThrow();
+			sum += numericalKeypadRobot	.moveTo(character)
+										.stream()
+										.mapToLong(direction -> getMinimumFromRobotMiddle(direction, 24))
+										.min()
+										.orElseThrow();
 		}
 		atomicLong.addAndGet(sum * Integer.parseInt(String.join("", characters).substring(0, 3)));
 
@@ -57,18 +58,18 @@ public class Day21_2 extends InstructionSolution<List<String>, AtomicLong> {
 		var sum = 0L;
 		for (var direction : directions) {
 			if (index == 1) {
-				sum += arrowKeypadRobots[index].moveTo(direction)
-											   .stream()
-											   .mapToLong(this::getMinimumFromRobotEnd)
-											   .min()
-											   .orElseThrow();
+				sum += arrowKeypadRobots[index]	.moveTo(direction)
+												.stream()
+												.mapToLong(this::getMinimumFromRobotEnd)
+												.min()
+												.orElseThrow();
 			} else {
-				sum += arrowKeypadRobots[index].moveTo(direction)
-											   .stream()
-											   .mapToLong(newDirection -> getMinimumFromRobotMiddle(newDirection,
-													   index - 1))
-											   .min()
-											   .orElseThrow();
+				sum += arrowKeypadRobots[index]	.moveTo(direction)
+												.stream()
+												.mapToLong(newDirection -> getMinimumFromRobotMiddle(newDirection,
+														index - 1))
+												.min()
+												.orElseThrow();
 			}
 		}
 

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+
 import utils.soution.Solution;
 
 public class Day17_1 extends Solution {
@@ -69,14 +70,14 @@ public class Day17_1 extends Solution {
 
 	private int getComboOperand(int[] register, int operand) {
 		return switch (operand) {
-			case 0 -> 0;
-			case 1 -> 1;
-			case 2 -> 2;
-			case 3 -> 3;
-			case 4 -> register[0];
-			case 5 -> register[1];
-			case 6 -> register[2];
-			default -> throw new IllegalArgumentException("Invalid operand: " + operand);
+		case 0 -> 0;
+		case 1 -> 1;
+		case 2 -> 2;
+		case 3 -> 3;
+		case 4 -> register[0];
+		case 5 -> register[1];
+		case 6 -> register[2];
+		default -> throw new IllegalArgumentException("Invalid operand: " + operand);
 		};
 	}
 }

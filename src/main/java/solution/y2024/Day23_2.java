@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.Network;
 import utils.soution.MapSolution;
 
@@ -40,15 +41,15 @@ public class Day23_2 extends MapSolution<Map<String, Network<String>>> {
 
 	@Override
 	protected String computeSolution(Map<String, Network<String>> stringNetworkMap) {
-		return stringNetworkMap.values()
-							   .stream()
-							   .map(this::getBiggestLanParty)
-							   .max(Comparator.comparingInt(Set::size))
-							   .orElseThrow()
-							   .stream()
-							   .map(Network::getValue)
-							   .sorted()
-							   .collect(Collectors.joining(","));
+		return stringNetworkMap	.values()
+								.stream()
+								.map(this::getBiggestLanParty)
+								.max(Comparator.comparingInt(Set::size))
+								.orElseThrow()
+								.stream()
+								.map(Network::getValue)
+								.sorted()
+								.collect(Collectors.joining(","));
 	}
 
 	private Set<Network<String>> getBiggestLanParty(Network<String> computer) {

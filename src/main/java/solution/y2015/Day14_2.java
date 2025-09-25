@@ -1,10 +1,10 @@
 package solution.y2015;
 
-import lombok.Getter;
-import utils.soution.MapSolution;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.Getter;
+import utils.soution.MapSolution;
 
 public class Day14_2 extends MapSolution<List<ReindeerWithPoints>> {
 	public static void main(String[] args) {
@@ -33,9 +33,9 @@ public class Day14_2 extends MapSolution<List<ReindeerWithPoints>> {
 			}
 
 			final long winnerDistance = furthestDistance;
-			reindeers.stream()
-					 .filter(reindeer -> reindeer.getDistance() == winnerDistance)
-					 .forEach(ReindeerWithPoints::grantPoint);
+			reindeers	.stream()
+						.filter(reindeer -> reindeer.getDistance() == winnerDistance)
+						.forEach(ReindeerWithPoints::grantPoint);
 		}
 
 		return reindeers.stream().map(ReindeerWithPoints::getPoints).mapToLong(Long::longValue).max().orElseThrow()

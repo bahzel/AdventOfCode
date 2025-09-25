@@ -1,6 +1,7 @@
 package solution.y2018;
 
 import org.apache.commons.lang3.tuple.Triple;
+
 import utils.soution.Solution;
 
 public class Day11_2 extends Solution {

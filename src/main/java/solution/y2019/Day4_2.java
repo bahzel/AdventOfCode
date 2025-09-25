@@ -29,9 +29,9 @@ public class Day4_2 extends Solution {
 
 	private boolean hasDouble(String password) {
 		for (int i = 0; i < password.length() - 1; i++) {
-			if (password.charAt(i) == password.charAt(i + 1) && (i == password.length() - 2
-					|| password.charAt(i) != password.charAt(i + 2)) && (i == 0
-					|| password.charAt(i) != password.charAt(i - 1))) {
+			if (password.charAt(i) == password.charAt(i + 1)
+					&& (i == password.length() - 2 || password.charAt(i) != password.charAt(i + 2))
+					&& (i == 0 || password.charAt(i) != password.charAt(i - 1))) {
 				return true;
 			}
 		}

@@ -7,9 +7,10 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.apache.commons.lang3.tuple.Pair;
 import utils.Direction;
 import utils.soution.GridElement;
 import utils.soution.GridSolution;
@@ -25,17 +26,17 @@ public class Day16_2 extends GridSolution<Boolean> {
 	@Override
 	protected GridElement<Boolean> transformCell(char ch, int x, int y) {
 		return switch (ch) {
-			case '#' -> new GridElement<>(false, x, y);
-			case '.' -> new GridElement<>(true, x, y);
-			case 'E' -> {
-				goal = new GridElement<>(true, x, y);
-				yield goal;
-			}
-			case 'S' -> {
-				start = new GridElement<>(true, x, y);
-				yield start;
-			}
-			default -> throw new IllegalArgumentException("Unknown character: " + ch);
+		case '#' -> new GridElement<>(false, x, y);
+		case '.' -> new GridElement<>(true, x, y);
+		case 'E' -> {
+			goal = new GridElement<>(true, x, y);
+			yield goal;
+		}
+		case 'S' -> {
+			start = new GridElement<>(true, x, y);
+			yield start;
+		}
+		default -> throw new IllegalArgumentException("Unknown character: " + ch);
 		};
 	}
 

@@ -3,6 +3,7 @@ package solution.y2018;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.StringTransformer;
 import utils.soution.InstructionSolution;
 
@@ -35,8 +36,8 @@ public class Day2_1 extends InstructionSolution<String, Pair<AtomicInteger, Atom
 
 	private boolean hasPair(String candidate) {
 		for (int i = 0; i < candidate.length() - 1; i++) {
-			if (candidate.charAt(i) == candidate.charAt(i + 1) && (i == candidate.length() - 2
-					|| candidate.charAt(i) != candidate.charAt(i + 2))) {
+			if (candidate.charAt(i) == candidate.charAt(i + 1)
+					&& (i == candidate.length() - 2 || candidate.charAt(i) != candidate.charAt(i + 2))) {
 				return true;
 			}
 			i = candidate.lastIndexOf(candidate.charAt(i));
@@ -46,8 +47,8 @@ public class Day2_1 extends InstructionSolution<String, Pair<AtomicInteger, Atom
 
 	private boolean hasTriple(String candidate) {
 		for (int i = 0; i < candidate.length() - 2; i++) {
-			if (candidate.charAt(i) == candidate.charAt(i + 1) && candidate.charAt(i) == candidate.charAt(i + 2) && (
-					i == candidate.length() - 3 || candidate.charAt(i) != candidate.charAt(i + 3))) {
+			if (candidate.charAt(i) == candidate.charAt(i + 1) && candidate.charAt(i) == candidate.charAt(i + 2)
+					&& (i == candidate.length() - 3 || candidate.charAt(i) != candidate.charAt(i + 3))) {
 				return true;
 			}
 			i = candidate.lastIndexOf(candidate.charAt(i));

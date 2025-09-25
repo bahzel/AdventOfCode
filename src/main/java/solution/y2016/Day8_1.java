@@ -1,10 +1,10 @@
 package solution.y2016;
 
+import java.util.function.Consumer;
+
 import lombok.AllArgsConstructor;
 import utils.soution.GridElement;
 import utils.soution.GridInstruction;
-
-import java.util.function.Consumer;
 
 public class Day8_1 extends GridInstruction<Boolean, PixelRotation> {
 	public static void main(String[] args) {

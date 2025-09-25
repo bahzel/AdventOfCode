@@ -38,12 +38,13 @@ public class Day12_1 extends GridSolution<Character> {
 		}
 
 		var area = region.size();
-		var perimeter = region.stream()
-							  .mapToLong(tile -> tile.getBorderingNeighbours()
-													 .stream()
-													 .filter(neighbour -> neighbour.getValue() != plot.getValue())
-													 .count() + 4 - tile.getBorderingNeighbours().size())
-							  .sum();
+		var perimeter = region	.stream()
+								.mapToLong(tile -> tile	.getBorderingNeighbours()
+														.stream()
+														.filter(neighbour -> neighbour.getValue() != plot.getValue())
+														.count()
+										+ 4 - tile.getBorderingNeighbours().size())
+								.sum();
 		region.forEach(tile -> tile.setValue((char) 0));
 		return area * perimeter;
 	}

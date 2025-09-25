@@ -1,10 +1,10 @@
 package solution.y2015;
 
-import utils.soution.MapSolution;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
+import utils.soution.MapSolution;
 
 public class Day17_1 extends MapSolution<List<Integer>> {
 	public static void main(String[] args) {

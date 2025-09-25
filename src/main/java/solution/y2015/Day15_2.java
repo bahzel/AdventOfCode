@@ -1,11 +1,11 @@
 package solution.y2015;
 
-import utils.soution.MapSolution;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import utils.soution.MapSolution;
 
 public class Day15_2 extends MapSolution<List<Ingredient>> {
 	public static void main(String[] args) {
@@ -29,12 +29,13 @@ public class Day15_2 extends MapSolution<List<Ingredient>> {
 		List<Cookie> cookies = new ArrayList<>();
 		addIngredients(ingredients, new HashMap<>(), cookies, 0);
 
-		return cookies.stream()
-					  .filter(cookie -> cookie.computeCalories() == 500)
-					  .map(Cookie::computeScore)
-					  .mapToLong(Long::longValue)
-					  .max()
-					  .orElseThrow() + "";
+		return cookies	.stream()
+						.filter(cookie -> cookie.computeCalories() == 500)
+						.map(Cookie::computeScore)
+						.mapToLong(Long::longValue)
+						.max()
+						.orElseThrow()
+				+ "";
 	}
 
 	private void addIngredients(List<Ingredient> ingredients, Map<Ingredient, Long> alreadyAdded, List<Cookie> cookies,

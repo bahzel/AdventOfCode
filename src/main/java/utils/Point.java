@@ -42,10 +42,10 @@ public class Point {
 
 	public Point getNeighbour(Direction direction) {
 		return switch (direction) {
-			case UP -> getUpperNeighbour();
-			case DOWN -> getLowerNeighbour();
-			case LEFT -> getLeftNeighbour();
-			case RIGHT -> getRightNeighbour();
+		case UP -> getUpperNeighbour();
+		case DOWN -> getLowerNeighbour();
+		case LEFT -> getLeftNeighbour();
+		case RIGHT -> getRightNeighbour();
 		};
 	}
 

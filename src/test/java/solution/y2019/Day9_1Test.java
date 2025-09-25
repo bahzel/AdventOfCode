@@ -18,10 +18,10 @@ public class Day9_1Test {
 	@Test
 	public void copyOfItself() {
 		var register = new ArrayList<>(
-				Arrays.stream("109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99".split(","))
-					  .mapToLong(Long::parseLong)
-					  .boxed()
-					  .toList());
+				Arrays	.stream("109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99".split(","))
+						.mapToLong(Long::parseLong)
+						.boxed()
+						.toList());
 
 		var output = new LinkedBlockingQueue<Long>();
 		new IntCodeInterpreter().withRegister(register).withOutput(output).performComputation();
@@ -31,10 +31,10 @@ public class Day9_1Test {
 
 	@Test
 	public void output16DigitNumber() {
-		var register = new ArrayList<>(Arrays.stream("1102,34915192,34915192,7,4,7,99,0".split(","))
-											 .mapToLong(Long::parseLong)
-											 .boxed()
-											 .toList());
+		var register = new ArrayList<>(Arrays	.stream("1102,34915192,34915192,7,4,7,99,0".split(","))
+												.mapToLong(Long::parseLong)
+												.boxed()
+												.toList());
 
 		var output = new LinkedBlockingQueue<Long>();
 		new IntCodeInterpreter().withRegister(register).withOutput(output).performComputation();

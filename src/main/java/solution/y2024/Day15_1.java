@@ -23,11 +23,11 @@ public class Day15_1 extends GridInstructionSolution<WarehouseTile, Direction> {
 	@Override
 	protected Direction transformInstruction(String instruction) {
 		return switch (instruction) {
-			case "^" -> Direction.UP;
-			case "<" -> Direction.LEFT;
-			case ">" -> Direction.RIGHT;
-			case "v" -> Direction.DOWN;
-			default -> throw new IllegalArgumentException("Invalid instruction: " + instruction);
+		case "^" -> Direction.UP;
+		case "<" -> Direction.LEFT;
+		case ">" -> Direction.RIGHT;
+		case "v" -> Direction.DOWN;
+		default -> throw new IllegalArgumentException("Invalid instruction: " + instruction);
 		};
 	}
 
@@ -40,9 +40,9 @@ public class Day15_1 extends GridInstructionSolution<WarehouseTile, Direction> {
 
 	private boolean canMove(GridElement<WarehouseTile> tile, Direction direction) {
 		return switch (tile.getNeighbour(direction).getValue()) {
-			case Box -> canMove(tile.getNeighbour(direction), direction);
-			case Wall -> false;
-			case Empty -> true;
+		case Box -> canMove(tile.getNeighbour(direction), direction);
+		case Wall -> false;
+		case Empty -> true;
 		};
 	}
 
@@ -60,22 +60,23 @@ public class Day15_1 extends GridInstructionSolution<WarehouseTile, Direction> {
 	@Override
 	protected GridElement<WarehouseTile> transformCell(char ch, int x, int y) {
 		return switch (ch) {
-			case '#' -> new GridElement<>(WarehouseTile.Wall, x, y);
-			case '.' -> new GridElement<>(WarehouseTile.Empty, x, y);
-			case 'O' -> new GridElement<>(WarehouseTile.Box, x, y);
-			case '@' -> {
-				robotLocation = new GridElement<>(WarehouseTile.Empty, x, y);
-				yield robotLocation;
-			}
-			default -> throw new IllegalArgumentException("Invalid character: " + ch);
+		case '#' -> new GridElement<>(WarehouseTile.Wall, x, y);
+		case '.' -> new GridElement<>(WarehouseTile.Empty, x, y);
+		case 'O' -> new GridElement<>(WarehouseTile.Box, x, y);
+		case '@' -> {
+			robotLocation = new GridElement<>(WarehouseTile.Empty, x, y);
+			yield robotLocation;
+		}
+		default -> throw new IllegalArgumentException("Invalid character: " + ch);
 		};
 	}
 
 	@Override
 	protected String computeSolution() {
-		return stream().filter(tile -> tile.getValue() == WarehouseTile.Box)
-					   .mapToLong(tile -> 100L * tile.getCoordinates().getY() + tile.getCoordinates().getX())
-					   .sum() + "";
+		return stream()	.filter(tile -> tile.getValue() == WarehouseTile.Box)
+						.mapToLong(tile -> 100L * tile.getCoordinates().getY() + tile.getCoordinates().getX())
+						.sum()
+				+ "";
 	}
 }
 

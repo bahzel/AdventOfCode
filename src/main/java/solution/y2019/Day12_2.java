@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.MathUtils;
 import utils.Point3D;
 import utils.soution.MapSolution;
@@ -21,11 +22,11 @@ public class Day12_2 extends MapSolution<List<Pair<Point3D, Point3D>>> {
 
 	@Override
 	protected void transformInstruction(String instruction, List<Pair<Point3D, Point3D>> pairs) {
-		var instructions = instruction.replace("<x=", "")
-									  .replace(" y=", "")
-									  .replace(" z=", "")
-									  .replace(">", "")
-									  .split(",");
+		var instructions = instruction	.replace("<x=", "")
+										.replace(" y=", "")
+										.replace(" z=", "")
+										.replace(">", "")
+										.split(",");
 		pairs.add(Pair.of(new Point3D(Integer.parseInt(instructions[0]), Integer.parseInt(instructions[1]),
 				Integer.parseInt(instructions[2])), new Point3D(0, 0, 0)));
 	}
@@ -38,7 +39,7 @@ public class Day12_2 extends MapSolution<List<Pair<Point3D, Point3D>>> {
 		var firstRepetition = 0L;
 		var previousI = 0L;
 
-		for (var i = 0L; ; i++) {
+		for (var i = 0L;; i++) {
 			if (!cache.add(new CachedAxis(moonCopy.getFirst().getLeft().getX(), moonCopy.get(1).getLeft().getX(),
 					moonCopy.get(2).getLeft().getX(), moonCopy.get(3).getLeft().getX()))) {
 				if (i - previousI == firstRepetition) {
@@ -61,7 +62,7 @@ public class Day12_2 extends MapSolution<List<Pair<Point3D, Point3D>>> {
 		firstRepetition = 0L;
 		previousI = 0L;
 
-		for (var i = 0L; ; i++) {
+		for (var i = 0L;; i++) {
 			if (!cache.add(new CachedAxis(moonCopy.getFirst().getLeft().getY(), moonCopy.get(1).getLeft().getY(),
 					moonCopy.get(2).getLeft().getY(), moonCopy.get(3).getLeft().getY()))) {
 				if (i - previousI == firstRepetition) {
@@ -84,7 +85,7 @@ public class Day12_2 extends MapSolution<List<Pair<Point3D, Point3D>>> {
 		firstRepetition = 0L;
 		previousI = 0L;
 
-		for (var i = 0L; ; i++) {
+		for (var i = 0L;; i++) {
 			if (!cache.add(new CachedAxis(moonCopy.getFirst().getLeft().getZ(), moonCopy.get(1).getLeft().getZ(),
 					moonCopy.get(2).getLeft().getZ(), moonCopy.get(3).getLeft().getZ()))) {
 				if (i - previousI == firstRepetition) {
@@ -103,7 +104,8 @@ public class Day12_2 extends MapSolution<List<Pair<Point3D, Point3D>>> {
 
 		return MathUtils.leastCommonMultiple(xRepetitions.stream().mapToLong(Long::longValue).sum(),
 				MathUtils.leastCommonMultiple(yRepetitions.stream().mapToLong(Long::longValue).sum(),
-						zRepetitions.stream().mapToLong(Long::longValue).sum())) + "";
+						zRepetitions.stream().mapToLong(Long::longValue).sum()))
+				+ "";
 	}
 
 	private List<Pair<Point3D, Point3D>> copy(List<Pair<Point3D, Point3D>> moons) {

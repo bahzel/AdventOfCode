@@ -1,8 +1,8 @@
 package solution.y2015;
 
-import utils.soution.InstructionSolution;
-
 import java.util.concurrent.atomic.AtomicLong;
+
+import utils.soution.InstructionSolution;
 
 public class Day2_1 extends InstructionSolution<Present, AtomicLong> {
 	public static void main(String[] args) {

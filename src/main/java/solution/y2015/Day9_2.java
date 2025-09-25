@@ -1,11 +1,11 @@
 package solution.y2015;
 
-import utils.soution.MapSolution;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import utils.soution.MapSolution;
 
 public class Day9_2 extends MapSolution<List<City>> {
 	private final Map<String, City> cityList = new HashMap<>();

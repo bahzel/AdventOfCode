@@ -5,8 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import lombok.Getter;
 import org.apache.commons.lang3.tuple.Triple;
+
+import lombok.Getter;
 import utils.Point;
 import utils.soution.InstructionSolution;
 

@@ -36,8 +36,9 @@ public class Day6_2 extends MapSolution<List<Point>> {
 		for (int x = xMin - offset; x <= xMax + offset; x++) {
 			for (int y = yMin - offset; y <= yMax + offset; y++) {
 				var newPoint = new Point(x, y);
-				if (pointList.stream().mapToLong(point -> point.computeManhattanDistance(newPoint)).sum()
-						< MAX_DISTANCE) {
+				if (pointList	.stream()
+								.mapToLong(point -> point.computeManhattanDistance(newPoint))
+								.sum() < MAX_DISTANCE) {
 					counter++;
 				}
 			}

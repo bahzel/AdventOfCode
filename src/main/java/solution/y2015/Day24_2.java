@@ -1,10 +1,10 @@
 package solution.y2015;
 
-import utils.soution.MapSolution;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import utils.soution.MapSolution;
 
 public class Day24_2 extends MapSolution<List<Long>> {
 	private long GROUP_SIZE;
@@ -27,12 +27,13 @@ public class Day24_2 extends MapSolution<List<Long>> {
 	protected String computeSolution(List<Long> longs) {
 		GROUP_SIZE = longs.stream().mapToLong(Long::longValue).sum() / 4;
 		var reversedList = longs.reversed();
-		return getGroupWithSize4(reversedList).stream()
-											  //.filter(group -> isPossibleGroup(group, longs))
-											  .map(this::computeQuantumEntanglement)
-											  .mapToLong(Long::longValue)
-											  .min()
-											  .orElseThrow() + "";
+		return getGroupWithSize4(reversedList)	.stream()
+												// .filter(group -> isPossibleGroup(group, longs))
+												.map(this::computeQuantumEntanglement)
+												.mapToLong(Long::longValue)
+												.min()
+												.orElseThrow()
+				+ "";
 	}
 
 	private List<Set<Long>> getGroupWithSize4(List<Long> longs) {

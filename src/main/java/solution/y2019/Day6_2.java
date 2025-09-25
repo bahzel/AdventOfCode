@@ -19,8 +19,8 @@ public class Day6_2 extends MapSolution<Map<String, Tree<String>>> {
 	@Override
 	protected void transformInstruction(String instruction, Map<String, Tree<String>> stringTreeMap) {
 		var instructions = instruction.split("\\)");
-		stringTreeMap.computeIfAbsent(instructions[0], Tree::new)
-					 .addChild(stringTreeMap.computeIfAbsent(instructions[1], Tree::new));
+		stringTreeMap	.computeIfAbsent(instructions[0], Tree::new)
+						.addChild(stringTreeMap.computeIfAbsent(instructions[1], Tree::new));
 	}
 
 	@Override

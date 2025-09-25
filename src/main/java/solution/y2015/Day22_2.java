@@ -1,12 +1,13 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.function.TriConsumer;
-import org.apache.commons.lang3.tuple.Triple;
-import utils.soution.Solution;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang3.function.TriConsumer;
+import org.apache.commons.lang3.tuple.Triple;
+
+import utils.soution.Solution;
 
 public class Day22_2 extends Solution {
 	private long GLOBAL_MINIMUM = Long.MAX_VALUE;

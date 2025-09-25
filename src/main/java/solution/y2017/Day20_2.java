@@ -27,17 +27,18 @@ public class Day20_2 extends MapSolution<List<Particle>> {
 
 	@Override
 	protected void transformInstruction(String instruction, List<Particle> particles) {
-		var instructions = instruction.replace("p=<", "")
-									  .replace(">, v=<", "%")
-									  .replace(">, a=<", "%")
-									  .replace(">", "")
-									  .split("%");
+		var instructions = instruction	.replace("p=<", "")
+										.replace(">, v=<", "%")
+										.replace(">, a=<", "%")
+										.replace(">", "")
+										.split("%");
 		var position = instructions[0].split(",");
 		var velocity = instructions[1].split(",");
 		var acceleration = instructions[2].split(",");
 
-		particles.add(new Particle(new Point3D(Integer.parseInt(position[0]), Integer.parseInt(position[1]),
-				Integer.parseInt(position[2])),
+		particles.add(new Particle(
+				new Point3D(Integer.parseInt(position[0]), Integer.parseInt(position[1]),
+						Integer.parseInt(position[2])),
 				new Point3D(Integer.parseInt(velocity[0]), Integer.parseInt(velocity[1]),
 						Integer.parseInt(velocity[2])),
 				new Point3D(Integer.parseInt(acceleration[0]), Integer.parseInt(acceleration[1]),

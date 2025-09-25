@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Queue;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.tuple.Pair;
 import utils.soution.GridElement;
 import utils.soution.GridSolution;
 
@@ -36,11 +37,11 @@ public class Day15_1 extends GridSolution<Unit> {
 	@Override
 	protected GridElement<Unit> transformCell(char ch, int x, int y) {
 		Unit unit = switch (ch) {
-			case '#' -> new Wall();
-			case '.' -> new Cavern();
-			case 'G' -> new Goblin(isLog());
-			case 'E' -> new Elf(attackPower, isLog());
-			default -> throw new IllegalArgumentException("Invalid character: " + ch);
+		case '#' -> new Wall();
+		case '.' -> new Cavern();
+		case 'G' -> new Goblin(isLog());
+		case 'E' -> new Elf(attackPower, isLog());
+		default -> throw new IllegalArgumentException("Invalid character: " + ch);
 		};
 
 		var position = new GridElement<>(unit, x, y);
@@ -51,9 +52,9 @@ public class Day15_1 extends GridSolution<Unit> {
 	@Override
 	protected String computeSolution() {
 		var rounds = -1;
-		var goblins = new ArrayList<>(stream().filter(unit -> unit.getValue() instanceof Goblin)
-											  .map(unit -> (Goblin) unit.getValue())
-											  .toList());
+		var goblins = new ArrayList<>(stream()	.filter(unit -> unit.getValue() instanceof Goblin)
+												.map(unit -> (Goblin) unit.getValue())
+												.toList());
 		elves.addAll(
 				stream().filter(unit -> unit.getValue() instanceof Elf).map(unit -> (Elf) unit.getValue()).toList());
 		List<CombatUnit> combatUnits = new ArrayList<>(goblins);
@@ -173,18 +174,18 @@ abstract class CombatUnit extends Unit implements Comparable<CombatUnit> {
 												.getValue()
 												.lengthOfWayTo(closestEnemy.get())
 												.orElse(Integer.MAX_VALUE);
-				int lengthFromRight = getPosition().getRightNeighbour()
-												   .getValue()
-												   .lengthOfWayTo(closestEnemy.get())
-												   .orElse(Integer.MAX_VALUE);
-				int lengthFromDown = getPosition().getLowerNeighbour()
-												  .getValue()
-												  .lengthOfWayTo(closestEnemy.get())
-												  .orElse(Integer.MAX_VALUE);
-				int lengthFromLeft = getPosition().getLeftNeighbour()
-												  .getValue()
-												  .lengthOfWayTo(closestEnemy.get())
-												  .orElse(Integer.MAX_VALUE);
+				int lengthFromRight = getPosition()	.getRightNeighbour()
+													.getValue()
+													.lengthOfWayTo(closestEnemy.get())
+													.orElse(Integer.MAX_VALUE);
+				int lengthFromDown = getPosition()	.getLowerNeighbour()
+													.getValue()
+													.lengthOfWayTo(closestEnemy.get())
+													.orElse(Integer.MAX_VALUE);
+				int lengthFromLeft = getPosition()	.getLeftNeighbour()
+													.getValue()
+													.lengthOfWayTo(closestEnemy.get())
+													.orElse(Integer.MAX_VALUE);
 				var closestLength = Math.min(lengthFromUp,
 						Math.min(lengthFromRight, Math.min(lengthFromLeft, lengthFromDown)));
 				if (closestLength == lengthFromUp) {

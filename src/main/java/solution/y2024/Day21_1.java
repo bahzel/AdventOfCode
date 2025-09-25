@@ -33,11 +33,11 @@ public class Day21_1 extends InstructionSolution<List<String>, AtomicInteger> {
 	protected boolean performInstruction(List<String> characters, AtomicInteger atomicInteger) {
 		var sum = 0;
 		for (var character : characters) {
-			sum += numericalKeypadRobot.moveTo(character)
-									   .stream()
-									   .mapToInt(this::getMinimumFromRobot1)
-									   .min()
-									   .orElseThrow();
+			sum += numericalKeypadRobot	.moveTo(character)
+										.stream()
+										.mapToInt(this::getMinimumFromRobot1)
+										.min()
+										.orElseThrow();
 		}
 		atomicInteger.addAndGet(sum * Integer.parseInt(String.join("", characters).substring(0, 3)));
 

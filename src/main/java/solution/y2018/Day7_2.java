@@ -38,10 +38,10 @@ class InstructionWithTime extends GanttDiagram<Integer> {
 	}
 
 	public int computeFinishTime() {
-		var startingTime = getParents().stream()
-									   .mapToInt(parent -> ((InstructionWithTime) parent).computeFinishTime())
-									   .max()
-									   .orElse(0);
+		var startingTime = getParents()	.stream()
+										.mapToInt(parent -> ((InstructionWithTime) parent).computeFinishTime())
+										.max()
+										.orElse(0);
 		return startingTime + getValue();
 	}
 }

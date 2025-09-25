@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Queue;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.soution.MapSolution;
 
 public class Day24_2 extends MapSolution<Map<Integer, List<Component>>> {

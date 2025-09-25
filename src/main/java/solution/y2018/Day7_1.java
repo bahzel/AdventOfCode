@@ -30,11 +30,11 @@ public class Day7_1 extends MapSolution<Map<String, Instruction>> {
 		var solution = new StringBuilder();
 
 		while (true) {
-			var nextInstruction = stringInstructionMap.values()
-													  .stream()
-													  .filter(Instruction::isReady)
-													  .min(Comparator.comparing(Instruction::getName))
-													  .orElse(null);
+			var nextInstruction = stringInstructionMap	.values()
+														.stream()
+														.filter(Instruction::isReady)
+														.min(Comparator.comparing(Instruction::getName))
+														.orElse(null);
 			if (nextInstruction == null) {
 				return solution.toString();
 			} else {

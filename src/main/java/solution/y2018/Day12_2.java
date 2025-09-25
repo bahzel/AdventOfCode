@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.soution.MapSolution;
 
 public class Day12_2 extends MapSolution<Pair<Set<Long>, List<boolean[]>>> {

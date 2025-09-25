@@ -1,11 +1,12 @@
 package solution.y2016;
 
-import org.apache.commons.lang3.tuple.Pair;
-import utils.Direction;
-import utils.soution.InstructionSolution;
-import utils.Point;
-
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import utils.Direction;
+import utils.Point;
+import utils.soution.InstructionSolution;
 
 public class Day2_1 extends InstructionSolution<List<Direction>, Pair<StringBuilder, Point>> {
 	private final int[][] KEYPAD = new int[3][3];
@@ -35,11 +36,11 @@ public class Day2_1 extends InstructionSolution<List<Direction>, Pair<StringBuil
 
 	private Direction mapDirection(char c) {
 		return switch (c) {
-			case 'U' -> Direction.UP;
-			case 'D' -> Direction.DOWN;
-			case 'L' -> Direction.LEFT;
-			case 'R' -> Direction.RIGHT;
-			default -> throw new IllegalArgumentException();
+		case 'U' -> Direction.UP;
+		case 'D' -> Direction.DOWN;
+		case 'L' -> Direction.LEFT;
+		case 'R' -> Direction.RIGHT;
+		default -> throw new IllegalArgumentException();
 		};
 	}
 

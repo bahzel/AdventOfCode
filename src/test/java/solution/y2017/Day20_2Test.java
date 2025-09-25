@@ -15,12 +15,14 @@ public class Day20_2Test {
 	@Test
 	public void tripleCollissionsAreDetected() {
 		assertThat(new Day20_2(List.of("p=<-6,0,0>, v=<3,0,0>, a=<0,0,0>", "p=<-4,0,0>, v=<2,0,0>, a=<0,0,0>",
-				"p=<-2,0,0>, v=<1,0,0>, a=<0,0,0>", "p=<3,0,0>, v=<-1,0,0>, a=<0,0,0>")).disableLog().solve()).isEqualTo("1");
+				"p=<-2,0,0>, v=<1,0,0>, a=<0,0,0>", "p=<3,0,0>, v=<-1,0,0>, a=<0,0,0>")).disableLog()
+																						.solve()).isEqualTo("1");
 	}
 
 	@Test
 	public void earliestCollissionsAreEliminatedFirst() {
 		assertThat(new Day20_2(List.of("p=<-6,0,0>, v=<3,0,0>, a=<0,0,0>", "p=<-4,0,0>, v=<2,0,0>, a=<0,0,0>",
-				"p=<-5,0,0>, v=<1,0,0>, a=<0,0,0>", "p=<-6,0,0>, v=<-1,0,0>, a=<0,0,0>")).disableLog().solve()).isEqualTo("2");
+				"p=<-5,0,0>, v=<1,0,0>, a=<0,0,0>", "p=<-6,0,0>, v=<-1,0,0>, a=<0,0,0>"))	.disableLog()
+																							.solve()).isEqualTo("2");
 	}
 }

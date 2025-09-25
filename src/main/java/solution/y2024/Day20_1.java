@@ -14,17 +14,17 @@ public class Day20_1 extends GridSolution<Integer> {
 	@Override
 	protected GridElement<Integer> transformCell(char ch, int x, int y) {
 		return switch (ch) {
-			case '#' -> new GridElement<>(-1, x, y);
-			case 'S' -> {
-				start = new GridElement<>(0, x, y);
-				yield start;
-			}
-			case 'E' -> {
-				goal = new GridElement<>(0, x, y);
-				yield goal;
-			}
-			case '.' -> new GridElement<>(0, x, y);
-			default -> throw new IllegalArgumentException("Invalid character: " + ch);
+		case '#' -> new GridElement<>(-1, x, y);
+		case 'S' -> {
+			start = new GridElement<>(0, x, y);
+			yield start;
+		}
+		case 'E' -> {
+			goal = new GridElement<>(0, x, y);
+			yield goal;
+		}
+		case '.' -> new GridElement<>(0, x, y);
+		default -> throw new IllegalArgumentException("Invalid character: " + ch);
 		};
 	}
 
@@ -40,12 +40,12 @@ public class Day20_1 extends GridSolution<Integer> {
 													.count() > 1)
 								.toList();
 		for (var shortCut : shortCuts) {
-			var connectingTiles = shortCut.getBorderingNeighbours()
-										  .stream()
-										  .filter(neighbour -> neighbour.getValue() != -1)
-										  .map(GridElement::getValue)
-										  .sorted()
-										  .toList();
+			var connectingTiles = shortCut	.getBorderingNeighbours()
+											.stream()
+											.filter(neighbour -> neighbour.getValue() != -1)
+											.map(GridElement::getValue)
+											.sorted()
+											.toList();
 			if (connectingTiles.getLast() - connectingTiles.getFirst() > 101) {
 				usefulCheats++;
 			}

@@ -18,15 +18,15 @@ public class Day16_1 extends Solution {
 		var solution = 0;
 
 		for (int i = 0; !input.get(i).isEmpty(); i = i + 4) {
-			var registerBefore = Arrays.stream(input.get(i).replace("]", "").split("\\[")[1].split(", "))
-									   .mapToInt(Integer::parseInt)
-									   .toArray();
+			var registerBefore = Arrays	.stream(input.get(i).replace("]", "").split("\\[")[1].split(", "))
+										.mapToInt(Integer::parseInt)
+										.toArray();
 			var instruction = Arrays.stream(Arrays.copyOfRange(input.get(i + 1).split(" "), 1, 4))
 									.mapToInt(Integer::parseInt)
 									.toArray();
-			var registerAfter = Arrays.stream(input.get(i + 2).replace("]", "").split("\\[")[1].split(", "))
-									  .mapToInt(Integer::parseInt)
-									  .toArray();
+			var registerAfter = Arrays	.stream(input.get(i + 2).replace("]", "").split("\\[")[1].split(", "))
+										.mapToInt(Integer::parseInt)
+										.toArray();
 			if (countRuleMatches(ruleSet, instruction, registerBefore, registerAfter) >= 3) {
 				solution++;
 			}
@@ -38,38 +38,38 @@ public class Day16_1 extends Solution {
 	private List<BiConsumer<int[], int[]>> createRuleset() {
 		var ruleset = new ArrayList<BiConsumer<int[], int[]>>();
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] + register[instruction[1]]);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] + register[instruction[1]]);
 		ruleset.add((instruction, register) -> register[instruction[2]] = register[instruction[0]] + instruction[1]);
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] * register[instruction[1]]);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] * register[instruction[1]]);
 		ruleset.add((instruction, register) -> register[instruction[2]] = register[instruction[0]] * instruction[1]);
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] & register[instruction[1]]);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] & register[instruction[1]]);
 		ruleset.add((instruction, register) -> register[instruction[2]] = register[instruction[0]] & instruction[1]);
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] | register[instruction[1]]);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] | register[instruction[1]]);
 		ruleset.add((instruction, register) -> register[instruction[2]] = register[instruction[0]] | instruction[1]);
 
 		ruleset.add((instruction, register) -> register[instruction[2]] = register[instruction[0]]);
 		ruleset.add((instruction, register) -> register[instruction[2]] = instruction[0]);
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				instruction[0] > register[instruction[1]] ? 1 : 0);
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] > instruction[1] ? 1 : 0);
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] > register[instruction[1]] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = instruction[0] > register[instruction[1]] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] > instruction[1] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] > register[instruction[1]] ? 1 : 0);
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				instruction[0] == register[instruction[1]] ? 1 : 0);
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] == instruction[1] ? 1 : 0);
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] == register[instruction[1]] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = instruction[0] == register[instruction[1]] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] == instruction[1] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] == register[instruction[1]] ? 1 : 0);
 
 		return ruleset;
 	}

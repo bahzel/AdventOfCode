@@ -5,9 +5,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.apache.commons.lang3.tuple.Pair;
 import utils.soution.Solution;
 
 public class Day24_1 extends Solution {
@@ -35,9 +36,8 @@ public class Day24_1 extends Solution {
 	protected String doSolve() {
 		armies = createArmies();
 
-		for (int i = 1; armies.stream().anyMatch(brigade -> brigade instanceof ImmuneSystem) && armies.stream()
-																									  .anyMatch(
-																											  brigade -> brigade instanceof Infection); i++) {
+		for (int i = 1; armies.stream().anyMatch(brigade -> brigade instanceof ImmuneSystem)
+				&& armies.stream().anyMatch(brigade -> brigade instanceof Infection); i++) {
 			println("----- Round:" + i + " -----");
 			var unitCountBefore = getUnitCount();
 			performRound();
@@ -69,11 +69,11 @@ public class Day24_1 extends Solution {
 		armies.stream().sorted(selectingOrderComparator).forEach(brigade -> {
 			var targetComparator = new TargetComparator(brigade);
 			var assignedTargets = targetSelection.stream().map(Pair::getRight).toList();
-			var possibleTarget = armies.stream()
-									   .filter(target -> !target.getClass().equals(brigade.getClass()))
-									   .filter(target -> !assignedTargets.contains(target))
-									   .filter(target -> target.computeReceivedDamage(brigade) > 0)
-									   .max(targetComparator);
+			var possibleTarget = armies	.stream()
+										.filter(target -> !target.getClass().equals(brigade.getClass()))
+										.filter(target -> !assignedTargets.contains(target))
+										.filter(target -> target.computeReceivedDamage(brigade) > 0)
+										.max(targetComparator);
 			if (possibleTarget.isPresent()) {
 				targetSelection.add(Pair.of(brigade, possibleTarget.get()));
 				println(brigade + " will attack " + possibleTarget.get());
@@ -116,8 +116,7 @@ class SelectingOrderComparator implements Comparator<Brigade> {
 		var effectivePower1 = brigade1.getEffectivePower();
 		var effectivePower2 = brigade2.getEffectivePower();
 
-		return effectivePower1 == effectivePower2
-				? brigade2.getInitiative() - brigade1.getInitiative()
+		return effectivePower1 == effectivePower2 ? brigade2.getInitiative() - brigade1.getInitiative()
 				: effectivePower2 - effectivePower1;
 	}
 }
@@ -131,9 +130,11 @@ class TargetComparator implements Comparator<Brigade> {
 		var receivedDamage1 = target1.computeReceivedDamage(brigade);
 		var receivedDamage2 = target2.computeReceivedDamage(brigade);
 
-		return receivedDamage1 == receivedDamage2 ? target1.getEffectivePower() == target2.getEffectivePower()
-				? target1.getInitiative() - target2.getInitiative()
-				: target1.getEffectivePower() - target2.getEffectivePower() : receivedDamage1 - receivedDamage2;
+		return receivedDamage1 == receivedDamage2
+				? target1.getEffectivePower() == target2.getEffectivePower()
+						? target1.getInitiative() - target2.getInitiative()
+						: target1.getEffectivePower() - target2.getEffectivePower()
+				: receivedDamage1 - receivedDamage2;
 	}
 }
 
@@ -169,13 +170,13 @@ abstract class Brigade {
 		if (instruction.contains("weak")) {
 			var weaknessString = instruction.substring(instruction.indexOf("weak") + 8);
 			weakness.addAll(Arrays.asList(weaknessString.substring(0,
-																weaknessString.contains(";") ? weaknessString.indexOf(";") : weaknessString.indexOf(")"))
+					weaknessString.contains(";") ? weaknessString.indexOf(";") : weaknessString.indexOf(")"))
 														.split(", ")));
 		}
 		if (instruction.contains("immune")) {
 			var immunityString = instruction.substring(instruction.indexOf("immune") + 10);
 			immunity.addAll(Arrays.asList(immunityString.substring(0,
-																immunityString.contains(";") ? immunityString.indexOf(";") : immunityString.indexOf(")"))
+					immunityString.contains(";") ? immunityString.indexOf(";") : immunityString.indexOf(")"))
 														.split(", ")));
 		}
 	}

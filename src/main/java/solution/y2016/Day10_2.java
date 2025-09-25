@@ -1,9 +1,9 @@
 package solution.y2016;
 
-import utils.soution.MapSolution;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import utils.soution.MapSolution;
 
 public class Day10_2 extends MapSolution<Map<String, Robot>> {
 	public static void main(String[] args) {

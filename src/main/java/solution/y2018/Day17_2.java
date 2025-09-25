@@ -52,7 +52,7 @@ public class Day17_2 extends InstructionSolution<String, Map<Point, Material>> {
 		var maximumDepth = points.keySet().stream().mapToInt(Point::getY).max().orElseThrow();
 
 		while (dropDown(startingPoint, maximumDepth, points)) {
-			//drop
+			// drop
 		}
 
 		return points.values().stream().filter(point -> point == Material.Water).count() + "";

@@ -6,9 +6,10 @@ import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.StringUtils;
 import utils.soution.Solution;
 
 public class Day24_2 extends Solution {
@@ -27,9 +28,9 @@ public class Day24_2 extends Solution {
 		for (int i = 1; gateMap.containsKey("z" + StringUtils.leftPad(i + 1 + "", 2, "0")); i++) {
 			checkStructureOfZ(gateMap, i);
 		}
-		return Stream.of("hmt", "z18", "z27", "bfq", "z31", "hkh", "bng", "fjp")
-					 .sorted()
-					 .collect(Collectors.joining(","));
+		return Stream	.of("hmt", "z18", "z27", "bfq", "z31", "hkh", "bng", "fjp")
+						.sorted()
+						.collect(Collectors.joining(","));
 	}
 
 	private void fixInput(String input1, String input2) {
@@ -60,9 +61,10 @@ public class Day24_2 extends Solution {
 		if (!(gate.getFunction() instanceof XorFunction)) {
 			return true;
 		}
-		return !(("x" + indexName).equals(gate.getInput1().getName()) && ("y" + indexName).equals(
-				gate.getInput2().getName()) || ("x" + indexName).equals(gate.getInput2().getName()) && ("y"
-				+ indexName).equals(gate.getInput1().getName()));
+		return !(("x" + indexName).equals(gate.getInput1().getName())
+				&& ("y" + indexName).equals(gate.getInput2().getName())
+				|| ("x" + indexName).equals(gate.getInput2().getName())
+						&& ("y" + indexName).equals(gate.getInput1().getName()));
 	}
 
 	private Map<String, Gate> getGates() {

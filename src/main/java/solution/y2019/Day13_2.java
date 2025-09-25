@@ -54,8 +54,8 @@ public class Day13_2 extends MapSolution<IntCodeInterpreter> {
 			var ballPosition = getBallPosition(buffer);
 			updatePaddlePosition(buffer);
 			println("Paddle: " + paddle);
-			intCodeInterpreter.getInput()
-							  .add(ballPosition < paddle.getX() ? -1L : ballPosition > paddle.getX() ? 1L : 0L);
+			intCodeInterpreter	.getInput()
+								.add(ballPosition < paddle.getX() ? -1L : ballPosition > paddle.getX() ? 1L : 0L);
 
 			if (!intCodeInterpreter.getStatus().take()) {
 				updateScore(new ArrayList<>(intCodeInterpreter.getOutput()));

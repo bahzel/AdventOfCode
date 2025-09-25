@@ -1,10 +1,11 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.tuple.Pair;
-import utils.soution.InstructionWithInputSolution;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import utils.soution.InstructionWithInputSolution;
 
 public class Day19_1 extends InstructionWithInputSolution<Pair<String, String>, String, Set<String>> {
 	public static void main(String[] args) {
@@ -31,8 +32,8 @@ public class Day19_1 extends InstructionWithInputSolution<Pair<String, String>, 
 	protected void performInstruction(Pair<String, String> stringStringPair, String s, Set<String> strings) {
 		int index = s.indexOf(stringStringPair.getLeft());
 		while (index >= 0) {
-			strings.add(s.substring(0, index) + stringStringPair.getRight() + s.substring(
-					index + stringStringPair.getLeft().length()));
+			strings.add(s.substring(0, index) + stringStringPair.getRight()
+					+ s.substring(index + stringStringPair.getLeft().length()));
 			index = s.indexOf(stringStringPair.getLeft(), index + 1);
 		}
 	}

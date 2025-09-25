@@ -21,7 +21,7 @@ public class Day19_2 extends Solution {
 
 		var currentX = 0L;
 		var currentY = 3L;
-		for (; ; currentY++) {
+		for (;; currentY++) {
 			for (; !checkPosition(currentX, currentY); currentX++) {
 			}
 			for (; checkPosition(currentX, currentY); currentX++) {

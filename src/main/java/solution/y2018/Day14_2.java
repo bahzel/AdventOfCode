@@ -21,10 +21,10 @@ public class Day14_2 extends Solution {
 		var elf1 = 0;
 		var elf2 = 1;
 
-		while (scores.size() < goal.length() + 1 || !scores.subList(scores.size() - goal.length() - 1, scores.size())
-														   .stream()
-														   .collect(joining())
-														   .contains(goal)) {
+		while (scores.size() < goal.length() + 1 || !scores	.subList(scores.size() - goal.length() - 1, scores.size())
+															.stream()
+															.collect(joining())
+															.contains(goal)) {
 			var elf1Next = scores.get(elf1);
 			var elf2Next = scores.get(elf2);
 			var nextScore = elf1Next + elf2Next;
@@ -38,9 +38,11 @@ public class Day14_2 extends Solution {
 			elf2 = (elf2 + elf2Next + 1) % scores.size();
 		}
 
-		return scores.size() - goal.length() + scores.subList(scores.size() - goal.length() - 2, scores.size())
-													 .stream()
-													 .collect(joining())
-													 .indexOf(goal) - 2 + "";
+		return scores.size() - goal.length()
+				+ scores.subList(scores.size() - goal.length() - 2, scores.size())
+						.stream()
+						.collect(joining())
+						.indexOf(goal)
+				- 2 + "";
 	}
 }

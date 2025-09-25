@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.soution.InstructionSolution;
 
 public class Day3_2 extends InstructionSolution<Pair<Long, Long>, AtomicLong> {

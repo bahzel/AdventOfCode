@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.soution.Solution;
 
 public class Day5_2 extends Solution {
@@ -18,11 +19,11 @@ public class Day5_2 extends Solution {
 		var rules = getRules();
 		var updates = getUpdates();
 
-		return "" + updates.stream()
-						   .filter(update -> isInvalid(update, rules))
-						   .peek(update -> fixUpdate(update, rules))
-						   .mapToLong(update -> update.get(update.size() / 2))
-						   .sum();
+		return "" + updates	.stream()
+							.filter(update -> isInvalid(update, rules))
+							.peek(update -> fixUpdate(update, rules))
+							.mapToLong(update -> update.get(update.size() / 2))
+							.sum();
 	}
 
 	private List<Pair<Integer, Integer>> getRules() {
@@ -38,9 +39,9 @@ public class Day5_2 extends Solution {
 		var indexSplit = input.indexOf("");
 		return input.subList(indexSplit + 1, input.size())
 					.stream()
-					.map(rule -> (List<Integer>) Arrays.stream(rule.split(","))
-													   .map(Integer::parseInt)
-													   .collect(Collectors.toCollection(ArrayList::new)))
+					.map(rule -> (List<Integer>) Arrays	.stream(rule.split(","))
+														.map(Integer::parseInt)
+														.collect(Collectors.toCollection(ArrayList::new)))
 					.toList();
 	}
 

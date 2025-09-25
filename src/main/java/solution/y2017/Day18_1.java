@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.math.NumberUtils;
 import utils.soution.MapSolution;
 
 public class Day18_1 extends MapSolution<List<Consumer<Instruction>>> {

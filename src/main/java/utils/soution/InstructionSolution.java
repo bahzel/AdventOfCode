@@ -30,10 +30,10 @@ public abstract class InstructionSolution<Instruction, Value> extends Solution {
 	@Override
 	protected void initialize() {
 		value = initializeValue();
-		instructions = getInstructions(input).stream()
-											 .map(this::transformInstruction)
-											 .filter(Objects::nonNull)
-											 .toList();
+		instructions = getInstructions(input)	.stream()
+												.map(this::transformInstruction)
+												.filter(Objects::nonNull)
+												.toList();
 		if (reverse) {
 			instructions = instructions.reversed();
 		}
@@ -56,7 +56,8 @@ public abstract class InstructionSolution<Instruction, Value> extends Solution {
 	protected abstract Value initializeValue();
 
 	/**
-	 * transforms instructions Strings to the actual instruction. If null is returned, the instruction will be ignored
+	 * transforms instructions Strings to the actual instruction. If null is
+	 * returned, the instruction will be ignored
 	 *
 	 * @param instruction instruction
 	 * @return instruction

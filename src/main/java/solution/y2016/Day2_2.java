@@ -1,11 +1,12 @@
 package solution.y2016;
 
-import org.apache.commons.lang3.tuple.Pair;
-import utils.Direction;
-import utils.soution.InstructionSolution;
-import utils.Point;
-
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import utils.Direction;
+import utils.Point;
+import utils.soution.InstructionSolution;
 
 public class Day2_2 extends InstructionSolution<List<Direction>, Pair<StringBuilder, Point>> {
 	private final char[][] KEYPAD = new char[5][5];
@@ -39,11 +40,11 @@ public class Day2_2 extends InstructionSolution<List<Direction>, Pair<StringBuil
 
 	private Direction mapDirection(char c) {
 		return switch (c) {
-			case 'U' -> Direction.UP;
-			case 'D' -> Direction.DOWN;
-			case 'L' -> Direction.LEFT;
-			case 'R' -> Direction.RIGHT;
-			default -> throw new IllegalArgumentException();
+		case 'U' -> Direction.UP;
+		case 'D' -> Direction.DOWN;
+		case 'L' -> Direction.LEFT;
+		case 'R' -> Direction.RIGHT;
+		default -> throw new IllegalArgumentException();
 		};
 	}
 
@@ -54,26 +55,26 @@ public class Day2_2 extends InstructionSolution<List<Direction>, Pair<StringBuil
 		for (Direction direction : directions) {
 			switch (direction) {
 			case UP:
-				if (point.getY() > 0 && point.getX() == 2 || point.getY() > 1 && (point.getX() == 1
-						|| point.getX() == 3) || point.getY() > 2) {
+				if (point.getY() > 0 && point.getX() == 2
+						|| point.getY() > 1 && (point.getX() == 1 || point.getX() == 3) || point.getY() > 2) {
 					point.setY(point.getY() - 1);
 				}
 				break;
 			case DOWN:
-				if (point.getY() < 4 && point.getX() == 2 || point.getY() < 3 && (point.getX() == 1
-						|| point.getX() == 3) || point.getY() < 2) {
+				if (point.getY() < 4 && point.getX() == 2
+						|| point.getY() < 3 && (point.getX() == 1 || point.getX() == 3) || point.getY() < 2) {
 					point.setY(point.getY() + 1);
 				}
 				break;
 			case LEFT:
-				if (point.getX() > 0 && point.getY() == 2 || point.getX() > 1 && (point.getY() == 1
-						|| point.getY() == 3) || point.getX() > 2) {
+				if (point.getX() > 0 && point.getY() == 2
+						|| point.getX() > 1 && (point.getY() == 1 || point.getY() == 3) || point.getX() > 2) {
 					point.setX(point.getX() - 1);
 				}
 				break;
 			case RIGHT:
-				if (point.getX() < 4 && point.getY() == 2 || point.getX() < 3 && (point.getY() == 1
-						|| point.getY() == 3) || point.getX() < 2) {
+				if (point.getX() < 4 && point.getY() == 2
+						|| point.getX() < 3 && (point.getY() == 1 || point.getY() == 3) || point.getX() < 2) {
 					point.setX(point.getX() + 1);
 				}
 			}

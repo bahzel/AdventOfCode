@@ -15,17 +15,17 @@ public class Day20_2 extends GridSolution<Integer> {
 	@Override
 	protected GridElement<Integer> transformCell(char ch, int x, int y) {
 		return switch (ch) {
-			case '#' -> new GridElement<>(-1, x, y);
-			case 'S' -> {
-				start = new GridElement<>(0, x, y);
-				yield start;
-			}
-			case 'E' -> {
-				goal = new GridElement<>(0, x, y);
-				yield goal;
-			}
-			case '.' -> new GridElement<>(0, x, y);
-			default -> throw new IllegalArgumentException("Invalid character: " + ch);
+		case '#' -> new GridElement<>(-1, x, y);
+		case 'S' -> {
+			start = new GridElement<>(0, x, y);
+			yield start;
+		}
+		case 'E' -> {
+			goal = new GridElement<>(0, x, y);
+			yield goal;
+		}
+		case '.' -> new GridElement<>(0, x, y);
+		default -> throw new IllegalArgumentException("Invalid character: " + ch);
 		};
 	}
 
@@ -43,9 +43,11 @@ public class Day20_2 extends GridSolution<Integer> {
 					if (x + deltaX < 0 || x + deltaX >= grid.length || y + deltaY < 0 || y + deltaY >= grid[0].length) {
 						continue;
 					}
-					if (grid[x + deltaX][y + deltaY].getValue() - startingTile.getValue() - grid[x + deltaX][y
-							+ deltaY].getCoordinates().computeManhattanDistance(startingTile.getCoordinates())
-							>= SHORTCUT_THRESHOLD) {
+					if (grid[x + deltaX][y + deltaY].getValue() - startingTile.getValue()
+							- grid[x + deltaX][y
+									+ deltaY]	.getCoordinates()
+												.computeManhattanDistance(
+														startingTile.getCoordinates()) >= SHORTCUT_THRESHOLD) {
 						usefulCheats++;
 					}
 				}

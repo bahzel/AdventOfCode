@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Triple;
+
 import utils.Point;
 import utils.soution.Solution;
 
@@ -21,35 +22,37 @@ public class Day13_1 extends Solution {
 	}
 
 	private int getCostForWinning(Triple<Point, Point, Point> clawMachine) {
-		if (new Point(0, 0).computeManhattanDistance(clawMachine.getMiddle())
-				<= new Point(0, 0).computeManhattanDistance(clawMachine.getLeft()) / COST_A) {
+		if (new Point(0, 0).computeManhattanDistance(
+				clawMachine.getMiddle()) <= new Point(0, 0).computeManhattanDistance(clawMachine.getLeft()) / COST_A) {
 			for (int a = 100; a >= 0; a--) {
-				var b = (clawMachine.getRight().getX() - clawMachine.getLeft().getX() * a) / clawMachine.getMiddle()
-																										.getX();
+				var b = (clawMachine.getRight().getX() - clawMachine.getLeft().getX() * a)
+						/ clawMachine.getMiddle().getX();
 				if (b > 100) {
 					return 0;
 				}
 
-				if (b > 0 && clawMachine.getMiddle().getX() * b + clawMachine.getLeft().getX() * a
-						== clawMachine.getRight().getX()
-						&& clawMachine.getMiddle().getY() * b + clawMachine.getLeft().getY() * a
-						== clawMachine.getRight().getY()) {
+				if (b > 0
+						&& clawMachine.getMiddle().getX() * b
+								+ clawMachine.getLeft().getX() * a == clawMachine.getRight().getX()
+						&& clawMachine.getMiddle().getY() * b
+								+ clawMachine.getLeft().getY() * a == clawMachine.getRight().getY()) {
 					return a * COST_A + b * COST_B;
 				}
 			}
 		} else {
 
 			for (int b = 100; b >= 0; b--) {
-				var a = (clawMachine.getRight().getX() - clawMachine.getMiddle().getX() * b) / clawMachine.getLeft()
-																										  .getX();
+				var a = (clawMachine.getRight().getX() - clawMachine.getMiddle().getX() * b)
+						/ clawMachine.getLeft().getX();
 				if (a > 100) {
 					return 0;
 				}
 
-				if (a > 0 && clawMachine.getMiddle().getX() * b + clawMachine.getLeft().getX() * a
-						== clawMachine.getRight().getX()
-						&& clawMachine.getMiddle().getY() * b + clawMachine.getLeft().getY() * a
-						== clawMachine.getRight().getY()) {
+				if (a > 0
+						&& clawMachine.getMiddle().getX() * b
+								+ clawMachine.getLeft().getX() * a == clawMachine.getRight().getX()
+						&& clawMachine.getMiddle().getY() * b
+								+ clawMachine.getLeft().getY() * a == clawMachine.getRight().getY()) {
 					return a * COST_A + b * COST_B;
 				}
 			}

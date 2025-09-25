@@ -27,19 +27,20 @@ public class Day17_1 extends GridSolution<Boolean> {
 	@Override
 	protected GridElement<Boolean> transformCell(char ch, int x, int y) {
 		return switch (ch) {
-			case '#', '^', 'v', '<', '>' -> new GridElement<>(true, x, y);
-			case '.' -> new GridElement<>(false, x, y);
-			default -> throw new IllegalArgumentException("Invalid character: " + ch);
+		case '#', '^', 'v', '<', '>' -> new GridElement<>(true, x, y);
+		case '.' -> new GridElement<>(false, x, y);
+		default -> throw new IllegalArgumentException("Invalid character: " + ch);
 		};
 	}
 
 	@Override
 	protected String computeSolution() {
-		return stream().filter(cell -> cell.getBorderingNeighbours().size() == 4)
-					   .filter(cell -> cell.getValue() && cell.getUpperNeighbour().getValue()
-							   && cell.getRightNeighbour().getValue() && cell.getLowerNeighbour().getValue()
-							   && cell.getLeftNeighbour().getValue())
-					   .mapToInt(cell -> cell.getCoordinates().getX() * cell.getCoordinates().getY())
-					   .sum() + "";
+		return stream()	.filter(cell -> cell.getBorderingNeighbours().size() == 4)
+						.filter(cell -> cell.getValue() && cell.getUpperNeighbour().getValue()
+								&& cell.getRightNeighbour().getValue() && cell.getLowerNeighbour().getValue()
+								&& cell.getLeftNeighbour().getValue())
+						.mapToInt(cell -> cell.getCoordinates().getX() * cell.getCoordinates().getY())
+						.sum()
+				+ "";
 	}
 }

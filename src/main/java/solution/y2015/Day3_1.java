@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.Direction;
 import utils.Point;
 import utils.StringTransformer;
@@ -28,11 +29,11 @@ public class Day3_1 extends InstructionSolution<Direction, Pair<Point, Set<Point
 	@Override
 	protected Direction transformInstruction(String instruction) {
 		return switch (instruction) {
-			case "^" -> Direction.UP;
-			case "v" -> Direction.DOWN;
-			case ">" -> Direction.RIGHT;
-			case "<" -> Direction.LEFT;
-			default -> throw new IllegalArgumentException("Invalid instruction: " + instruction);
+		case "^" -> Direction.UP;
+		case "v" -> Direction.DOWN;
+		case ">" -> Direction.RIGHT;
+		case "<" -> Direction.LEFT;
+		default -> throw new IllegalArgumentException("Invalid instruction: " + instruction);
 		};
 	}
 

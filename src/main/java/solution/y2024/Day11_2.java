@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.soution.MapSolution;
 
 public class Day11_2 extends MapSolution<List<Long>> {

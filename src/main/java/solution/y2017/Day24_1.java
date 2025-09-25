@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.apache.commons.lang3.tuple.Pair;
 import utils.soution.MapSolution;
 
 public class Day24_1 extends MapSolution<Map<Integer, List<Component>>> {

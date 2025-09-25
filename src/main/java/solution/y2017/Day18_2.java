@@ -8,9 +8,10 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.function.Consumer;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.math.NumberUtils;
 import utils.soution.MapSolution;
 
 public class Day18_2 extends MapSolution<List<Consumer<BufferedInstruction>>> {

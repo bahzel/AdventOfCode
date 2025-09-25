@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
+
 import utils.Direction;
 import utils.Point;
 import utils.StringTransformer;
@@ -34,11 +35,11 @@ public class Day3_2 extends InstructionSolution<Pair<Direction, Direction>, Trip
 
 	private Direction mapDirection(char direction) {
 		return switch (direction) {
-			case '^' -> Direction.UP;
-			case 'v' -> Direction.DOWN;
-			case '>' -> Direction.RIGHT;
-			case '<' -> Direction.LEFT;
-			default -> throw new IllegalArgumentException("Invalid instruction: " + direction);
+		case '^' -> Direction.UP;
+		case 'v' -> Direction.DOWN;
+		case '>' -> Direction.RIGHT;
+		case '<' -> Direction.LEFT;
+		default -> throw new IllegalArgumentException("Invalid instruction: " + direction);
 		};
 	}
 

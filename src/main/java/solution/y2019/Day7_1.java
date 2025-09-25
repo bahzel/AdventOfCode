@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.soution.Solution;
 
 public class Day7_1 extends Solution {

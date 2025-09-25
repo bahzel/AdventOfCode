@@ -1,6 +1,7 @@
 package solution.y2019;
 
 import org.junit.jupiter.api.Test;
+
 import utils.Point;
 
 import static org.assertj.core.api.Assertions.assertThat;

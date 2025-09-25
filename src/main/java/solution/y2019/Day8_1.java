@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+
 import utils.StringTransformer;
 import utils.soution.MapSolution;
 
@@ -30,9 +31,9 @@ public class Day8_1 extends MapSolution<List<String>> {
 
 	@Override
 	protected String computeSolution(List<String> strings) {
-		var mostZeros = strings.stream()
-							   .min(Comparator.comparingInt(string -> StringUtils.countMatches(string, "0")))
-							   .orElseThrow();
+		var mostZeros = strings	.stream()
+								.min(Comparator.comparingInt(string -> StringUtils.countMatches(string, "0")))
+								.orElseThrow();
 
 		return StringUtils.countMatches(mostZeros, "1") * StringUtils.countMatches(mostZeros, "2") + "";
 	}

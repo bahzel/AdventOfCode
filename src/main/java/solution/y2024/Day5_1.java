@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.soution.Solution;
 
 public class Day5_1 extends Solution {
@@ -16,10 +17,10 @@ public class Day5_1 extends Solution {
 		var rules = getRules();
 		var updates = getUpdates();
 
-		return "" + updates.stream()
-						   .filter(update -> isValid(update, rules))
-						   .mapToLong(update -> update.get(update.size() / 2))
-						   .sum();
+		return "" + updates	.stream()
+							.filter(update -> isValid(update, rules))
+							.mapToLong(update -> update.get(update.size() / 2))
+							.sum();
 	}
 
 	private List<Pair<Integer, Integer>> getRules() {

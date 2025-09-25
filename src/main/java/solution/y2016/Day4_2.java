@@ -1,8 +1,8 @@
 package solution.y2016;
 
-import utils.soution.InstructionSolution;
-
 import java.util.concurrent.atomic.AtomicLong;
+
+import utils.soution.InstructionSolution;
 
 public class Day4_2 extends InstructionSolution<DecryptableRoom, AtomicLong> {
 	public static void main(String[] args) {
@@ -50,7 +50,7 @@ class DecryptableRoom extends EncryptedRoom {
 				solution.append(rotate(c));
 			}
 		}
-		
+
 		return solution.toString();
 	}
 

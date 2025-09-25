@@ -17,13 +17,13 @@ public class Day6_1 extends GridSolution<Boolean> {
 	@Override
 	protected GridElement<Boolean> transformCell(char ch, int x, int y) {
 		return switch (ch) {
-			case '.' -> new GridElement<>(true, x, y);
-			case '#' -> new GridElement<>(false, x, y);
-			case '^' -> {
-				startingPoint = new GridElement<>(true, x, y);
-				yield startingPoint;
-			}
-			default -> throw new IllegalArgumentException("Invalid character: " + ch);
+		case '.' -> new GridElement<>(true, x, y);
+		case '#' -> new GridElement<>(false, x, y);
+		case '^' -> {
+			startingPoint = new GridElement<>(true, x, y);
+			yield startingPoint;
+		}
+		default -> throw new IllegalArgumentException("Invalid character: " + ch);
 		};
 	}
 

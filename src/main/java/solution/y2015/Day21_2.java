@@ -1,9 +1,9 @@
 package solution.y2015;
 
-import utils.soution.Solution;
-
 import java.util.Arrays;
 import java.util.List;
+
+import utils.soution.Solution;
 
 public class Day21_2 extends Solution {
 	private final List<Item> WEAPONS = Arrays.asList(new Item(8, 4, 0), new Item(10, 5, 0), new Item(25, 6, 0),

@@ -14,9 +14,9 @@ public class Day10_1 extends GridSolution<Integer> {
 	@Override
 	protected GridElement<Integer> transformCell(char ch, int x, int y) {
 		return switch (ch) {
-			case '#' -> new GridElement<>(0, x, y);
-			case '.' -> new GridElement<>(-1, x, y);
-			default -> throw new IllegalArgumentException("Invalid character: " + ch);
+		case '#' -> new GridElement<>(0, x, y);
+		case '.' -> new GridElement<>(-1, x, y);
+		default -> throw new IllegalArgumentException("Invalid character: " + ch);
 		};
 	}
 
@@ -44,7 +44,7 @@ public class Day10_1 extends GridSolution<Integer> {
 					var greatestCommonDivisor = MathUtils.greatestCommonDivisor(deltaX, deltaY);
 					deltaX /= greatestCommonDivisor;
 					deltaY /= greatestCommonDivisor;
-					for (int i = 2; ; i++) {
+					for (int i = 2;; i++) {
 						var newX = tile.getCoordinates().getX() - deltaX * i;
 						var newY = tile.getCoordinates().getY() - deltaY * i;
 						if (newX < 0 || newY < 0) {
@@ -72,7 +72,7 @@ public class Day10_1 extends GridSolution<Integer> {
 					var greatestCommonDivisor = MathUtils.greatestCommonDivisor(deltaX, deltaY);
 					deltaX /= greatestCommonDivisor;
 					deltaY /= greatestCommonDivisor;
-					for (int i = 2; ; i++) {
+					for (int i = 2;; i++) {
 						var newX = tile.getCoordinates().getX() + deltaX * i;
 						var newY = tile.getCoordinates().getY() - deltaY * i;
 						if (newX >= grid.length || newY < 0) {
@@ -100,7 +100,7 @@ public class Day10_1 extends GridSolution<Integer> {
 					var greatestCommonDivisor = MathUtils.greatestCommonDivisor(deltaX, deltaY);
 					deltaX /= greatestCommonDivisor;
 					deltaY /= greatestCommonDivisor;
-					for (int i = 2; ; i++) {
+					for (int i = 2;; i++) {
 						var newX = tile.getCoordinates().getX() - deltaX * i;
 						var newY = tile.getCoordinates().getY() + deltaY * i;
 						if (newX < 0 || newY >= grid[0].length) {
@@ -128,7 +128,7 @@ public class Day10_1 extends GridSolution<Integer> {
 					var greatestCommonDivisor = MathUtils.greatestCommonDivisor(deltaX, deltaY);
 					deltaX /= greatestCommonDivisor;
 					deltaY /= greatestCommonDivisor;
-					for (int i = 1; ; i++) {
+					for (int i = 1;; i++) {
 						var newX = asteroid.getCoordinates().getX() + deltaX * i;
 						var newY = asteroid.getCoordinates().getY() + deltaY * i;
 						if (newX >= grid.length || newY >= grid[0].length) {

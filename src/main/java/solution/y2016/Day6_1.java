@@ -1,10 +1,10 @@
 package solution.y2016;
 
-import utils.soution.Solution;
-
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+
+import utils.soution.Solution;
 
 public class Day6_1 extends Solution {
 	public static void main(String[] args) {

@@ -6,6 +6,7 @@ import java.util.function.BiFunction;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.MutablePair;
+
 import utils.Tree;
 import utils.soution.Solution;
 
@@ -19,19 +20,19 @@ public class Day24_1 extends Solution {
 		var gateMap = getGates();
 		var gates = gateMap.values();
 		while (gates.stream().anyMatch(gate -> gate.getValue().getRight() == null)) {
-			gates.stream()
-				 .filter(gate -> gate.getValue().getRight() == null)
-				 .filter(gate -> gate.getChildren().getFirst().getValue().getRight() != null
-						 && gate.getChildren().get(1).getValue().getRight() != null)
-				 .forEach(gate -> gate.getValue()
-									  .setRight(gate.getValue()
-													.getLeft()
-													.apply(gate.getChildren().getFirst().getValue().getRight(),
-															gate.getChildren().get(1).getValue().getRight())));
+			gates	.stream()
+					.filter(gate -> gate.getValue().getRight() == null)
+					.filter(gate -> gate.getChildren().getFirst().getValue().getRight() != null
+							&& gate.getChildren().get(1).getValue().getRight() != null)
+					.forEach(gate -> gate	.getValue()
+											.setRight(gate	.getValue()
+															.getLeft()
+															.apply(gate.getChildren().getFirst().getValue().getRight(),
+																	gate.getChildren().get(1).getValue().getRight())));
 		}
 
 		var solution = new StringBuilder();
-		for (int i = 0; ; i++) {
+		for (int i = 0;; i++) {
 			var gate = gateMap.get("z" + StringUtils.leftPad(i + "", 2, "0"));
 			if (gate == null) {
 				break;

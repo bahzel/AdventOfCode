@@ -1,6 +1,7 @@
 package solution.y2016;
 
 import org.apache.commons.codec.digest.DigestUtils;
+
 import utils.soution.Solution;
 
 public class Day5_1 extends Solution {

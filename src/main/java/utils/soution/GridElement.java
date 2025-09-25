@@ -67,35 +67,35 @@ public class GridElement<T> {
 
 	public GridElement<T> setNeighbour(Direction direction, T value) {
 		return switch (direction) {
-			case UP -> {
-				var neighbour = setUpperNeighbour(new GridElement<>(value, coordinates.getX(), coordinates.getY() - 1));
-				neighbour.setLowerNeighbour(this);
-				yield neighbour;
-			}
-			case DOWN -> {
-				var neighbour = setLowerNeighbour(new GridElement<>(value, coordinates.getX(), coordinates.getY() + 1));
-				neighbour.setUpperNeighbour(this);
-				yield neighbour;
-			}
-			case LEFT -> {
-				var neighbour = setLeftNeighbour(new GridElement<>(value, coordinates.getX() - 1, coordinates.getY()));
-				neighbour.setRightNeighbour(this);
-				yield neighbour;
-			}
-			case RIGHT -> {
-				var neighbour = setRightNeighbour(new GridElement<>(value, coordinates.getX() + 1, coordinates.getY()));
-				neighbour.setLeftNeighbour(this);
-				yield neighbour;
-			}
+		case UP -> {
+			var neighbour = setUpperNeighbour(new GridElement<>(value, coordinates.getX(), coordinates.getY() - 1));
+			neighbour.setLowerNeighbour(this);
+			yield neighbour;
+		}
+		case DOWN -> {
+			var neighbour = setLowerNeighbour(new GridElement<>(value, coordinates.getX(), coordinates.getY() + 1));
+			neighbour.setUpperNeighbour(this);
+			yield neighbour;
+		}
+		case LEFT -> {
+			var neighbour = setLeftNeighbour(new GridElement<>(value, coordinates.getX() - 1, coordinates.getY()));
+			neighbour.setRightNeighbour(this);
+			yield neighbour;
+		}
+		case RIGHT -> {
+			var neighbour = setRightNeighbour(new GridElement<>(value, coordinates.getX() + 1, coordinates.getY()));
+			neighbour.setLeftNeighbour(this);
+			yield neighbour;
+		}
 		};
 	}
 
 	public GridElement<T> getNeighbour(Direction direction) {
 		return switch (direction) {
-			case UP -> getUpperNeighbour();
-			case DOWN -> getLowerNeighbour();
-			case LEFT -> getLeftNeighbour();
-			case RIGHT -> getRightNeighbour();
+		case UP -> getUpperNeighbour();
+		case DOWN -> getLowerNeighbour();
+		case LEFT -> getLeftNeighbour();
+		case RIGHT -> getRightNeighbour();
 		};
 	}
 

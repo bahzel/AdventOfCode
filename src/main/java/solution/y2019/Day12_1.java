@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.Point3D;
 import utils.soution.MapSolution;
 
@@ -19,11 +20,11 @@ public class Day12_1 extends MapSolution<List<Pair<Point3D, Point3D>>> {
 
 	@Override
 	protected void transformInstruction(String instruction, List<Pair<Point3D, Point3D>> pairs) {
-		var instructions = instruction.replace("<x=", "")
-									  .replace(" y=", "")
-									  .replace(" z=", "")
-									  .replace(">", "")
-									  .split(",");
+		var instructions = instruction	.replace("<x=", "")
+										.replace(" y=", "")
+										.replace(" z=", "")
+										.replace(">", "")
+										.split(",");
 		pairs.add(Pair.of(new Point3D(Integer.parseInt(instructions[0]), Integer.parseInt(instructions[1]),
 				Integer.parseInt(instructions[2])), new Point3D(0, 0, 0)));
 	}
@@ -36,9 +37,11 @@ public class Day12_1 extends MapSolution<List<Pair<Point3D, Point3D>>> {
 
 		return moons.stream()
 					.mapToLong(moon -> (long) (Math.abs(moon.getLeft().getX()) + Math.abs(moon.getLeft().getY())
-							+ Math.abs(moon.getLeft().getZ())) * (Math.abs(moon.getRight().getX()) + Math.abs(
-							moon.getRight().getY()) + Math.abs(moon.getRight().getZ())))
-					.sum() + "";
+							+ Math.abs(moon.getLeft().getZ()))
+							* (Math.abs(moon.getRight().getX()) + Math.abs(moon.getRight().getY())
+									+ Math.abs(moon.getRight().getZ())))
+					.sum()
+				+ "";
 	}
 
 	private void computeNextStep(List<Pair<Point3D, Point3D>> moons) {

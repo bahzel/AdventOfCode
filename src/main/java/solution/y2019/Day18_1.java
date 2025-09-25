@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
+
 import utils.soution.GridElement;
 import utils.soution.GridSolution;
 
@@ -30,13 +31,11 @@ public class Day18_1 extends GridSolution<Character> {
 		queue.add(Triple.of(start, new HashSet<>(), 0));
 		while (!queue.isEmpty()) {
 			var currentState = queue.poll();
-			if (currentState.getLeft().getValue() == '#' || !cache.add(
-					Pair.of(currentState.getLeft(), currentState.getMiddle()))
-					|| Character.isUpperCase(currentState.getLeft().getValue()) && !currentState.getMiddle()
-																								.contains(
-																										Character.toLowerCase(
-																												currentState.getLeft()
-																															.getValue()))) {
+			if (currentState.getLeft().getValue() == '#'
+					|| !cache.add(Pair.of(currentState.getLeft(), currentState.getMiddle()))
+					|| Character.isUpperCase(currentState.getLeft().getValue())
+							&& !currentState.getMiddle()
+											.contains(Character.toLowerCase(currentState.getLeft().getValue()))) {
 				continue;
 			}
 

@@ -1,11 +1,11 @@
 package solution.y2015;
 
-import utils.soution.MapSolution;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import utils.soution.MapSolution;
 
 public class Day24_1 extends MapSolution<List<Long>> {
 	private long GROUP_SIZE;
@@ -28,12 +28,13 @@ public class Day24_1 extends MapSolution<List<Long>> {
 	protected String computeSolution(List<Long> longs) {
 		GROUP_SIZE = longs.stream().mapToLong(Long::longValue).sum() / 3;
 		var reversedList = longs.reversed();
-		return getGroupWithSize6(reversedList).stream()
-											  .filter(group -> isPossibleGroup(group, longs))
-											  .map(this::computeQuantumEntanglement)
-											  .mapToLong(Long::longValue)
-											  .min()
-											  .orElseThrow() + "";
+		return getGroupWithSize6(reversedList)	.stream()
+												.filter(group -> isPossibleGroup(group, longs))
+												.map(this::computeQuantumEntanglement)
+												.mapToLong(Long::longValue)
+												.min()
+												.orElseThrow()
+				+ "";
 	}
 
 	private boolean isPossibleGroup(Set<Long> group, List<Long> longs) {
@@ -56,9 +57,8 @@ public class Day24_1 extends MapSolution<List<Long>> {
 							for (int m = l + 1; m < longs.size(); m++) {
 								if (longs.get(a) + longs.get(i) + longs.get(j) + longs.get(k) + longs.get(l)
 										+ longs.get(m) == GROUP_SIZE) {
-									solution.add(
-											Set.of(longs.get(a), longs.get(i), longs.get(j), longs.get(k), longs.get(l),
-													longs.get(m)));
+									solution.add(Set.of(longs.get(a), longs.get(i), longs.get(j), longs.get(k),
+											longs.get(l), longs.get(m)));
 								}
 							}
 						}

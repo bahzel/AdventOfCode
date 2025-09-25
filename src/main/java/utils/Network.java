@@ -8,16 +8,16 @@ import lombok.Setter;
 
 @Getter
 public class Network<T> {
-    @Setter
-    private T value;
-    private final List<Network<T>> neighbours = new ArrayList<>();
+	@Setter
+	private T value;
+	private final List<Network<T>> neighbours = new ArrayList<>();
 
-    public Network(T value) {
-        this.value = value;
-    }
+	public Network(T value) {
+		this.value = value;
+	}
 
-    public void addNeighbour(Network<T> child) {
-        neighbours.add(child);
-        child.neighbours.add(this);
-    }
+	public void addNeighbour(Network<T> child) {
+		neighbours.add(child);
+		child.neighbours.add(this);
+	}
 }

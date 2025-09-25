@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.soution.InstructionSolution;
 
 public class Day22_2 extends InstructionSolution<Long, List<Pair<List<Long>, List<Long>>>> {
@@ -81,10 +82,10 @@ public class Day22_2 extends InstructionSolution<Long, List<Pair<List<Long>, Lis
 		for (int i = startingIndex; i < offerLists.size(); i++) {
 			var offerList = offerLists.get(i);
 			for (int j = 3; j < offerList.getRight().size(); j++) {
-				if (Objects.equals(offerList.getRight().get(j - 3), sequence.getFirst()) && Objects.equals(
-						offerList.getRight().get(j - 2), sequence.get(1)) && Objects.equals(
-						offerList.getRight().get(j - 1), sequence.get(2)) && Objects.equals(offerList.getRight().get(j),
-						sequence.get(3))) {
+				if (Objects.equals(offerList.getRight().get(j - 3), sequence.getFirst())
+						&& Objects.equals(offerList.getRight().get(j - 2), sequence.get(1))
+						&& Objects.equals(offerList.getRight().get(j - 1), sequence.get(2))
+						&& Objects.equals(offerList.getRight().get(j), sequence.get(3))) {
 					sum += offerList.getLeft().get(j);
 					break;
 				}

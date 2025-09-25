@@ -45,8 +45,8 @@ public class Day5_1 extends MapSolution<List<String>> {
 
 			var nextChar = iterator.next();
 
-			if (Character.isUpperCase(currentChar.charAt(0)) && currentChar.toLowerCase().equals(nextChar) || (
-					Character.isLowerCase(currentChar.charAt(0)) && currentChar.toUpperCase().equals(nextChar))) {
+			if (Character.isUpperCase(currentChar.charAt(0)) && currentChar.toLowerCase().equals(nextChar)
+					|| (Character.isLowerCase(currentChar.charAt(0)) && currentChar.toUpperCase().equals(nextChar))) {
 				iterator.previous();
 				iterator.remove();
 				iterator.previous();

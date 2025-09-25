@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.Point;
 import utils.soution.MapSolution;
 
@@ -31,18 +32,18 @@ public class Day14_1 extends MapSolution<List<Pair<Point, Point>>> {
 	@Override
 	protected String computeSolution(List<Pair<Point, Point>> pairs) {
 		var positions = pairs.stream().map(robot -> computePositionAfter(robot, SECONDS)).toList();
-		var quadrant1 = positions.stream()
-								 .filter(position -> position.getX() < WIDTH / 2 && position.getY() < HEIGHT / 2)
-								 .count();
-		var quadrant2 = positions.stream()
-								 .filter(position -> position.getX() > WIDTH / 2 && position.getY() < HEIGHT / 2)
-								 .count();
-		var quadrant3 = positions.stream()
-								 .filter(position -> position.getX() > WIDTH / 2 && position.getY() > HEIGHT / 2)
-								 .count();
-		var quadrant4 = positions.stream()
-								 .filter(position -> position.getX() < WIDTH / 2 && position.getY() > HEIGHT / 2)
-								 .count();
+		var quadrant1 = positions	.stream()
+									.filter(position -> position.getX() < WIDTH / 2 && position.getY() < HEIGHT / 2)
+									.count();
+		var quadrant2 = positions	.stream()
+									.filter(position -> position.getX() > WIDTH / 2 && position.getY() < HEIGHT / 2)
+									.count();
+		var quadrant3 = positions	.stream()
+									.filter(position -> position.getX() > WIDTH / 2 && position.getY() > HEIGHT / 2)
+									.count();
+		var quadrant4 = positions	.stream()
+									.filter(position -> position.getX() < WIDTH / 2 && position.getY() > HEIGHT / 2)
+									.count();
 		return quadrant1 * quadrant2 * quadrant3 * quadrant4 + "";
 	}
 

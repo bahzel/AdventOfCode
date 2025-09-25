@@ -1,11 +1,11 @@
 package solution.y2015;
 
+import java.util.Arrays;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import utils.soution.Solution;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class Day21_1 extends Solution {
 	private final List<Item> WEAPONS = Arrays.asList(new Item(8, 4, 0), new Item(10, 5, 0), new Item(25, 6, 0),

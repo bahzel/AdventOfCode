@@ -1,12 +1,13 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.StringUtils;
-import utils.soution.InstructionSolution;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.StringUtils;
+
+import utils.soution.InstructionSolution;
 
 public class Day5_1 extends InstructionSolution<String, AtomicInteger> {
 	private final Pattern PATTERN_TWICE_IN_A_ROW = Pattern.compile("(.)\\1");

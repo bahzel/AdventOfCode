@@ -9,9 +9,10 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.function.BiConsumer;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.apache.commons.lang3.tuple.Pair;
 import utils.soution.Solution;
 
 public class Day16_2 extends Solution {
@@ -35,38 +36,38 @@ public class Day16_2 extends Solution {
 	private List<BiConsumer<int[], int[]>> createRuleset() {
 		var ruleset = new ArrayList<BiConsumer<int[], int[]>>();
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] + register[instruction[1]]);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] + register[instruction[1]]);
 		ruleset.add((instruction, register) -> register[instruction[2]] = register[instruction[0]] + instruction[1]);
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] * register[instruction[1]]);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] * register[instruction[1]]);
 		ruleset.add((instruction, register) -> register[instruction[2]] = register[instruction[0]] * instruction[1]);
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] & register[instruction[1]]);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] & register[instruction[1]]);
 		ruleset.add((instruction, register) -> register[instruction[2]] = register[instruction[0]] & instruction[1]);
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] | register[instruction[1]]);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] | register[instruction[1]]);
 		ruleset.add((instruction, register) -> register[instruction[2]] = register[instruction[0]] | instruction[1]);
 
 		ruleset.add((instruction, register) -> register[instruction[2]] = register[instruction[0]]);
 		ruleset.add((instruction, register) -> register[instruction[2]] = instruction[0]);
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				instruction[0] > register[instruction[1]] ? 1 : 0);
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] > instruction[1] ? 1 : 0);
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] > register[instruction[1]] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = instruction[0] > register[instruction[1]] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] > instruction[1] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] > register[instruction[1]] ? 1 : 0);
 
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				instruction[0] == register[instruction[1]] ? 1 : 0);
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] == instruction[1] ? 1 : 0);
-		ruleset.add((instruction, register) -> register[instruction[2]] =
-				register[instruction[0]] == register[instruction[1]] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = instruction[0] == register[instruction[1]] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] == instruction[1] ? 1 : 0);
+		ruleset.add((instruction,
+				register) -> register[instruction[2]] = register[instruction[0]] == register[instruction[1]] ? 1 : 0);
 
 		return ruleset;
 	}
@@ -78,13 +79,13 @@ public class Day16_2 extends Solution {
 
 		while (!ruleQueue.isEmpty()) {
 			var rule = ruleQueue.poll();
-			var matchingIndixes = testMap.entrySet()
-										 .stream()
-										 .filter(entry -> countRuleMatches(rule, entry.getValue()) == entry.getValue()
-																										   .size())
-										 .mapToInt(Map.Entry::getKey)
-										 .boxed()
-										 .toList();
+			var matchingIndixes = testMap	.entrySet()
+											.stream()
+											.filter(entry -> countRuleMatches(rule,
+													entry.getValue()) == entry.getValue().size())
+											.mapToInt(Map.Entry::getKey)
+											.boxed()
+											.toList();
 			if (matchingIndixes.size() == 1) {
 				ruleMap.put(matchingIndixes.getFirst(), rule);
 				testMap.remove(matchingIndixes.getFirst());
@@ -100,16 +101,16 @@ public class Day16_2 extends Solution {
 		var testMap = new HashMap<Integer, List<Testset>>();
 
 		for (int i = 0; !input.get(i).isEmpty(); i = i + 4) {
-			var registerBefore = Arrays.stream(input.get(i).replace("]", "").split("\\[")[1].split(", "))
-									   .mapToInt(Integer::parseInt)
-									   .toArray();
+			var registerBefore = Arrays	.stream(input.get(i).replace("]", "").split("\\[")[1].split(", "))
+										.mapToInt(Integer::parseInt)
+										.toArray();
 			var instructions = parseInstruction(input.get(i + 1));
-			var registerAfter = Arrays.stream(input.get(i + 2).replace("]", "").split("\\[")[1].split(", "))
-									  .mapToInt(Integer::parseInt)
-									  .toArray();
+			var registerAfter = Arrays	.stream(input.get(i + 2).replace("]", "").split("\\[")[1].split(", "))
+										.mapToInt(Integer::parseInt)
+										.toArray();
 
-			testMap.computeIfAbsent(instructions.getLeft(), key -> new ArrayList<>())
-				   .add(new Testset(instructions.getRight(), registerBefore, registerAfter));
+			testMap	.computeIfAbsent(instructions.getLeft(), key -> new ArrayList<>())
+					.add(new Testset(instructions.getRight(), registerBefore, registerAfter));
 		}
 
 		return testMap;

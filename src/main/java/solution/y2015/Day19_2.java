@@ -1,10 +1,11 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.tuple.Pair;
-import utils.soution.Solution;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import utils.soution.Solution;
 
 public class Day19_2 extends Solution {
 	private List<Pair<String, String>> rules;
@@ -15,11 +16,11 @@ public class Day19_2 extends Solution {
 
 	@Override
 	protected String doSolve() {
-		rules = new ArrayList<>(input.subList(0, input.size() - 2)
-									 .stream()
-									 .map(rule -> rule.split(" => "))
-									 .map(rule -> Pair.of(rule[0], rule[1]))
-									 .toList());
+		rules = new ArrayList<>(input	.subList(0, input.size() - 2)
+										.stream()
+										.map(rule -> rule.split(" => "))
+										.map(rule -> Pair.of(rule[0], rule[1]))
+										.toList());
 		String goal = input.getLast();
 		for (int i = 1; i < 10000; i++) {
 			goal = reduce(goal);

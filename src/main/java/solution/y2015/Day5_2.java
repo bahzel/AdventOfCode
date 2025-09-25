@@ -1,9 +1,9 @@
 package solution.y2015;
 
-import utils.soution.InstructionSolution;
-
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
+
+import utils.soution.InstructionSolution;
 
 public class Day5_2 extends InstructionSolution<String, AtomicInteger> {
 	private final Pattern PAIR = Pattern.compile("(..).*\\1");

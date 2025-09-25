@@ -1,12 +1,13 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.function.TriConsumer;
-import utils.soution.MapSolution;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+
+import org.apache.commons.lang3.function.TriConsumer;
+
+import utils.soution.MapSolution;
 
 public class Day23_2 extends MapSolution<List<TriConsumer<AtomicLong, AtomicLong, AtomicInteger>>> {
 	public static void main(String[] args) {
@@ -52,8 +53,8 @@ public class Day23_2 extends MapSolution<List<TriConsumer<AtomicLong, AtomicLong
 			return;
 		case "jmp":
 			int offset = Integer.parseInt(instructions[1]);
-			triConsumers.add((registerA, registerB, instructionIndex) -> instructionIndex.set(
-					instructionIndex.get() + offset - 1));
+			triConsumers.add((registerA, registerB,
+					instructionIndex) -> instructionIndex.set(instructionIndex.get() + offset - 1));
 			return;
 		case "jie":
 			int offsetEven = Integer.parseInt(instructions[2]);

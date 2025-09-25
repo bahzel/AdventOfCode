@@ -1,11 +1,11 @@
 package solution.y2016;
 
-import lombok.Getter;
-import utils.soution.InstructionSolution;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import lombok.Getter;
+import utils.soution.InstructionSolution;
 
 public class Day7_1 extends InstructionSolution<IPAddress, AtomicInteger> {
 	public static void main(String[] args) {
@@ -54,8 +54,8 @@ class IPAddress {
 	}
 
 	public boolean supportsTLS() {
-		return addresses.stream().anyMatch(IPAddress::hasABBA) && hypernetSequences.stream()
-																				   .noneMatch(IPAddress::hasABBA);
+		return addresses.stream().anyMatch(IPAddress::hasABBA)
+				&& hypernetSequences.stream().noneMatch(IPAddress::hasABBA);
 	}
 
 	private static boolean hasABBA(String address) {

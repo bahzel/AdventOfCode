@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.Point3D;
 import utils.soution.MapSolution;
 
@@ -76,8 +77,9 @@ public class Day23_2 extends MapSolution<List<Pair<Point3D, Integer>>> {
 	}
 
 	private int countNanobotsInRange(Point3D point, List<Pair<Point3D, Integer>> nanoBots) {
-		return (int) nanoBots.stream()
-							 .filter(nanobot -> nanobot.getLeft().computeManhattanDistance(point) <= nanobot.getRight())
-							 .count();
+		return (int) nanoBots	.stream()
+								.filter(nanobot -> nanobot	.getLeft()
+															.computeManhattanDistance(point) <= nanobot.getRight())
+								.count();
 	}
 }

@@ -1,13 +1,13 @@
 package solution.y2015;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import utils.soution.MapSolution;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import utils.soution.MapSolution;
 
 public class Day15_1 extends MapSolution<List<Ingredient>> {
 	public static void main(String[] args) {
@@ -55,10 +55,10 @@ class Cookie {
 	private final Map<Ingredient, Long> ingredients;
 
 	public long computeScore() {
-		var capacity = ingredients.entrySet()
-								  .stream()
-								  .map(ingredient -> ingredient.getValue() * ingredient.getKey().getCapacity())
-								  .reduce(0L, Long::sum);
+		var capacity = ingredients	.entrySet()
+									.stream()
+									.map(ingredient -> ingredient.getValue() * ingredient.getKey().getCapacity())
+									.reduce(0L, Long::sum);
 		var durability = ingredients.entrySet()
 									.stream()
 									.map(ingredient -> ingredient.getValue() * ingredient.getKey().getDurability())
@@ -67,10 +67,10 @@ class Cookie {
 								.stream()
 								.map(ingredient -> ingredient.getValue() * ingredient.getKey().getFlavor())
 								.reduce(0L, Long::sum);
-		var texture = ingredients.entrySet()
-								 .stream()
-								 .map(ingredient -> ingredient.getValue() * ingredient.getKey().getTexture())
-								 .reduce(0L, Long::sum);
+		var texture = ingredients	.entrySet()
+									.stream()
+									.map(ingredient -> ingredient.getValue() * ingredient.getKey().getTexture())
+									.reduce(0L, Long::sum);
 
 		if (capacity < 0 || flavor < 0 || durability < 0 || texture < 0) {
 			return 0;
@@ -80,10 +80,10 @@ class Cookie {
 	}
 
 	public long computeCalories() {
-		return ingredients.entrySet()
-						  .stream()
-						  .map(ingredient -> ingredient.getValue() * ingredient.getKey().getCalories())
-						  .reduce(0L, Long::sum);
+		return ingredients	.entrySet()
+							.stream()
+							.map(ingredient -> ingredient.getValue() * ingredient.getKey().getCalories())
+							.reduce(0L, Long::sum);
 	}
 }
 

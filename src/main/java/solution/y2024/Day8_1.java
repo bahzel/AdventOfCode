@@ -29,7 +29,8 @@ public class Day8_1 extends Solution {
 						.filter(point -> point.getX() <= maxX)
 						.filter(point -> point.getY() >= 0)
 						.filter(point -> point.getY() <= maxY)
-						.count() + "";
+						.count()
+				+ "";
 	}
 
 	private Map<Character, List<Point>> createAntennaMap() {

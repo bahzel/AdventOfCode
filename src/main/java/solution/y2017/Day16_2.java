@@ -25,35 +25,35 @@ public class Day16_2 extends InstructionSolution<Consumer<StringBuilder>, String
 	@Override
 	protected Consumer<StringBuilder> transformInstruction(String instruction) {
 		return switch (instruction.charAt(0)) {
-			case 's' -> programs -> {
-				var amount = Integer.parseInt(instruction.substring(1));
-				var toSpin = programs.substring(programs.length() - amount);
-				programs.delete(programs.length() - amount, programs.length());
-				programs.insert(0, toSpin);
-			};
-			case 'x' -> programs -> {
-				var indices = instruction.substring(1).split("/");
-				var lowerIndex = Math.min(Integer.parseInt(indices[0]), Integer.parseInt(indices[1]));
-				var higherIndex = Math.max(Integer.parseInt(indices[0]), Integer.parseInt(indices[1]));
-				var lowerValue = programs.charAt(lowerIndex);
-				var higherValue = programs.charAt(higherIndex);
-				programs.deleteCharAt(higherIndex);
-				programs.deleteCharAt(lowerIndex);
-				programs.insert(lowerIndex, higherValue);
-				programs.insert(higherIndex, lowerValue);
-			};
-			case 'p' -> programs -> {
-				var indices = instruction.substring(1).split("/");
-				var lowerIndex = Math.min(programs.indexOf(indices[0]), programs.indexOf(indices[1]));
-				var higherIndex = Math.max(programs.indexOf(indices[0]), programs.indexOf(indices[1]));
-				var lowerValue = programs.charAt(lowerIndex);
-				var higherValue = programs.charAt(higherIndex);
-				programs.deleteCharAt(higherIndex);
-				programs.deleteCharAt(lowerIndex);
-				programs.insert(lowerIndex, higherValue);
-				programs.insert(higherIndex, lowerValue);
-			};
-			default -> throw new IllegalArgumentException("Invalid instruction: " + instruction);
+		case 's' -> programs -> {
+			var amount = Integer.parseInt(instruction.substring(1));
+			var toSpin = programs.substring(programs.length() - amount);
+			programs.delete(programs.length() - amount, programs.length());
+			programs.insert(0, toSpin);
+		};
+		case 'x' -> programs -> {
+			var indices = instruction.substring(1).split("/");
+			var lowerIndex = Math.min(Integer.parseInt(indices[0]), Integer.parseInt(indices[1]));
+			var higherIndex = Math.max(Integer.parseInt(indices[0]), Integer.parseInt(indices[1]));
+			var lowerValue = programs.charAt(lowerIndex);
+			var higherValue = programs.charAt(higherIndex);
+			programs.deleteCharAt(higherIndex);
+			programs.deleteCharAt(lowerIndex);
+			programs.insert(lowerIndex, higherValue);
+			programs.insert(higherIndex, lowerValue);
+		};
+		case 'p' -> programs -> {
+			var indices = instruction.substring(1).split("/");
+			var lowerIndex = Math.min(programs.indexOf(indices[0]), programs.indexOf(indices[1]));
+			var higherIndex = Math.max(programs.indexOf(indices[0]), programs.indexOf(indices[1]));
+			var lowerValue = programs.charAt(lowerIndex);
+			var higherValue = programs.charAt(higherIndex);
+			programs.deleteCharAt(higherIndex);
+			programs.deleteCharAt(lowerIndex);
+			programs.insert(lowerIndex, higherValue);
+			programs.insert(higherIndex, lowerValue);
+		};
+		default -> throw new IllegalArgumentException("Invalid instruction: " + instruction);
 		};
 	}
 

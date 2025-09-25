@@ -32,10 +32,10 @@ public class Day10_2 extends GridSolution<Integer> {
 				continue;
 			}
 
-			current.getBorderingNeighbours()
-				   .stream()
-				   .filter(neighbour -> neighbour.getValue() == current.getValue() + 1)
-				   .forEach(queue::add);
+			current	.getBorderingNeighbours()
+					.stream()
+					.filter(neighbour -> neighbour.getValue() == current.getValue() + 1)
+					.forEach(queue::add);
 		}
 
 		return reachedSummits;

@@ -1,12 +1,13 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.tuple.Pair;
-import utils.soution.MapSolution;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import utils.soution.MapSolution;
 
 public class Day13_1 extends MapSolution<Map<Pair<String, String>, Integer>> {
 	public static void main(String[] args) {

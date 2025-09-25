@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Queue;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.Point;
 import utils.soution.GridElement;
 import utils.soution.GridInstruction;
@@ -73,9 +74,9 @@ public class Day18_1 extends GridInstruction<Boolean, Point> {
 				return currentLocation.getRight() + "";
 			}
 
-			currentLocation.getLeft()
-						   .getBorderingNeighbours()
-						   .forEach(neighbour -> queue.add(Pair.of(neighbour, currentLocation.getRight() + 1)));
+			currentLocation	.getLeft()
+							.getBorderingNeighbours()
+							.forEach(neighbour -> queue.add(Pair.of(neighbour, currentLocation.getRight() + 1)));
 		}
 
 		throw new IllegalStateException("No solution found");

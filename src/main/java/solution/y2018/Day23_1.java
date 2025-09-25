@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.Point3D;
 import utils.soution.MapSolution;
 
@@ -28,9 +29,11 @@ public class Day23_1 extends MapSolution<List<Pair<Point3D, Integer>>> {
 	@Override
 	protected String computeSolution(List<Pair<Point3D, Integer>> pairs) {
 		var strongestNanobot = pairs.stream().max(Comparator.comparingInt(Pair::getRight)).orElseThrow();
-		return "" + pairs.stream()
-						 .filter(nanobot -> nanobot.getLeft().computeManhattanDistance(strongestNanobot.getLeft())
-								 <= strongestNanobot.getRight())
-						 .count();
+		return ""
+				+ pairs	.stream()
+						.filter(nanobot -> nanobot	.getLeft()
+													.computeManhattanDistance(
+															strongestNanobot.getLeft()) <= strongestNanobot.getRight())
+						.count();
 	}
 }

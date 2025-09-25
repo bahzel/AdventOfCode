@@ -1,12 +1,13 @@
 package solution.y2015;
 
-import org.apache.commons.lang3.math.NumberUtils;
-import utils.soution.Solution;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+
+import org.apache.commons.lang3.math.NumberUtils;
+
+import utils.soution.Solution;
 
 public class Day7_2 extends Solution {
 	public static void main(String[] args) {
@@ -49,13 +50,12 @@ public class Day7_2 extends Solution {
 			return new NotGate(mapWire(sources[1], circuit), destination);
 		} else if (sources.length == 3) {
 			return switch (sources[1]) {
-				case "AND" -> new AndGate(mapWire(sources[0], circuit), mapWire(sources[2], circuit), destination);
-				case "OR" -> new OrGate(mapWire(sources[0], circuit), mapWire(sources[2], circuit), destination);
-				case "RSHIFT" ->
-						new ShiftRightGate(mapWire(sources[0], circuit), mapWire(sources[2], circuit), destination);
-				case "LSHIFT" ->
-						new ShiftLeftGate(mapWire(sources[0], circuit), mapWire(sources[2], circuit), destination);
-				default -> throw new IllegalArgumentException("Unknown instruction: " + instruction);
+			case "AND" -> new AndGate(mapWire(sources[0], circuit), mapWire(sources[2], circuit), destination);
+			case "OR" -> new OrGate(mapWire(sources[0], circuit), mapWire(sources[2], circuit), destination);
+			case "RSHIFT" ->
+				new ShiftRightGate(mapWire(sources[0], circuit), mapWire(sources[2], circuit), destination);
+			case "LSHIFT" -> new ShiftLeftGate(mapWire(sources[0], circuit), mapWire(sources[2], circuit), destination);
+			default -> throw new IllegalArgumentException("Unknown instruction: " + instruction);
 			};
 		} else {
 			throw new IllegalArgumentException("Invalid instruction: " + instruction);

@@ -6,8 +6,9 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import lombok.SneakyThrows;
 import org.apache.commons.lang3.tuple.Pair;
+
+import lombok.SneakyThrows;
 import utils.Direction;
 import utils.soution.GridElement;
 import utils.soution.MapSolution;
@@ -161,10 +162,10 @@ public class Day15_2 extends MapSolution<IntCodeInterpreter> {
 
 	private long mapDirection(Direction direction) {
 		return switch (direction) {
-			case UP -> 1L;
-			case DOWN -> 2L;
-			case LEFT -> 3L;
-			case RIGHT -> 4L;
+		case UP -> 1L;
+		case DOWN -> 2L;
+		case LEFT -> 3L;
+		case RIGHT -> 4L;
 		};
 	}
 }

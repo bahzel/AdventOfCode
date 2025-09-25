@@ -7,6 +7,7 @@ import java.util.Queue;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
+
 import utils.soution.GridElement;
 import utils.soution.GridSolution;
 
@@ -24,24 +25,24 @@ public class Day20_2 extends GridSolution<Character> {
 	protected String computeSolution() {
 		var start = getWormholesWithSign(Pair.of('A', 'A')).getFirst();
 		var goal = getWormholesWithSign(Pair.of('Z', 'Z')).getFirst();
-		getWormholes().stream()
-					  .filter(wormhole -> wormhole != start)
-					  .filter(wormhole -> wormhole != goal)
-					  .forEach(wormhole -> wormhole.getBorderingNeighbours()
-												   .add(getWormholesWithSign(getSign(wormhole)).stream()
-																							   .filter(connectingWormhole ->
-																									   connectingWormhole
-																											   != wormhole)
-																							   .findAny()
-																							   .orElseThrow()));
+		getWormholes()	.stream()
+						.filter(wormhole -> wormhole != start)
+						.filter(wormhole -> wormhole != goal)
+						.forEach(
+								wormhole -> wormhole.getBorderingNeighbours()
+													.add(getWormholesWithSign(getSign(
+															wormhole))	.stream()
+																		.filter(connectingWormhole -> connectingWormhole != wormhole)
+																		.findAny()
+																		.orElseThrow()));
 
 		var cache = new HashSet<Pair<GridElement<Character>, Integer>>();
 		Queue<Triple<GridElement<Character>, Integer, Integer>> queue = new LinkedList<>();
 		queue.add(Triple.of(start, 0, 0));
 		while (!queue.isEmpty()) {
 			var currentState = queue.poll();
-			if (currentState.getLeft().getValue() != '.' || !cache.add(
-					Pair.of(currentState.getLeft(), currentState.getMiddle()))) {
+			if (currentState.getLeft().getValue() != '.'
+					|| !cache.add(Pair.of(currentState.getLeft(), currentState.getMiddle()))) {
 				continue;
 			}
 
@@ -77,9 +78,9 @@ public class Day20_2 extends GridSolution<Character> {
 	}
 
 	private boolean hasSign(GridElement<Character> tile, char value1, char value2) {
-		return tile.getBorderingNeighbours()
-				   .stream()
-				   .anyMatch(neighbour -> neighbour.getValue() == value1 && hasNeighbourWithValue(neighbour, value2));
+		return tile	.getBorderingNeighbours()
+					.stream()
+					.anyMatch(neighbour -> neighbour.getValue() == value1 && hasNeighbourWithValue(neighbour, value2));
 	}
 
 	private boolean hasSign(GridElement<Character> tile) {
@@ -93,10 +94,10 @@ public class Day20_2 extends GridSolution<Character> {
 	}
 
 	private List<GridElement<Character>> getWormholesWithSign(Pair<Character, Character> sign) {
-		return stream().filter(this::isWalkable)
-					   .filter(wormhole -> hasSign(wormhole, sign.getLeft(), sign.getRight()) || hasSign(wormhole,
-							   sign.getRight(), sign.getLeft()))
-					   .toList();
+		return stream()	.filter(this::isWalkable)
+						.filter(wormhole -> hasSign(wormhole, sign.getLeft(), sign.getRight())
+								|| hasSign(wormhole, sign.getRight(), sign.getLeft()))
+						.toList();
 	}
 
 	private List<GridElement<Character>> getWormholes() {

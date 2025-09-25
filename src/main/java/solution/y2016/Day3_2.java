@@ -1,10 +1,11 @@
 package solution.y2016;
 
-import org.apache.commons.lang3.tuple.Triple;
-import utils.soution.MapSolution;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.Triple;
+
+import utils.soution.MapSolution;
 
 public class Day3_2 extends MapSolution<List<Triple<Integer, Integer, Integer>>> {
 	public static void main(String[] args) {

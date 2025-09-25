@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
+
 import utils.soution.Solution;
 
 public class Day4_2 extends Solution {
@@ -25,7 +26,8 @@ public class Day4_2 extends Solution {
 		return guardList.stream()
 						.max(Comparator.comparingLong(guard -> guard.getMaximumSleepingMinute().getRight()))
 						.orElseThrow()
-						.getScore() + "";
+						.getScore()
+				+ "";
 	}
 
 	private List<Guard> getGuardList() {

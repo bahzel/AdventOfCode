@@ -11,9 +11,9 @@ public class Day18_1 extends GridSolution<Boolean> {
 	@Override
 	protected GridElement<Boolean> transformCell(char ch, int x, int y) {
 		return switch (ch) {
-			case '#' -> new GridElement<>(true, x, y);
-			case '.' -> new GridElement<>(false, x, y);
-			default -> throw new IllegalArgumentException("Invalid character: " + ch);
+		case '#' -> new GridElement<>(true, x, y);
+		case '.' -> new GridElement<>(false, x, y);
+		default -> throw new IllegalArgumentException("Invalid character: " + ch);
 		};
 	}
 

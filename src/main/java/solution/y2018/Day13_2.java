@@ -18,69 +18,69 @@ public class Day13_2 extends GridSolution<Character> {
 	protected GridElement<Character> transformCell(char ch, int x, int y) {
 		var element = new GridElement<>(ch, x, y);
 		return switch (ch) {
-			case '>' -> {
-				carts.add(new Cart(element, Direction.RIGHT));
+		case '>' -> {
+			carts.add(new Cart(element, Direction.RIGHT));
+			grid[x - 1][y].setRightNeighbour(element);
+			element.setLeftNeighbour(grid[x - 1][y]);
+			yield element;
+		}
+		case '<' -> {
+			carts.add(new Cart(element, Direction.LEFT));
+			grid[x - 1][y].setRightNeighbour(element);
+			element.setLeftNeighbour(grid[x - 1][y]);
+			yield element;
+		}
+		case 'v' -> {
+			carts.add(new Cart(element, Direction.DOWN));
+			grid[x][y - 1].setLowerNeighbour(element);
+			element.setUpperNeighbour(grid[x][y - 1]);
+			yield element;
+		}
+		case '^' -> {
+			carts.add(new Cart(element, Direction.UP));
+			grid[x][y - 1].setLowerNeighbour(element);
+			element.setUpperNeighbour(grid[x][y - 1]);
+			yield element;
+		}
+		case '|' -> {
+			grid[x][y - 1].setLowerNeighbour(element);
+			element.setUpperNeighbour(grid[x][y - 1]);
+			yield element;
+		}
+		case '-' -> {
+			grid[x - 1][y].setRightNeighbour(element);
+			element.setLeftNeighbour(grid[x - 1][y]);
+			yield element;
+		}
+		case '+' -> {
+			grid[x - 1][y].setRightNeighbour(element);
+			element.setLeftNeighbour(grid[x - 1][y]);
+			grid[x][y - 1].setLowerNeighbour(element);
+			element.setUpperNeighbour(grid[x][y - 1]);
+			yield element;
+		}
+		case '\\' -> {
+			if (x > 0 && (grid[x - 1][y].getValue() == '-' || grid[x - 1][y].getValue() == '+')) {
 				grid[x - 1][y].setRightNeighbour(element);
 				element.setLeftNeighbour(grid[x - 1][y]);
-				yield element;
 			}
-			case '<' -> {
-				carts.add(new Cart(element, Direction.LEFT));
-				grid[x - 1][y].setRightNeighbour(element);
-				element.setLeftNeighbour(grid[x - 1][y]);
-				yield element;
-			}
-			case 'v' -> {
-				carts.add(new Cart(element, Direction.DOWN));
+			if (y > 0 && (grid[x][y - 1].getValue() == '|' || grid[x][y - 1].getValue() == '+')) {
 				grid[x][y - 1].setLowerNeighbour(element);
 				element.setUpperNeighbour(grid[x][y - 1]);
-				yield element;
 			}
-			case '^' -> {
-				carts.add(new Cart(element, Direction.UP));
-				grid[x][y - 1].setLowerNeighbour(element);
-				element.setUpperNeighbour(grid[x][y - 1]);
-				yield element;
-			}
-			case '|' -> {
-				grid[x][y - 1].setLowerNeighbour(element);
-				element.setUpperNeighbour(grid[x][y - 1]);
-				yield element;
-			}
-			case '-' -> {
-				grid[x - 1][y].setRightNeighbour(element);
-				element.setLeftNeighbour(grid[x - 1][y]);
-				yield element;
-			}
-			case '+' -> {
+			yield element;
+		}
+		case '/' -> {
+			if (x > 0 && (grid[x - 1][y].getValue() == '-' || grid[x - 1][y].getValue() == '+')) {
 				grid[x - 1][y].setRightNeighbour(element);
 				element.setLeftNeighbour(grid[x - 1][y]);
 				grid[x][y - 1].setLowerNeighbour(element);
 				element.setUpperNeighbour(grid[x][y - 1]);
-				yield element;
 			}
-			case '\\' -> {
-				if (x > 0 && (grid[x - 1][y].getValue() == '-' || grid[x - 1][y].getValue() == '+')) {
-					grid[x - 1][y].setRightNeighbour(element);
-					element.setLeftNeighbour(grid[x - 1][y]);
-				}
-				if (y > 0 && (grid[x][y - 1].getValue() == '|' || grid[x][y - 1].getValue() == '+')) {
-					grid[x][y - 1].setLowerNeighbour(element);
-					element.setUpperNeighbour(grid[x][y - 1]);
-				}
-				yield element;
-			}
-			case '/' -> {
-				if (x > 0 && (grid[x - 1][y].getValue() == '-' || grid[x - 1][y].getValue() == '+')) {
-					grid[x - 1][y].setRightNeighbour(element);
-					element.setLeftNeighbour(grid[x - 1][y]);
-					grid[x][y - 1].setLowerNeighbour(element);
-					element.setUpperNeighbour(grid[x][y - 1]);
-				}
-				yield element;
-			}
-			case ' ' -> element;
-			default -> throw new IllegalStateException("Unexpected value: " + ch);
+			yield element;
+		}
+		case ' ' -> element;
+		default -> throw new IllegalStateException("Unexpected value: " + ch);
 		};
 	}
 
@@ -94,12 +94,11 @@ public class Day13_2 extends GridSolution<Character> {
 		var crashedCarts = new ArrayList<Cart>();
 
 		while (true) {
-			carts.sort((cart1, cart2) ->
-					cart1.getPosition().getCoordinates().getY() == cart2.getPosition().getCoordinates().getY()
+			carts.sort((cart1,
+					cart2) -> cart1.getPosition().getCoordinates().getY() == cart2.getPosition().getCoordinates().getY()
 							? cart1.getPosition().getCoordinates().getX() - cart2.getPosition().getCoordinates().getX()
-							: cart1.getPosition().getCoordinates().getY() - cart2.getPosition()
-																				 .getCoordinates()
-																				 .getY());
+							: cart1.getPosition().getCoordinates().getY()
+									- cart2.getPosition().getCoordinates().getY());
 			for (var cart : carts) {
 				cart.move();
 				if (checkCollission(cart)) {

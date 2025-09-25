@@ -55,7 +55,7 @@ public class Day17_1 extends InstructionSolution<String, Map<Point, Material>> {
 		var maximumDepth = points.keySet().stream().mapToInt(Point::getY).max().orElseThrow();
 
 		while (dropDown(startingPoint, maximumDepth, points, reachedPoints)) {
-			//drop
+			// drop
 		}
 
 		draw(points, reachedPoints);
