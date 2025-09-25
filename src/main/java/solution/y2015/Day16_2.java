@@ -42,20 +42,20 @@ public class Day16_2 extends InstructionSolution<Pair<String, Map<String, Intege
 	}
 
 	@Override
-	protected void performInstruction(Pair<String, Map<String, Integer>> stringMapPair,
+	protected boolean performInstruction(Pair<String, Map<String, Integer>> stringMapPair,
 			AtomicReference<String> stringAtomicReference) {
 		for (var attribute : stringMapPair.getRight().entrySet()) {
 			if (EXACT_HINTS.containsKey(attribute.getKey())) {
 				if (!EXACT_HINTS.get(attribute.getKey()).equals(attribute.getValue())) {
-					return;
+					return false;
 				}
 			} else if (MORE_HINTS.containsKey(attribute.getKey())) {
 				if (MORE_HINTS.get(attribute.getKey()) >= attribute.getValue()) {
-					return;
+					return false;
 				}
 			} else if (LESS_HINTS.containsKey(attribute.getKey())) {
 				if (LESS_HINTS.get(attribute.getKey()) <= attribute.getValue()) {
-					return;
+					return false;
 				}
 			} else {
 				throw new IllegalArgumentException("Unknown attribute: " + attribute.getKey());
@@ -63,6 +63,7 @@ public class Day16_2 extends InstructionSolution<Pair<String, Map<String, Intege
 		}
 
 		stringAtomicReference.set(stringMapPair.getLeft());
+		return false;
 	}
 
 	@Override

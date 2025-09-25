@@ -20,8 +20,9 @@ public class Day2_2 extends InstructionSolution<PresentWithBow, AtomicLong> {
 	}
 
 	@Override
-	protected void performInstruction(PresentWithBow present, AtomicLong value) {
+	protected boolean performInstruction(PresentWithBow present, AtomicLong value) {
 		value.addAndGet(present.getBowSize());
+		return false;
 	}
 
 	@Override

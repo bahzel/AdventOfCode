@@ -39,15 +39,16 @@ public class Day16_1 extends InstructionSolution<Pair<String, Map<String, String
 	}
 
 	@Override
-	protected void performInstruction(Pair<String, Map<String, String>> stringMapPair,
+	protected boolean performInstruction(Pair<String, Map<String, String>> stringMapPair,
 			AtomicReference<String> stringAtomicReference) {
 		for (var attribute : stringMapPair.getRight().entrySet()) {
 			if (!HINTS.get(attribute.getKey()).equals(attribute.getValue())) {
-				return;
+				return false;
 			}
 		}
 
 		stringAtomicReference.set(stringMapPair.getLeft());
+		return false;
 	}
 
 	@Override

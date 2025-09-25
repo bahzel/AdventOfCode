@@ -17,4 +17,8 @@ public class Point {
 		this.x = other.x;
 		this.y = other.y;
 	}
+
+	public int computeDistance(Point other) {
+		return Math.abs(x - other.x) + Math.abs(y - other.y);
+	}
 }

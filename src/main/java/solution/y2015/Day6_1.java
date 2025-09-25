@@ -35,7 +35,7 @@ public class Day6_1 extends InstructionSolution<Triple<Action, Point, Point>, bo
 	}
 
 	@Override
-	protected void performInstruction(Triple<Action, Point, Point> instruction, boolean[][] value) {
+	protected boolean performInstruction(Triple<Action, Point, Point> instruction, boolean[][] value) {
 		if (instruction.getLeft() == Action.ON) {
 			switchOn(instruction.getMiddle(), instruction.getRight(), value);
 		} else if (instruction.getLeft() == Action.OFF) {
@@ -43,6 +43,7 @@ public class Day6_1 extends InstructionSolution<Triple<Action, Point, Point>, bo
 		} else if (instruction.getLeft() == Action.TOGGLE) {
 			toggle(instruction.getMiddle(), instruction.getRight(), value);
 		}
+		return false;
 	}
 
 	private void switchOn(Point point1, Point point2, boolean[][] value) {

@@ -27,9 +27,9 @@ public class Day1_2 extends InstructionSolution<String, MutablePair<Long, Long>>
 	}
 
 	@Override
-	protected void performInstruction(String instruction, MutablePair<Long, Long> value) {
+	protected boolean performInstruction(String instruction, MutablePair<Long, Long> value) {
 		if (value.getLeft() < 0) {
-			return;
+			return false;
 		}
 
 		switch (instruction) {
@@ -44,6 +44,7 @@ public class Day1_2 extends InstructionSolution<String, MutablePair<Long, Long>>
 		}
 
 		value.setRight(value.getRight() + 1);
+		return false;
 	}
 
 	@Override

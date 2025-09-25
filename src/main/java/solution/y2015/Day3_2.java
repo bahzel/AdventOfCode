@@ -43,7 +43,8 @@ public class Day3_2 extends InstructionSolution<Pair<Direction, Direction>, Trip
 	}
 
 	@Override
-	protected void performInstruction(Pair<Direction, Direction> instruction, Triple<Point, Point, Set<Point>> value) {
+	protected boolean performInstruction(Pair<Direction, Direction> instruction,
+			Triple<Point, Point, Set<Point>> value) {
 		switch (instruction.getLeft()) {
 		case UP:
 			value.getLeft().setY(value.getLeft().getY() + 1);
@@ -76,6 +77,7 @@ public class Day3_2 extends InstructionSolution<Pair<Direction, Direction>, Trip
 
 		value.getRight().add(new Point(value.getLeft()));
 		value.getRight().add(new Point(value.getMiddle()));
+		return false;
 	}
 
 	@Override

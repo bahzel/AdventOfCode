@@ -27,7 +27,7 @@ public class Day1_1 extends InstructionSolution<String, AtomicLong> {
 	}
 
 	@Override
-	protected void performInstruction(String instruction, AtomicLong value) {
+	protected boolean performInstruction(String instruction, AtomicLong value) {
 		switch (instruction) {
 		case "(":
 			value.incrementAndGet();
@@ -38,6 +38,7 @@ public class Day1_1 extends InstructionSolution<String, AtomicLong> {
 		default:
 			throw new IllegalArgumentException("Invalid instruction: " + instruction);
 		}
+		return false;
 	}
 
 	@Override

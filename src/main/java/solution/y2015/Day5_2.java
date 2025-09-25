@@ -24,14 +24,15 @@ public class Day5_2 extends InstructionSolution<String, AtomicInteger> {
 	}
 
 	@Override
-	protected void performInstruction(String instruction, AtomicInteger value) {
+	protected boolean performInstruction(String instruction, AtomicInteger value) {
 		if (!PAIR.matcher(instruction).find()) {
-			return;
+			return false;
 		}
 
 		if (SANDWICH.matcher(instruction).find()) {
 			value.incrementAndGet();
 		}
+		return false;
 	}
 
 	@Override

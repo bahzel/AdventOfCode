@@ -20,8 +20,9 @@ public class Day2_1 extends InstructionSolution<Present, AtomicLong> {
 	}
 
 	@Override
-	protected void performInstruction(Present present, AtomicLong value) {
+	protected boolean performInstruction(Present present, AtomicLong value) {
 		value.addAndGet(present.getPaperSize());
+		return false;
 	}
 
 	@Override

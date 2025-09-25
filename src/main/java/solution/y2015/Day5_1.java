@@ -27,18 +27,19 @@ public class Day5_1 extends InstructionSolution<String, AtomicInteger> {
 	}
 
 	@Override
-	protected void performInstruction(String instruction, AtomicInteger value) {
+	protected boolean performInstruction(String instruction, AtomicInteger value) {
 		if (countVowels(instruction) < 3) {
-			return;
+			return false;
 		}
 
 		if (!PATTERN_TWICE_IN_A_ROW.matcher(instruction).find()) {
-			return;
+			return false;
 		}
 
 		if (!hasBlacklistItem(instruction)) {
 			value.incrementAndGet();
 		}
+		return false;
 	}
 
 	private int countVowels(String instruction) {

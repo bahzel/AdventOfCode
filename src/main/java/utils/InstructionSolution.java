@@ -22,7 +22,11 @@ public abstract class InstructionSolution<Instruction, Value> extends Solution {
 
 	@Override
 	public String doSolve() {
-		instructions.forEach(instruction -> performInstruction(instruction, value));
+		for (Instruction instruction : instructions) {
+			if (performInstruction(instruction, value)) {
+				break;
+			}
+		}
 		return getSolution(value);
 	}
 
@@ -34,7 +38,10 @@ public abstract class InstructionSolution<Instruction, Value> extends Solution {
 
 	protected abstract Instruction transformInstruction(String instruction);
 
-	protected abstract void performInstruction(Instruction instruction, Value value);
+	/**
+	 * @return true if the algorithm shall finish after this instruction
+	 */
+	protected abstract boolean performInstruction(Instruction instruction, Value value);
 
 	protected abstract String getSolution(Value value);
 }

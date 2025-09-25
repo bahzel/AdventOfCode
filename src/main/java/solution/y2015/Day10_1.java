@@ -44,9 +44,10 @@ class LookAndSay extends InstructionSolution<String, StringBuilder> {
 	}
 
 	@Override
-	protected void performInstruction(String s, StringBuilder stringBuilder) {
+	protected boolean performInstruction(String s, StringBuilder stringBuilder) {
 		stringBuilder.append(s.length());
 		stringBuilder.append(s.charAt(0));
+		return false;
 	}
 
 	@Override

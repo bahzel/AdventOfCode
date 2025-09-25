@@ -32,8 +32,9 @@ public class Day8_2 extends InstructionSolution<Pair<String, String>, AtomicLong
 	}
 
 	@Override
-	protected void performInstruction(Pair<String, String> instruction, AtomicLong value) {
+	protected boolean performInstruction(Pair<String, String> instruction, AtomicLong value) {
 		value.addAndGet(instruction.getRight().length() - instruction.getLeft().length());
+		return false;
 	}
 
 	@Override
