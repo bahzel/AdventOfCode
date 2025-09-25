@@ -14,6 +14,14 @@ public class Day10_2 extends Solution {
         new Day10_2().solve();
     }
 
+    public Day10_2() {
+        super();
+    }
+
+    public Day10_2(String input) {
+        super(List.of(input));
+    }
+
     @Override
     public String doSolve() {
         var sequence = initializeSequence();

@@ -1,6 +1,7 @@
 package utils.soution;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 public abstract class GridSolution<T> extends Solution {
@@ -8,7 +9,12 @@ public abstract class GridSolution<T> extends Solution {
 
     protected GridSolution() {
         super();
+        input = getInstructions(input);
         grid = new GridElement[input.size()][input.getFirst().length()];
+    }
+
+    protected List<String> getInstructions(List<String> instructions) {
+        return instructions;
     }
 
     @Override
