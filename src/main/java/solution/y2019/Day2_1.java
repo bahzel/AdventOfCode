@@ -1,5 +1,6 @@
 package solution.y2019;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import utils.soution.Solution;
@@ -11,11 +12,12 @@ public class Day2_1 extends Solution {
 
 	@Override
 	protected String doSolve() {
-		var register = Arrays.stream(input.getFirst().split(",")).mapToInt(Integer::parseInt).toArray();
-		register[1] = 12;
-		register[2] = 2;
+		var register = new ArrayList<>(
+				Arrays.stream(input.getFirst().split(",")).mapToLong(Long::parseLong).boxed().toList());
+		register.set(1, 12L);
+		register.set(2, 2L);
 
 		IntCodeInterpreter.performComputation(register);
-		return register[0] + "";
+		return register.getFirst() + "";
 	}
 }

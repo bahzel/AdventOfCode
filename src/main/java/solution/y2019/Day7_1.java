@@ -17,11 +17,12 @@ public class Day7_1 extends Solution {
 
 	@Override
 	protected String doSolve() {
-		var register = Arrays.stream(input.getFirst().split(",")).mapToInt(Integer::parseInt).toArray();
-		Queue<Pair<Integer, List<Integer>>> queue = new LinkedList<>();
-		queue.add(Pair.of(0, Arrays.asList(0, 1, 2, 3, 4)));
+		var register = new ArrayList<>(
+				Arrays.stream(input.getFirst().split(",")).mapToLong(Long::parseLong).boxed().toList());
+		Queue<Pair<Long, List<Long>>> queue = new LinkedList<>();
+		queue.add(Pair.of(0L, Arrays.asList(0L, 1L, 2L, 3L, 4L)));
 
-		var maximumOutput = Integer.MIN_VALUE;
+		var maximumOutput = Long.MIN_VALUE;
 		while (!queue.isEmpty()) {
 			var currentStep = queue.poll();
 			if (currentStep.getRight().isEmpty()) {
@@ -33,8 +34,8 @@ public class Day7_1 extends Solution {
 					var newInputList = new ArrayList<>(currentStep.getRight());
 					newInputList.remove(i);
 
-					var output = new ConcurrentLinkedQueue<Integer>();
-					IntCodeInterpreter.performComputation(Arrays.copyOf(register, register.length),
+					var output = new ConcurrentLinkedQueue<Long>();
+					IntCodeInterpreter.performComputation(new ArrayList<>(register),
 							new ConcurrentLinkedQueue<>(List.of(currentStep.getRight().get(i), currentStep.getLeft())),
 							output);
 					queue.add(Pair.of(output.poll(), newInputList));

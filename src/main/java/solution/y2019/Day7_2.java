@@ -20,25 +20,21 @@ public class Day7_2 extends Solution {
 	@SneakyThrows
 	@Override
 	protected String doSolve() {
-		var register = Arrays.stream(input.getFirst().split(",")).mapToInt(Integer::parseInt).toArray();
-		var maximumOutput = Integer.MIN_VALUE;
+		var register = new ArrayList<>(
+				Arrays.stream(input.getFirst().split(",")).mapToLong(Long::parseLong).boxed().toList());
+		var maximumOutput = Long.MIN_VALUE;
 
 		for (var phaseSetting : getPhaseSettings()) {
-			var inputA = new ConcurrentLinkedQueue<>(List.of(phaseSetting.getFirst(), 0));
+			var inputA = new ConcurrentLinkedQueue<>(List.of(phaseSetting.getFirst(), 0L));
 			var inputB = new ConcurrentLinkedQueue<>(List.of(phaseSetting.get(1)));
 			var inputC = new ConcurrentLinkedQueue<>(List.of(phaseSetting.get(2)));
 			var inputD = new ConcurrentLinkedQueue<>(List.of(phaseSetting.get(3)));
 			var inputE = new ConcurrentLinkedQueue<>(List.of(phaseSetting.get(4)));
-			var amplifierA = new Thread(
-					new IntCodeInterpreterThread(Arrays.copyOf(register, register.length), inputA, inputB));
-			var amplifierB = new Thread(
-					new IntCodeInterpreterThread(Arrays.copyOf(register, register.length), inputB, inputC));
-			var amplifierC = new Thread(
-					new IntCodeInterpreterThread(Arrays.copyOf(register, register.length), inputC, inputD));
-			var amplifierD = new Thread(
-					new IntCodeInterpreterThread(Arrays.copyOf(register, register.length), inputD, inputE));
-			var amplifierE = new Thread(
-					new IntCodeInterpreterThread(Arrays.copyOf(register, register.length), inputE, inputA));
+			var amplifierA = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputA, inputB));
+			var amplifierB = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputB, inputC));
+			var amplifierC = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputC, inputD));
+			var amplifierD = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputD, inputE));
+			var amplifierE = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputE, inputA));
 
 			amplifierA.start();
 			amplifierB.start();
@@ -56,10 +52,10 @@ public class Day7_2 extends Solution {
 		return maximumOutput + "";
 	}
 
-	private List<List<Integer>> getPhaseSettings() {
-		var phaseSettings = new ArrayList<List<Integer>>();
-		var possiblePhases = List.of(5, 6, 7, 8, 9);
-		Queue<List<Integer>> queue = new LinkedList<>();
+	private List<List<Long>> getPhaseSettings() {
+		var phaseSettings = new ArrayList<List<Long>>();
+		var possiblePhases = List.of(5L, 6L, 7L, 8L, 9L);
+		Queue<List<Long>> queue = new LinkedList<>();
 		queue.add(Collections.emptyList());
 
 		while (!queue.isEmpty()) {
@@ -84,9 +80,9 @@ public class Day7_2 extends Solution {
 
 @AllArgsConstructor
 class IntCodeInterpreterThread implements Runnable {
-	private final int[] register;
-	private final ConcurrentLinkedQueue<Integer> input;
-	private final ConcurrentLinkedQueue<Integer> output;
+	private final List<Long> register;
+	private final ConcurrentLinkedQueue<Long> input;
+	private final ConcurrentLinkedQueue<Long> output;
 
 	@Override
 	public void run() {

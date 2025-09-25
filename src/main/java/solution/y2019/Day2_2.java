@@ -1,5 +1,6 @@
 package solution.y2019;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import utils.soution.Solution;
@@ -11,16 +12,17 @@ public class Day2_2 extends Solution {
 
 	@Override
 	protected String doSolve() {
-		var registerInput = Arrays.stream(input.getFirst().split(",")).mapToInt(Integer::parseInt).toArray();
+		var registerInput = new ArrayList<>(
+				Arrays.stream(input.getFirst().split(",")).mapToLong(Long::parseLong).boxed().toList());
 
-		for (var noun = 0; noun < 100; noun++) {
-			for (var verb = 0; verb < 100; verb++) {
-				var register = Arrays.copyOf(registerInput, registerInput.length);
-				register[1] = noun;
-				register[2] = verb;
+		for (var noun = 0L; noun < 100; noun++) {
+			for (var verb = 0L; verb < 100; verb++) {
+				var register = new ArrayList<>(registerInput);
+				register.set(1, noun);
+				register.set(2, verb);
 
 				IntCodeInterpreter.performComputation(register);
-				if (register[0] == 19690720) {
+				if (register.getFirst() == 19690720) {
 					return noun * 100 + verb + "";
 				}
 			}

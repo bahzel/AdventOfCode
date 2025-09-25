@@ -1,5 +1,6 @@
 package solution.y2019;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -25,9 +26,10 @@ public class Day5_2 extends Solution {
 
 	@Override
 	protected String doSolve() {
-		var register = Arrays.stream(input.getFirst().split(",")).mapToInt(Integer::parseInt).toArray();
+		var register = new ArrayList<>(
+				Arrays.stream(input.getFirst().split(",")).mapToLong(Long::parseLong).boxed().toList());
 
-		var output = new ConcurrentLinkedQueue<Integer>();
+		var output = new ConcurrentLinkedQueue<Long>();
 		IntCodeInterpreter.performComputation(register, inputValue, output);
 		return output.poll() + "";
 	}
