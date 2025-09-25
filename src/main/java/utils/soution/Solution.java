@@ -53,6 +53,12 @@ public abstract class Solution {
 		}
 	}
 
+	public void print(char value) {
+		if (log) {
+			System.out.print(value);
+		}
+	}
+
 	public void println() {
 		if (log) {
 			System.out.println();
