@@ -43,20 +43,20 @@ public abstract class GridSolution<T> extends Solution {
 			for (int j = 0; j < grid[0].length; j++) {
 				if (i > 0) {
 					if (j > 0) {
-						grid[i][j].getNeighbours().add(grid[i - 1][j - 1]);
+						grid[i][j].getAllNeighbours().add(grid[i - 1][j - 1]);
 					}
 					grid[i][j].setLeftNeighbour(grid[i - 1][j]);
 					if (j < grid[0].length - 1) {
-						grid[i][j].getNeighbours().add(grid[i - 1][j + 1]);
+						grid[i][j].getAllNeighbours().add(grid[i - 1][j + 1]);
 					}
 				}
 				if (i < grid.length - 1) {
 					if (j > 0) {
-						grid[i][j].getNeighbours().add(grid[i + 1][j - 1]);
+						grid[i][j].getAllNeighbours().add(grid[i + 1][j - 1]);
 					}
 					grid[i][j].setRightNeighbour(grid[i + 1][j]);
 					if (j < grid[0].length - 1) {
-						grid[i][j].getNeighbours().add(grid[i + 1][j + 1]);
+						grid[i][j].getAllNeighbours().add(grid[i + 1][j + 1]);
 					}
 				}
 				if (j > 0) {

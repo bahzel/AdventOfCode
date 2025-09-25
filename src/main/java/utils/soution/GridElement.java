@@ -19,7 +19,8 @@ public class GridElement<T> {
 	private GridElement<T> rightNeighbour;
 	private GridElement<T> upperNeighbour;
 	private GridElement<T> lowerNeighbour;
-	private final List<GridElement<T>> neighbours = new ArrayList<>();
+	private final List<GridElement<T>> allNeighbours = new ArrayList<>();
+	private final List<GridElement<T>> borderingNeighbours = new ArrayList<>();
 
 	public GridElement(T value, int x, int y) {
 		this.value = value;
@@ -38,22 +39,26 @@ public class GridElement<T> {
 
 	public void setLeftNeighbour(GridElement<T> neighbour) {
 		leftNeighbour = neighbour;
-		neighbours.add(neighbour);
+		allNeighbours.add(neighbour);
+		borderingNeighbours.add(neighbour);
 	}
 
 	public void setRightNeighbour(GridElement<T> neighbour) {
 		rightNeighbour = neighbour;
-		neighbours.add(neighbour);
+		allNeighbours.add(neighbour);
+		borderingNeighbours.add(neighbour);
 	}
 
 	public void setUpperNeighbour(GridElement<T> neighbour) {
 		upperNeighbour = neighbour;
-		neighbours.add(neighbour);
+		allNeighbours.add(neighbour);
+		borderingNeighbours.add(neighbour);
 	}
 
 	public void setLowerNeighbour(GridElement<T> neighbour) {
 		lowerNeighbour = neighbour;
-		neighbours.add(neighbour);
+		allNeighbours.add(neighbour);
+		borderingNeighbours.add(neighbour);
 	}
 
 	public GridElement<T> getNeighbour(Direction direction) {
@@ -63,5 +68,10 @@ public class GridElement<T> {
 			case LEFT -> getLeftNeighbour();
 			case RIGHT -> getRightNeighbour();
 		};
+	}
+
+	@Override
+	public String toString() {
+		return coordinates.toString();
 	}
 }
