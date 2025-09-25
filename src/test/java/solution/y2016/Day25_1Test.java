@@ -1,14 +1,12 @@
 package solution.y2016;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
-public class Day23_2Test {
+public class Day25_1Test {
     @Test
     public void test() {
-        assertThat(new Day23_2().solve()).isEqualTo("479009308");
+        assertThat(new Day25_1().solve()).isEqualTo("198");
     }
 }
