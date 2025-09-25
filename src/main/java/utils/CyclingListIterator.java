@@ -31,7 +31,8 @@ public class CyclingListIterator<T> {
 
 	public T previous() {
 		if (!iterator.hasPrevious()) {
-			iterator = list.listIterator(list.size() - 1);
+			iterator = list.listIterator(list.size() - 2);
+			return iterator.next();
 		}
 		return iterator.previous();
 	}
