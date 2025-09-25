@@ -65,11 +65,7 @@ public class IntCodeInterpreter {
 				i = i + 2;
 				break;
 			case 4:
-				try {
-					output.put(getValue(i + 1, modeFirstParameter, offset));
-				} catch (InterruptedException e) {
-					return;
-				}
+				output.add(getValue(i + 1, modeFirstParameter, offset));
 				i = i + 2;
 				break;
 			case 5:
@@ -111,6 +107,22 @@ public class IntCodeInterpreter {
 				throw new IllegalStateException("Unexpected value: " + get(i));
 			}
 		}
+	}
+
+	public void inputString(String inputString) {
+		for (int i = 0; i < inputString.length(); i++) {
+			input.add((long) (int) inputString.charAt(i));
+		}
+		input.add(10L);
+	}
+
+	@Override
+	public String toString() {
+		var toString = new StringBuilder();
+		for (var value : output) {
+			toString.append((char) value.intValue());
+		}
+		return toString.toString();
 	}
 
 	private long getValue(int index, int mode, long offset) {

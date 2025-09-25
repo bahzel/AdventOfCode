@@ -18,18 +18,9 @@ public class Day17_1 extends GridSolution<Boolean> {
 		var register = new ArrayList<>(
 				Arrays.stream(input.getFirst().split(",")).mapToLong(Long::parseLong).boxed().toList());
 		var output = new LinkedBlockingQueue<Long>();
-		new IntCodeInterpreter().withRegister(register).withOutput(output).performComputation();
-
-		var instruction = new ArrayList<String>();
-		var currentLine = new StringBuilder();
-		for (var value : output) {
-			if (value == 10) {
-				instruction.add(currentLine.toString());
-				currentLine = new StringBuilder();
-			} else {
-				currentLine.append((char) value.intValue());
-			}
-		}
+		var intCodeInterpreter = new IntCodeInterpreter().withRegister(register).withOutput(output);
+		intCodeInterpreter.performComputation();
+		var instruction = Arrays.asList(intCodeInterpreter.toString().split("\n"));
 		return instruction.subList(0, instruction.size() - 1);
 	}
 

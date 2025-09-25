@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import lombok.SneakyThrows;
 import utils.Direction;
@@ -24,22 +23,12 @@ public class Day17_2 extends GridSolution<Boolean> {
 	protected List<String> getInstructions(List<String> instructions) {
 		register = new ArrayList<>(
 				Arrays.stream(input.getFirst().split(",")).mapToLong(Long::parseLong).boxed().toList());
-		var output = new LinkedBlockingQueue<Long>();
-		new IntCodeInterpreter().withRegister(new ArrayList<>(register)).withOutput(output).performComputation();
+		var intCodeInterpreter = new IntCodeInterpreter().withRegister(new ArrayList<>(register));
+		intCodeInterpreter.performComputation();
 
-		var instruction = new ArrayList<String>();
-		var currentLine = new StringBuilder();
-		for (var value : output) {
-			if (value == 10) {
-				instruction.add(currentLine.toString());
-				currentLine = new StringBuilder();
-				println();
-			} else {
-				print((char) value.intValue());
-				currentLine.append((char) value.intValue());
-			}
-		}
-		return instruction.subList(0, instruction.size() - 1);
+		var output = intCodeInterpreter.toString();
+		print(output);
+		return Arrays.asList(output.split("\n"));
 	}
 
 	@Override
@@ -78,19 +67,14 @@ public class Day17_2 extends GridSolution<Boolean> {
 		var functions = getFunctions(directions);
 
 		register.set(0, 2L);
-		var output = new LinkedBlockingQueue<Long>();
-		var input = new LinkedBlockingQueue<Long>();
+		var intCodeInterpreter = new IntCodeInterpreter().withRegister(register);
 		for (var function : functions) {
-			for (int i = 0; i < function.length(); i++) {
-				input.put((long) (int) function.charAt(i));
-			}
-			input.put(10L);
+			intCodeInterpreter.inputString(function);
 		}
-		input.put((long) (int) 'n');
-		input.put(10L);
+		intCodeInterpreter.inputString("n");
 
-		new IntCodeInterpreter().withRegister(register).withInput(input).withOutput(output).performComputation();
-		return new ArrayList<>(output).getLast() + "";
+		intCodeInterpreter.performComputation();
+		return new ArrayList<>(intCodeInterpreter.getOutput()).getLast() + "";
 	}
 
 	private List<String> getFunctions(String directions) {
