@@ -1,6 +1,7 @@
 package solution.y2015;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -24,8 +25,8 @@ public class Day19_1 extends InstructionWithInputSolution<Pair<String, String>, 
 	}
 
 	@Override
-	protected String transformInput(String input) {
-		return input;
+	protected String transformInput(List<String> input) {
+		return input.getFirst();
 	}
 
 	@Override

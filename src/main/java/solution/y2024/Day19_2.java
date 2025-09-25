@@ -31,13 +31,13 @@ public class Day19_2 extends InstructionWithInputSolution<String, List<String>, 
 	}
 
 	@Override
-	protected String getInput(List<String> instructions) {
-		return instructions.getFirst();
+	protected List<String> getInput(List<String> instructions) {
+		return instructions.subList(0, 1);
 	}
 
 	@Override
-	protected List<String> transformInput(String input) {
-		return Arrays.asList(input.split(", "));
+	protected List<String> transformInput(List<String> input) {
+		return Arrays.asList(input.getFirst().split(", "));
 	}
 
 	@Override

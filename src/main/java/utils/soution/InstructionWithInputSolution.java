@@ -32,15 +32,15 @@ public abstract class InstructionWithInputSolution<Instruction, Input, Value> ex
 		return instructions.subList(0, instructions.size() - 2);
 	}
 
-	protected String getInput(List<String> instructions) {
-		return instructions.getLast();
+	protected List<String> getInput(List<String> instructions) {
+		return instructions.subList(instructions.size() - 1, instructions.size());
 	}
 
 	protected abstract Value initializeValue();
 
 	protected abstract Instruction transformInstruction(String instruction);
 
-	protected abstract Input transformInput(String input);
+	protected abstract Input transformInput(List<String> input);
 
 	protected abstract void performInstruction(Instruction instruction, Input input, Value value);
 
