@@ -21,6 +21,7 @@ public class Day21_1 extends Solution {
 
 	@Override
 	protected String doSolve() {
+		int enemyHealthPoint = Integer.parseInt(input.get(0).split(" ")[2]);
 		int enemyDamage = Integer.parseInt(input.get(1).split(" ")[1]);
 		int enemyArmor = Integer.parseInt(input.get(2).split(" ")[1]);
 		int minimumCost = Integer.MAX_VALUE;
@@ -29,13 +30,13 @@ public class Day21_1 extends Solution {
 			for (Item item : ARMORS) {
 
 				var playerWithoutRings = new Player(value, item, RINGS.getFirst(), RINGS.getFirst());
-				if (playerWithoutRings.fight(new Player(enemyDamage, enemyArmor))) {
+				if (playerWithoutRings.fight(new Player(enemyHealthPoint, enemyDamage, enemyArmor))) {
 					minimumCost = Math.min(minimumCost, playerWithoutRings.getCost());
 				}
 				for (int ring1 = 0; ring1 < RINGS.size(); ring1++) {
 					for (int ring2 = ring1 + 1; ring2 < RINGS.size(); ring2++) {
 						var player = new Player(value, item, RINGS.get(ring1), RINGS.get(ring2));
-						if (player.fight(new Player(enemyDamage, enemyArmor))) {
+						if (player.fight(new Player(enemyHealthPoint, enemyDamage, enemyArmor))) {
 							minimumCost = Math.min(minimumCost, player.getCost());
 						}
 					}
@@ -49,19 +50,21 @@ public class Day21_1 extends Solution {
 
 class Player {
 	@Getter
-	private int hitPoints = 100;
+	private int hitPoints;
 	private final int damage;
 	private final int armor;
 	@Getter
 	private final int cost;
 
-	public Player(int damage, int armor) {
+	public Player(int hitPoints, int damage, int armor) {
+		this.hitPoints = hitPoints;
 		this.damage = damage;
 		this.armor = armor;
 		cost = 0;
 	}
 
 	public Player(Item... items) {
+		hitPoints = 100;
 		damage = Arrays.stream(items).mapToInt(Item::getDamage).sum();
 		armor = Arrays.stream(items).mapToInt(Item::getArmor).sum();
 		cost = Arrays.stream(items).mapToInt(Item::getCost).sum();

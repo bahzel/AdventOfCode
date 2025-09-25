@@ -19,6 +19,7 @@ public class Day21_2 extends Solution {
 
 	@Override
 	protected String doSolve() {
+		int enemyHealthPoint = Integer.parseInt(input.get(0).split(" ")[2]);
 		int enemyDamage = Integer.parseInt(input.get(1).split(" ")[1]);
 		int enemyArmor = Integer.parseInt(input.get(2).split(" ")[1]);
 		int maximumCost = Integer.MIN_VALUE;
@@ -27,13 +28,13 @@ public class Day21_2 extends Solution {
 			for (Item item : ARMORS) {
 
 				var playerWithoutRings = new Player(value, item, RINGS.getFirst(), RINGS.getFirst());
-				if (!playerWithoutRings.fight(new Player(enemyDamage, enemyArmor))) {
+				if (!playerWithoutRings.fight(new Player(enemyHealthPoint, enemyDamage, enemyArmor))) {
 					maximumCost = Math.max(maximumCost, playerWithoutRings.getCost());
 				}
 				for (int ring1 = 0; ring1 < RINGS.size(); ring1++) {
 					for (int ring2 = ring1 + 1; ring2 < RINGS.size(); ring2++) {
 						var player = new Player(value, item, RINGS.get(ring1), RINGS.get(ring2));
-						if (!player.fight(new Player(enemyDamage, enemyArmor))) {
+						if (!player.fight(new Player(enemyHealthPoint, enemyDamage, enemyArmor))) {
 							maximumCost = Math.max(maximumCost, player.getCost());
 						}
 					}
