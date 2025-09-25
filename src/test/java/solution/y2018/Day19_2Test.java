@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Disabled
-public class Day15_1Test {
+public class Day19_2Test {
 	@Test
 	public void test() {
-		assertThat(new Day15_1().solve()).isEqualTo("201638");
+		assertThat(new Day19_2().solve()).isEqualTo("14562240");
 	}
 }
