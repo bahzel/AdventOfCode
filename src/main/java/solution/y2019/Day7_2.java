@@ -6,9 +6,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
-import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import utils.soution.Solution;
 
@@ -25,11 +24,11 @@ public class Day7_2 extends Solution {
 		var maximumOutput = Long.MIN_VALUE;
 
 		for (var phaseSetting : getPhaseSettings()) {
-			var inputA = new ConcurrentLinkedQueue<>(List.of(phaseSetting.getFirst(), 0L));
-			var inputB = new ConcurrentLinkedQueue<>(List.of(phaseSetting.get(1)));
-			var inputC = new ConcurrentLinkedQueue<>(List.of(phaseSetting.get(2)));
-			var inputD = new ConcurrentLinkedQueue<>(List.of(phaseSetting.get(3)));
-			var inputE = new ConcurrentLinkedQueue<>(List.of(phaseSetting.get(4)));
+			var inputA = new LinkedBlockingQueue<>(List.of(phaseSetting.getFirst(), 0L));
+			var inputB = new LinkedBlockingQueue<>(List.of(phaseSetting.get(1)));
+			var inputC = new LinkedBlockingQueue<>(List.of(phaseSetting.get(2)));
+			var inputD = new LinkedBlockingQueue<>(List.of(phaseSetting.get(3)));
+			var inputE = new LinkedBlockingQueue<>(List.of(phaseSetting.get(4)));
 			var amplifierA = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputA, inputB));
 			var amplifierB = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputB, inputC));
 			var amplifierC = new Thread(new IntCodeInterpreterThread(new ArrayList<>(register), inputC, inputD));
@@ -78,14 +77,3 @@ public class Day7_2 extends Solution {
 	}
 }
 
-@AllArgsConstructor
-class IntCodeInterpreterThread implements Runnable {
-	private final List<Long> register;
-	private final ConcurrentLinkedQueue<Long> input;
-	private final ConcurrentLinkedQueue<Long> output;
-
-	@Override
-	public void run() {
-		IntCodeInterpreter.performComputation(register, input, output);
-	}
-}

@@ -1,24 +1,25 @@
 package solution.y2019;
 
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
-import static org.awaitility.Awaitility.await;
+import lombok.SneakyThrows;
 
 public class IntCodeInterpreter {
 	private IntCodeInterpreter() {
 	}
 
 	public static void performComputation(List<Long> register) {
-		performComputation(register, new ConcurrentLinkedQueue<>(), new ConcurrentLinkedQueue<>());
+		performComputation(register, new LinkedBlockingQueue<>(), new LinkedBlockingQueue<>());
 	}
 
-	public static void performComputation(List<Long> register, long input, ConcurrentLinkedQueue<Long> output) {
-		performComputation(register, new ConcurrentLinkedQueue<>(List.of(input)), output);
+	public static void performComputation(List<Long> register, long input, BlockingQueue<Long> output) {
+		performComputation(register, new LinkedBlockingQueue<>(List.of(input)), output);
 	}
 
-	public static void performComputation(List<Long> register, ConcurrentLinkedQueue<Long> input,
-			ConcurrentLinkedQueue<Long> output) {
+	@SneakyThrows
+	public static void performComputation(List<Long> register, BlockingQueue<Long> input, BlockingQueue<Long> output) {
 		var offset = 0L;
 
 		for (var i = 0; ; ) {
@@ -41,15 +42,11 @@ public class IntCodeInterpreter {
 				i = i + 4;
 				break;
 			case 3:
-				if (input.isEmpty()) {
-					await().until(() -> !input.isEmpty());
-				}
-
-				set(register, get(register, i + 1), modeFirstParameter, offset, input.poll());
+				set(register, get(register, i + 1), modeFirstParameter, offset, input.take());
 				i = i + 2;
 				break;
 			case 4:
-				output.add(getValue(register, i + 1, modeFirstParameter, offset));
+				output.put(getValue(register, i + 1, modeFirstParameter, offset));
 				i = i + 2;
 				break;
 			case 5:

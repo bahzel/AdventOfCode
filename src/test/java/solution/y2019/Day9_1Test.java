@@ -2,7 +2,7 @@ package solution.y2019;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -23,8 +23,8 @@ public class Day9_1Test {
 					  .boxed()
 					  .toList());
 
-		var output = new ConcurrentLinkedQueue<Long>();
-		IntCodeInterpreter.performComputation(register, new ConcurrentLinkedQueue<>(), output);
+		var output = new LinkedBlockingQueue<Long>();
+		IntCodeInterpreter.performComputation(register, new LinkedBlockingQueue<>(), output);
 		assertThat(output.stream().map(value -> value + "").collect(Collectors.joining(","))).isEqualTo(
 				"109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99");
 	}
@@ -36,8 +36,8 @@ public class Day9_1Test {
 											 .boxed()
 											 .toList());
 
-		var output = new ConcurrentLinkedQueue<Long>();
-		IntCodeInterpreter.performComputation(register, new ConcurrentLinkedQueue<>(), output);
+		var output = new LinkedBlockingQueue<Long>();
+		IntCodeInterpreter.performComputation(register, new LinkedBlockingQueue<>(), output);
 		assertThat(output.poll()).isEqualTo(1219070632396864L);
 	}
 
@@ -46,8 +46,8 @@ public class Day9_1Test {
 		var register = new ArrayList<>(
 				Arrays.stream("104,1125899906842624,99".split(",")).mapToLong(Long::parseLong).boxed().toList());
 
-		var output = new ConcurrentLinkedQueue<Long>();
-		IntCodeInterpreter.performComputation(register, new ConcurrentLinkedQueue<>(), output);
+		var output = new LinkedBlockingQueue<Long>();
+		IntCodeInterpreter.performComputation(register, new LinkedBlockingQueue<>(), output);
 		assertThat(output.poll()).isEqualTo(1125899906842624L);
 	}
 }
