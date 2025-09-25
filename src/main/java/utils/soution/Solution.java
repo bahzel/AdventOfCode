@@ -4,7 +4,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+import lombok.Getter;
+
 public abstract class Solution {
+	@Getter
 	private boolean log = true;
 	protected List<String> input;
 
@@ -46,7 +49,7 @@ public abstract class Solution {
 
 	public void print(String value) {
 		if (log) {
-			print(value);
+			System.out.print(value);
 		}
 	}
 

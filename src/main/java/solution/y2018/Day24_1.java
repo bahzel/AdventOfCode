@@ -99,11 +99,11 @@ public class Day24_1 extends Solution {
 		var indexSeparator = input.indexOf("");
 		var immuneSystemList = input.subList(1, indexSeparator);
 		for (int i = 0; i < immuneSystemList.size(); i++) {
-			armies.add(new ImmuneSystem(immuneSystemList.get(i), i + 1, boost));
+			armies.add(new ImmuneSystem(immuneSystemList.get(i), i + 1, boost, isLog()));
 		}
 		var infectionList = input.subList(indexSeparator + 2, input.size());
 		for (int i = 0; i < infectionList.size(); i++) {
-			armies.add(new Infection(infectionList.get(i), i + 1));
+			armies.add(new Infection(infectionList.get(i), i + 1, isLog()));
 		}
 
 		return armies;
@@ -146,6 +146,7 @@ class AttackingOrderComparator implements Comparator<Pair<Brigade, Brigade>> {
 
 abstract class Brigade {
 	private final int index;
+	private final boolean log;
 	@Getter
 	private int unitCount;
 	private final int hitPoints;
@@ -156,8 +157,9 @@ abstract class Brigade {
 	private final List<String> weakness = new ArrayList<>();
 	private final List<String> immunity = new ArrayList<>();
 
-	public Brigade(String instruction, int index, int boost) {
+	public Brigade(String instruction, int index, int boost, boolean log) {
 		this.index = index;
+		this.log = log;
 		var instructions = Arrays.asList(instruction.split(" "));
 		unitCount = Integer.parseInt(instructions.getFirst());
 		hitPoints = Integer.parseInt(instructions.get(4));
@@ -190,7 +192,9 @@ abstract class Brigade {
 
 	public void receiveDamage(Brigade attacker) {
 		var killCount = computeReceivedDamage(attacker) / hitPoints;
-		System.out.println(attacker + " killed " + Math.min(killCount, unitCount) + " " + this);
+		if (log) {
+			System.out.println(attacker + " killed " + Math.min(killCount, unitCount) + " " + this);
+		}
 		unitCount -= killCount;
 	}
 
@@ -209,13 +213,13 @@ abstract class Brigade {
 }
 
 class ImmuneSystem extends Brigade {
-	public ImmuneSystem(String instruction, int index, int boost) {
-		super(instruction, index, boost);
+	public ImmuneSystem(String instruction, int index, int boost, boolean log) {
+		super(instruction, index, boost, log);
 	}
 }
 
 class Infection extends Brigade {
-	public Infection(String instruction, int index) {
-		super(instruction, index, 0);
+	public Infection(String instruction, int index, boolean log) {
+		super(instruction, index, 0, log);
 	}
 }

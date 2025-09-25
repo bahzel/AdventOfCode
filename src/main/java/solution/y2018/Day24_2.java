@@ -21,6 +21,7 @@ public class Day24_2 extends Solution {
 			}
 
 			var solver = new Day24_1(boostToCheck);
+			solver.disableLog();
 			var solution = solver.solve();
 			if (solver.getArmies().getFirst() instanceof ImmuneSystem) {
 				if (lowerBound == boostToCheck - 1) {
@@ -29,7 +30,7 @@ public class Day24_2 extends Solution {
 				higherBound = boostToCheck;
 			} else {
 				if (higherBound != null && higherBound == boostToCheck + 1) {
-					return new Day24_1(higherBound).solve();
+					return new Day24_1(higherBound).disableLog().solve();
 				}
 				lowerBound = boostToCheck;
 			}

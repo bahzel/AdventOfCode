@@ -23,6 +23,7 @@ public class Day15_2 extends Solution {
 			}
 
 			var simulation = new Day15_1(testStrength);
+			simulation.disableLog();
 			var solution = simulation.solve();
 			if (simulation.getElves().size() == elfCount) {
 				maximumStrength = testStrength;

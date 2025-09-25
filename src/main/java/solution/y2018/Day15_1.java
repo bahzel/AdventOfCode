@@ -38,8 +38,8 @@ public class Day15_1 extends GridSolution<Unit> {
 		Unit unit = switch (ch) {
 			case '#' -> new Wall();
 			case '.' -> new Cavern();
-			case 'G' -> new Goblin();
-			case 'E' -> new Elf(attackPower);
+			case 'G' -> new Goblin(isLog());
+			case 'E' -> new Elf(attackPower, isLog());
 			default -> throw new IllegalArgumentException("Invalid character: " + ch);
 		};
 
@@ -154,11 +154,13 @@ class Cavern extends Unit {
 }
 
 abstract class CombatUnit extends Unit implements Comparable<CombatUnit> {
+	private final boolean log;
 	@Getter
 	private int healthPoints = 200;
 	private final int attackPower;
 
-	public CombatUnit(int attackPower) {
+	public CombatUnit(int attackPower, boolean log) {
+		this.log = log;
 		this.attackPower = attackPower;
 	}
 
@@ -245,7 +247,9 @@ abstract class CombatUnit extends Unit implements Comparable<CombatUnit> {
 	}
 
 	private void attack(CombatUnit enemy) {
-		System.out.println(this + " attacks " + enemy);
+		if (log) {
+			System.out.println(this + " attacks " + enemy);
+		}
 
 		enemy.healthPoints -= attackPower;
 		if (enemy.healthPoints <= 0) {
@@ -258,7 +262,9 @@ abstract class CombatUnit extends Unit implements Comparable<CombatUnit> {
 			throw new IllegalStateException();
 		}
 
-		System.out.println(getClass().getSimpleName() + " moves from " + getPosition() + " to " + newPosition);
+		if (log) {
+			System.out.println(getClass().getSimpleName() + " moves from " + getPosition() + " to " + newPosition);
+		}
 
 		getPosition().setValue(new Cavern(getPosition()));
 		setPosition(newPosition);
@@ -274,15 +280,15 @@ abstract class CombatUnit extends Unit implements Comparable<CombatUnit> {
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + ": " + getPosition() + ", HP: " + getHealthPoints();
+		return getClass().getSimpleName() + ": " + getPosition().getCoordinates() + ", HP: " + getHealthPoints();
 	}
 
 	abstract Class<?> getClassOfEnemy();
 }
 
 class Goblin extends CombatUnit {
-	public Goblin() {
-		super(3);
+	public Goblin(boolean log) {
+		super(3, log);
 	}
 
 	@Override
@@ -292,8 +298,8 @@ class Goblin extends CombatUnit {
 }
 
 class Elf extends CombatUnit {
-	public Elf(int attackPower) {
-		super(attackPower);
+	public Elf(int attackPower, boolean log) {
+		super(attackPower, log);
 	}
 
 	@Override
