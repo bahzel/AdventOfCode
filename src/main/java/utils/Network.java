@@ -1,7 +1,7 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import lombok.Setter;
 public class Network<T> {
 	@Setter
 	private T value;
-	private final List<Network<T>> neighbours = new ArrayList<>();
+	private final Set<Network<T>> neighbours = new HashSet<>();
 
 	public Network(T value) {
 		this.value = value;
