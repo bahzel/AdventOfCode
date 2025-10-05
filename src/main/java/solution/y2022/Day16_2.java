@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import utils.Network;
 import utils.soution.MapSolution;
 
@@ -42,97 +40,65 @@ public class Day16_2 extends MapSolution<Map<String, Network<Valve>>> {
 
 	@Override
 	protected String computeSolution(Map<String, Network<Valve>> stringNetworkMap) {
-		var solution = 0;
 		var distanceMap = createDistanceMap(stringNetworkMap);
+		var startingPoint = stringNetworkMap.get("AA");
+		var destinations = new ArrayList<>(distanceMap.get(startingPoint).keySet());
+		var sizeOfDestinations = destinations.size();
+		var max = 0;
 
-		Queue<ValveSituationWithElephant> queue = new LinkedList<>();
-		var neighbours = new ArrayList<>(distanceMap.get(stringNetworkMap.get("AA")).keySet());
-		for (var i = 0; i < neighbours.size() - 1; i++) {
-			for (var j = i + 1; j < neighbours.size(); j++) {
-				var neighbouringValve = neighbours.get(i);
-				var neighbouringElephantValve = neighbours.get(j);
-				var startingSituation = new ValveSituationWithElephant(neighbouringValve,
-						distanceMap.get(stringNetworkMap.get("AA")).get(neighbouringValve), neighbouringElephantValve,
-						distanceMap.get(stringNetworkMap.get("AA")).get(neighbouringElephantValve), 26, 0);
-				startingSituation.getActivatedValves().add(neighbouringValve);
-				startingSituation.getActivatedValves().add(neighbouringElephantValve);
-				queue.add(startingSituation);
-			}
-		}
-
-		while (!queue.isEmpty()) {
-			var currentSituation = queue.poll();
-			if (currentSituation.getNextValve() == null && currentSituation.getNextElephantValve() == null) {
-				if (currentSituation.getScore() > solution) {
-					solution = currentSituation.getScore();
-					println(solution);
-				}
-				continue;
+		for (var size = (sizeOfDestinations + 1) / 2; size <= (sizeOfDestinations + 1) / 2; size++) {
+			Set<Set<Network<Valve>>> combinationsHuman = new HashSet<>(List.of(new HashSet<>()));
+			while (combinationsHuman.iterator().next().size() < size) {
+				combinationsHuman = addNextStep(combinationsHuman, destinations);
 			}
 
-			var nextSituations = new ArrayList<ValveSituationWithElephant>();
-			var newSituation = new ValveSituationWithElephant();
-			newSituation.setTimeLeft(currentSituation.getTimeLeft() - 1);
-			newSituation.getActivatedValves().addAll(currentSituation.getActivatedValves());
-			if (currentSituation.getNextValve() == null) {
-				newSituation.setScore(currentSituation.getScore());
-				nextSituations.add(newSituation);
-			} else if (currentSituation.getNextValveTimeLeft() > 1) {
-				newSituation.setScore(currentSituation.getScore());
-				newSituation.setNextValve(currentSituation.getNextValve());
-				newSituation.setNextValveTimeLeft(currentSituation.getNextValveTimeLeft() - 1);
-				nextSituations.add(newSituation);
-			} else {
-				newSituation.setScore(currentSituation.getScore()
-						+ currentSituation.getNextValve().getValue().getPressure() * (newSituation.getTimeLeft()));
-				newSituation.setNextValveTimeLeft(currentSituation.getNextValveTimeLeft() - 1);
-				nextSituations.add(newSituation);
-				for (var neighbouringValve : distanceMap.get(currentSituation.getNextValve()).keySet()) {
-					if (newSituation.getActivatedValves().contains(neighbouringValve)) {
-						continue;
-					}
-
-					var nextSituation = new ValveSituationWithElephant(newSituation);
-					nextSituation.setNextValve(neighbouringValve);
-					nextSituation.setNextValveTimeLeft(
-							distanceMap.get(currentSituation.getNextValve()).get(neighbouringValve));
-					nextSituation.getActivatedValves().add(neighbouringValve);
-					nextSituations.add(nextSituation);
-				}
-			}
-
-			if (currentSituation.getNextElephantValve() == null) {
-				queue.addAll(nextSituations);
-			} else if (currentSituation.getNextElephantValveTimeLeft() > 1) {
-				for (var nextSituation : nextSituations) {
-					nextSituation.setNextElephantValve(currentSituation.getNextElephantValve());
-					nextSituation.setNextElephantValveTimeLeft(currentSituation.getNextElephantValveTimeLeft() - 1);
-					queue.add(nextSituation);
-				}
-			} else {
-				for (var nextSituation : nextSituations) {
-					nextSituation.setScore(
-							nextSituation.getScore() + currentSituation.getNextElephantValve().getValue().getPressure()
-									* (nextSituation.getTimeLeft()));
-					queue.add(nextSituation);
-
-					for (var neighbouringValve : distanceMap.get(currentSituation.getNextElephantValve()).keySet()) {
-						if (nextSituation.getActivatedValves().contains(neighbouringValve)) {
-							continue;
-						}
-
-						var newElephantSituation = new ValveSituationWithElephant(nextSituation);
-						newElephantSituation.setNextElephantValve(neighbouringValve);
-						newElephantSituation.setNextElephantValveTimeLeft(
-								distanceMap.get(currentSituation.getNextElephantValve()).get(neighbouringValve));
-						newElephantSituation.getActivatedValves().add(neighbouringValve);
-						queue.add(newElephantSituation);
-					}
+			for (var combinationHuman : combinationsHuman) {
+				var pressure = computePressure(startingPoint, combinationHuman, distanceMap, 26);
+				var combinationElephant = new HashSet<>(destinations);
+				combinationElephant.removeAll(combinationHuman);
+				pressure += computePressure(startingPoint, combinationElephant, distanceMap, 26);
+				if (pressure > max) {
+					max = pressure;
+					println(max);
 				}
 			}
 		}
 
-		return "" + solution;
+		return max + "";
+	}
+
+	private Set<Set<Network<Valve>>> addNextStep(Set<Set<Network<Valve>>> combinations,
+			List<Network<Valve>> destinations) {
+		var nextSteps = new HashSet<Set<Network<Valve>>>();
+		for (var combination : combinations) {
+			for (var destination : destinations) {
+				if (combination.contains(destination)) {
+					continue;
+				}
+				var newCombination = new HashSet<>(combination);
+				newCombination.add(destination);
+				nextSteps.add(newCombination);
+			}
+		}
+		return nextSteps;
+	}
+
+	private int computePressure(Network<Valve> lastValve, Set<Network<Valve>> valves,
+			Map<Network<Valve>, Map<Network<Valve>, Integer>> distanceMap, int time) {
+		if (valves.size() == 1) {
+			var valve = valves.iterator().next();
+			return (time - distanceMap.get(lastValve).get(valve)) * valve.getValue().getPressure();
+		}
+
+		var max = 0;
+		for (var valve : valves) {
+			var timeLeft = time - distanceMap.get(lastValve).get(valve);
+			var leftValves = new HashSet<>(valves);
+			leftValves.remove(valve);
+			max = Math.max(max, timeLeft * valve.getValue().getPressure()
+					+ computePressure(valve, leftValves, distanceMap, timeLeft));
+		}
+		return max;
 	}
 
 	private Map<Network<Valve>, Map<Network<Valve>, Integer>> createDistanceMap(
@@ -174,31 +140,5 @@ public class Day16_2 extends MapSolution<Map<String, Network<Valve>>> {
 			}
 		}
 		throw new RuntimeException("Couldn't find neighbours");
-	}
-}
-
-@Getter
-@Setter
-@AllArgsConstructor
-class ValveSituationWithElephant {
-	private Network<Valve> nextValve;
-	private int nextValveTimeLeft;
-	private Network<Valve> nextElephantValve;
-	private int nextElephantValveTimeLeft;
-	private int timeLeft;
-	private int score;
-	private final Set<Network<Valve>> activatedValves = new HashSet<>();
-
-	public ValveSituationWithElephant() {
-	}
-
-	public ValveSituationWithElephant(ValveSituationWithElephant other) {
-		this.nextValve = other.nextValve;
-		this.nextValveTimeLeft = other.nextValveTimeLeft;
-		this.nextElephantValve = other.nextElephantValve;
-		this.nextElephantValveTimeLeft = other.nextElephantValveTimeLeft;
-		this.timeLeft = other.timeLeft;
-		this.score = other.score;
-		this.activatedValves.addAll(other.activatedValves);
 	}
 }
