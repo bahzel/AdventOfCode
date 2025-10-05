@@ -10,6 +10,7 @@ import java.util.Queue;
 import java.util.Set;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 
 import utils.Network;
 import utils.soution.MapSolution;
@@ -46,7 +47,7 @@ public class Day16_2 extends MapSolution<Map<String, Network<Valve>>> {
 		var sizeOfDestinations = destinations.size();
 		var max = 0;
 
-		for (var size = (sizeOfDestinations + 1) / 2; size <= (sizeOfDestinations + 1) / 2; size++) {
+		for (var size = (sizeOfDestinations + 1) / 2; size < sizeOfDestinations; size++) {
 			Set<Set<Network<Valve>>> combinationsHuman = new HashSet<>(List.of(new HashSet<>()));
 			while (combinationsHuman.iterator().next().size() < size) {
 				combinationsHuman = addNextStep(combinationsHuman, destinations);
@@ -83,9 +84,14 @@ public class Day16_2 extends MapSolution<Map<String, Network<Valve>>> {
 		return nextSteps;
 	}
 
+	private final Map<Triple<Network<Valve>, Set<Network<Valve>>, Integer>, Integer> CACHE = new HashMap<>();
+
 	private int computePressure(Network<Valve> lastValve, Set<Network<Valve>> valves,
 			Map<Network<Valve>, Map<Network<Valve>, Integer>> distanceMap, int time) {
-		if (valves.size() == 1) {
+		var key = Triple.of(lastValve, valves, time);
+		if (CACHE.containsKey(key)) {
+			return CACHE.get(key);
+		} else if (valves.size() == 1) {
 			var valve = valves.iterator().next();
 			return (time - distanceMap.get(lastValve).get(valve)) * valve.getValue().getPressure();
 		}
@@ -98,6 +104,7 @@ public class Day16_2 extends MapSolution<Map<String, Network<Valve>>> {
 			max = Math.max(max, timeLeft * valve.getValue().getPressure()
 					+ computePressure(valve, leftValves, distanceMap, timeLeft));
 		}
+		CACHE.put(key, max);
 		return max;
 	}
 
