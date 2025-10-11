@@ -1,23 +1,27 @@
 package solution.y2022;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import utils.soution.InstructionSolution;
 
-public class Day19_1 extends InstructionSolution<Blueprint, AtomicInteger> {
+public class Day19_2 extends InstructionSolution<Blueprint, AtomicInteger> {
 	public static void main(String[] args) {
-		new Day19_1().solve();
+		new Day19_2().solve();
 	}
 
 	@Override
 	protected AtomicInteger initializeValue() {
-		return new AtomicInteger();
+		return new AtomicInteger(1);
+	}
+
+	@Override
+	protected List<String> getInstructions(List<String> instructions) {
+		// return instructions;
+		return instructions.subList(0, 3);
 	}
 
 	@Override
@@ -32,7 +36,8 @@ public class Day19_1 extends InstructionSolution<Blueprint, AtomicInteger> {
 	@Override
 	protected boolean performInstruction(Blueprint blueprint, AtomicInteger atomicInteger) {
 		Queue<GeodeCollectingState> queue = new LinkedList<>();
-		queue.add(new GeodeCollectingState(24, 0, 0, 0, 0, 1, 0, 0, 0));
+		queue.add(new GeodeCollectingState(32, 0, 0, 0, 0, 1, 0, 0, 0));
+		var cache = new HashMap<GeodeCollectingState, GeodeCollectingState>();
 
 		var max = 0;
 		while (!queue.isEmpty()) {
@@ -41,6 +46,12 @@ public class Day19_1 extends InstructionSolution<Blueprint, AtomicInteger> {
 				max = Math.max(max,
 						currentState.getGeode() + currentState.getGeodeRobots() * currentState.getMinutesLeft());
 				continue;
+			}
+			var cachedState = cache.get(currentState);
+			if (cachedState != null && cachedState.getMinutesLeft() > currentState.getMinutesLeft()) {
+				continue;
+			} else {
+				cache.put(currentState, currentState);
 			}
 
 			// build an ore robot next
@@ -148,7 +159,7 @@ public class Day19_1 extends InstructionSolution<Blueprint, AtomicInteger> {
 			}
 		}
 
-		atomicInteger.addAndGet(max * blueprint.getId());
+		atomicInteger.set(atomicInteger.get() * max);
 		return false;
 	}
 
@@ -162,72 +173,5 @@ public class Day19_1 extends InstructionSolution<Blueprint, AtomicInteger> {
 	@Override
 	protected String getSolution(AtomicInteger atomicInteger) {
 		return atomicInteger.toString();
-	}
-}
-
-@Getter
-class Blueprint {
-	private final int id;
-	private final int oreRobotCostOre;
-	private final int clayRobotCostOre;
-	private final int obsidianRobotCostOre;
-	private final int obsidianRobotCostClay;
-	private final int geodeRobotCostOre;
-	private final int geodeRobotCostObsidian;
-	private final int maxOreRobotCount;
-	private final int maxClayRobotCount;
-	private final int maxObsidianRobotCount;
-
-	Blueprint(int id, int oreRobotCostOre, int clayRobotCostOre, int obsidianRobotCostOre, int obsidianRobotCostClay,
-			int geodeRobotCostOre, int geodeRobotCostObsidian) {
-		this.id = id;
-		this.oreRobotCostOre = oreRobotCostOre;
-		this.clayRobotCostOre = clayRobotCostOre;
-		this.obsidianRobotCostOre = obsidianRobotCostOre;
-		this.obsidianRobotCostClay = obsidianRobotCostClay;
-		this.geodeRobotCostOre = geodeRobotCostOre;
-		this.geodeRobotCostObsidian = geodeRobotCostObsidian;
-		this.maxOreRobotCount = Math.max(Math.max(oreRobotCostOre, clayRobotCostOre),
-				Math.max(obsidianRobotCostOre, geodeRobotCostOre));
-		this.maxClayRobotCount = obsidianRobotCostClay;
-		this.maxObsidianRobotCount = geodeRobotCostObsidian;
-	}
-}
-
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
-class GeodeCollectingState {
-	private int minutesLeft;
-	private int ore;
-	private int clay;
-	private int obsidian;
-	private int geode;
-
-	private int oreRobots;
-	private int clayRobots;
-	private int obsidianRobots;
-	private int geodeRobots;
-
-	public GeodeCollectingState(GeodeCollectingState other, int timeDelta) {
-		this.minutesLeft = other.minutesLeft - timeDelta;
-		this.ore = other.ore + other.oreRobots * timeDelta;
-		this.clay = other.clay + other.clayRobots * timeDelta;
-		this.obsidian = other.obsidian + other.obsidianRobots * timeDelta;
-		this.geode = other.geode + other.geodeRobots * timeDelta;
-		this.oreRobots = other.oreRobots;
-		this.clayRobots = other.clayRobots;
-		this.obsidianRobots = other.obsidianRobots;
-		this.geodeRobots = other.geodeRobots;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof GeodeCollectingState other) {
-			return oreRobots == other.getOreRobots() && clayRobots == other.getClayRobots()
-					&& obsidianRobots == other.getObsidianRobots() && geodeRobots == other.getGeodeRobots();
-		}
-		return false;
 	}
 }
