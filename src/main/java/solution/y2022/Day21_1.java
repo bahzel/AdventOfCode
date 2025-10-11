@@ -11,6 +11,14 @@ public class Day21_1 extends MapSolution<Map<String, ComputingMonkey>> {
 		new Day21_1().solve();
 	}
 
+	public Day21_1() {
+		super();
+	}
+
+	public Day21_1(java.util.List<String> input) {
+		super(input);
+	}
+
 	@Override
 	protected Map<String, ComputingMonkey> initializeMapping() {
 		return new HashMap<>();
@@ -31,18 +39,20 @@ public class Day21_1 extends MapSolution<Map<String, ComputingMonkey>> {
 					new ProductMonkey(instructions[1], instructions[3], stringComputingMonkeyMap));
 			case "/" -> stringComputingMonkeyMap.put(instructions[0],
 					new DivisionMonkey(instructions[1], instructions[3], stringComputingMonkeyMap));
+			case "=" -> stringComputingMonkeyMap.put(instructions[0],
+					new EqualMonkey(instructions[1], instructions[3], stringComputingMonkeyMap));
 			}
 		}
 	}
 
 	@Override
 	protected String computeSolution(Map<String, ComputingMonkey> stringComputingMonkeyMap) {
-		return stringComputingMonkeyMap.get("root").getValue() + "";
+		return (long) stringComputingMonkeyMap.get("root").getValue() + "";
 	}
 }
 
 abstract class ComputingMonkey {
-	abstract long getValue();
+	abstract double getValue();
 }
 
 @AllArgsConstructor
@@ -50,16 +60,16 @@ class NumberMonkey extends ComputingMonkey {
 	private final long value;
 
 	@Override
-	long getValue() {
+	double getValue() {
 		return value;
 	}
 }
 
 abstract class OperationMonkey extends ComputingMonkey {
 	private final String left;
-	private Long leftValue;
+	private Double leftValue;
 	private final String right;
-	private Long rightValue;
+	private Double rightValue;
 	private final Map<String, ComputingMonkey> monkeyMap;
 
 	public OperationMonkey(String left, String right, Map<String, ComputingMonkey> monkeyMap) {
@@ -68,14 +78,14 @@ abstract class OperationMonkey extends ComputingMonkey {
 		this.monkeyMap = monkeyMap;
 	}
 
-	protected long getLeftValue() {
+	protected Double getLeftValue() {
 		if (leftValue == null) {
 			leftValue = monkeyMap.get(left).getValue();
 		}
 		return leftValue;
 	}
 
-	protected long getRightValue() {
+	protected Double getRightValue() {
 		if (rightValue == null) {
 			rightValue = monkeyMap.get(right).getValue();
 		}
@@ -89,7 +99,7 @@ class SumMonkey extends OperationMonkey {
 	}
 
 	@Override
-	long getValue() {
+	double getValue() {
 		return getLeftValue() + getRightValue();
 	}
 }
@@ -100,7 +110,7 @@ class DifferenceMonkey extends OperationMonkey {
 	}
 
 	@Override
-	long getValue() {
+	double getValue() {
 		return getLeftValue() - getRightValue();
 	}
 }
@@ -111,7 +121,7 @@ class ProductMonkey extends OperationMonkey {
 	}
 
 	@Override
-	long getValue() {
+	double getValue() {
 		return getLeftValue() * getRightValue();
 	}
 }
@@ -122,7 +132,18 @@ class DivisionMonkey extends OperationMonkey {
 	}
 
 	@Override
-	long getValue() {
+	double getValue() {
 		return getLeftValue() / getRightValue();
+	}
+}
+
+class EqualMonkey extends OperationMonkey {
+	public EqualMonkey(String left, String right, Map<String, ComputingMonkey> monkeyMap) {
+		super(left, right, monkeyMap);
+	}
+
+	@Override
+	double getValue() {
+		return getLeftValue().compareTo(getRightValue());
 	}
 }
