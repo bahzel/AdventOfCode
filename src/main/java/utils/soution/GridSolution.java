@@ -42,7 +42,9 @@ public abstract class GridSolution<T> extends Solution {
 	protected void initializeNeighbours() {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[0].length; j++) {
-				if (i > 0) {
+				if (grid[i][j] == null) {
+					continue;
+				} else if (i > 0) {
 					if (j > 0) {
 						grid[i][j].getAllNeighbours().add(grid[i - 1][j - 1]);
 					}
