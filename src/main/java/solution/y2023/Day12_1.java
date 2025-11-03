@@ -1,7 +1,9 @@
 package solution.y2023;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -27,11 +29,20 @@ public class Day12_1 extends InstructionSolution<Pair<String, List<Integer>>, At
 
 	@Override
 	protected boolean performInstruction(Pair<String, List<Integer>> stringListPair, AtomicLong atomicLong) {
-		atomicLong.addAndGet(countPossibilities(stringListPair.getLeft(), stringListPair.getRight()));
+		CACHE.clear();
+		atomicLong.addAndGet(countPossibilities(stringListPair));
 		return false;
 	}
 
-	private long countPossibilities(String map, List<Integer> springs) {
+	private final Map<Pair<String, List<Integer>>, Long> CACHE = new HashMap<>();
+
+	private long countPossibilities(Pair<String, List<Integer>> pair) {
+		if (CACHE.containsKey(pair)) {
+			return CACHE.get(pair);
+		}
+
+		var map = pair.getLeft();
+		var springs = pair.getRight();
 		if (springs.isEmpty()) {
 			return map.contains("#") ? 0L : 1L;
 		}
@@ -40,20 +51,23 @@ public class Day12_1 extends InstructionSolution<Pair<String, List<Integer>>, At
 		var spring = springs.getFirst();
 		var nextSprings = springs.subList(1, springs.size());
 
-		for (var i = 0; i + spring <= map.length(); i++) {
+		var minSizeLeft = springs.stream().mapToInt(Integer::intValue).sum() + springs.size() - 1;
+		for (var i = 0; i + minSizeLeft <= map.length(); i++) {
 			if (map.charAt(i) == '?') {
 				if (doesSpringFit(map, spring, i, nextSprings.isEmpty())) {
-					possibilities += countPossibilities(map.substring(i + spring + (nextSprings.isEmpty() ? 0 : 1)),
-							nextSprings);
+					possibilities += countPossibilities(
+							Pair.of(map.substring(i + spring + (nextSprings.isEmpty() ? 0 : 1)), nextSprings));
 				}
 			} else if (map.charAt(i) == '#') {
 				if (doesSpringFit(map, spring, i, nextSprings.isEmpty())) {
-					possibilities += countPossibilities(map.substring(i + spring + (nextSprings.isEmpty() ? 0 : 1)),
-							nextSprings);
+					possibilities += countPossibilities(
+							Pair.of(map.substring(i + spring + (nextSprings.isEmpty() ? 0 : 1)), nextSprings));
 				}
 				return possibilities;
 			}
 		}
+
+		CACHE.put(pair, possibilities);
 		return possibilities;
 	}
 
