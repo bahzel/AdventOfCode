@@ -83,4 +83,18 @@ public abstract class GridSolution<T> extends Solution {
 	protected abstract GridElement<T> transformCell(char ch, int x, int y);
 
 	protected abstract String computeSolution();
+
+	protected void printGrid() {
+		for (var y = 0; y < grid[0].length; y++) {
+			for (GridElement<T>[] gridElements : grid) {
+				print(printValue(gridElements[y].getValue()));
+			}
+			println();
+		}
+		println();
+	}
+
+	protected String printValue(T value) {
+		return value.toString();
+	}
 }
