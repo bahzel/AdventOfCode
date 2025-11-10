@@ -87,7 +87,7 @@ public class Day18_1 extends Solution {
 		}).sum() + "";
 	}
 
-	private List<Edge> getEdges() {
+	protected List<Edge> getEdges() {
 		var edges = new ArrayList<Edge>();
 
 		var lastPoint = new Point(0, 0);
