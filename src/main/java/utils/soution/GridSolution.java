@@ -11,6 +11,10 @@ public abstract class GridSolution<T> extends Solution {
 		super();
 	}
 
+	protected GridSolution(List<String> input) {
+		super(input);
+	}
+
 	protected List<String> getInstructions(List<String> instructions) {
 		return instructions;
 	}
